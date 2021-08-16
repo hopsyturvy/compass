@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Brewed Coffee Compass</title>
+    <link rel="stylesheet" href="brude.css">
+</head>
+
+<body>
+
+    <svg id="compass" viewBox="-500 -500 1000 1000" xmlns="http://www.w3.org/2000/svg">
+
+        <g id="background">
+            <circle cx="0" cy="0" r="490" stroke="#000" stroke-width="1" fill="none" />
+            <rect x = "-500" y= "-500" width="1000" height="1000" stroke="#000" stroke-width="1" fill="none"/>
+            <path d="
+                M -187.51, -452.70
+                A 490, 490 0 0,1 187.51, -452.70
+                L 0, 0
+                Z
+            " fill="red" fill-opacity="0.2" />
+            <path d="
+                M 187.51, -452.70
+                A 490, 490 0 0,1 452.70, -187.51
+                L 0, 0
+                Z
+            " fill="blue" fill-opacity="0.2"/>
+            <path d="
+                M 452.70, -187.51
+                A 490, 490 0 0,1 452.70, 187.51
+                L 0, 0
+                Z
+            " fill="red" fill-opacity="0.2"/>
+            <path d="
+                M 452.70, 187.51
+                A 490, 490 0 0,1 187.51, 452.70
+                L 0, 0
+                Z
+            " fill="blue" fill-opacity="0.2"/>
+            <path d="
+                M 187.51, 452.70
+                A 490, 490 0 0,1 -187.51, 452.70
+                L 0, 0
+                Z
+            " fill="red" fill-opacity="0.2"/>
+            <path d="
+                M -187.51, 452.70
+                A 490, 490 0 0,1 -452.70, 187.51
+                L 0, 0
+                Z
+            " fill="blue" fill-opacity="0.2"/>
+            <path d="
+                M -452.70, 187.51
+                A 490, 490 0 0,1 -452.70, -187.51
+                L 0, 0
+                Z
+            " fill="red" fill-opacity="0.2"/>
+            <path d="
+                M -452.70, -187.51
+                A 490, 490 0 0,1 -187.51, -452.70
+                L 0, 0
+                Z
+            " fill="blue" fill-opacity="0.2"/>
+
+        </g>
+
+
+
+
+    </svg>
+
+    <script src="svg-pan-zoom.min.js"></script>
+    <script src="brude.js"></script>
+
+</body>
+
+</html>
