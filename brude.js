@@ -10,242 +10,405 @@ var diffY = 0
 var delta = 5
 var SCROLL_SENSITIVITY = .5
 var timer = null
+
+const tier = {
+    a: {
+        outer: 477.36,
+        inner: 371.52,
+        arcwidth: 2
+    },
+    b: {
+        outer: 422.39,
+        inner: 271.13,
+        arcwidth: 2.5
+    },
+    c: {
+        outer: 251.85,
+        inner: 144.90,
+        arcwidth: 4
+    },
+    d: {
+        outer: 214.11,
+        inner: 113.36,
+        arcwidth: 5
+    },
+    e: {
+        outer: 103.8,
+        inner: 77.91,
+        arcwidth: 45
+    }
+}
+
 var flavours = [
     {
         name: "Sweet",
         flavourangle: 0,
-        distance: 200
-
+        innerarc: tier.c.inner,
+        outerarc: tier.c.outer,
+        arcwidth: tier.c.arcwidth
     }, {
         name: "Powdery",
         flavourangle: 10,
-        distance: 400
+        innerarc: tier.b.inner,
+        outerarc: tier.b.outer,
+        arcwidth: tier.b.arcwidth
     }, {
         name: "Pleasing",
         flavourangle: 20,
-        distance: 200
+        innerarc: tier.d.inner,
+        outerarc: tier.d.outer,
+        arcwidth: tier.d.arcwidth
     }, {
         name: "Empty",
         flavourangle: 25,
-        distance: 400
+        innerarc: tier.b.inner,
+        outerarc: tier.b.outer,
+        arcwidth: tier.b.arcwidth
     }, {
         name: "Dusty",
         flavourangle: 35,
-        distance: 400
+        innerarc: tier.b.inner,
+        outerarc: tier.b.outer,
+        arcwidth: tier.b.arcwidth
     }, {
         name: "Aromatic",
         flavourangle: 40,
-        distance: 280
+        innerarc: tier.c.inner,
+        outerarc: tier.c.outer,
+        arcwidth: tier.c.arcwidth
     }, {
         name: "Astringent",
         flavourangle: 45,
-        distance: 450
+        innerarc: tier.a.inner,
+        outerarc: tier.a.outer,
+        arcwidth: tier.a.arcwidth
     }, {
         name: "Dilute",
         flavourangle: 55,
-        distance: 400
+        innerarc: tier.b.inner,
+        outerarc: tier.b.outer,
+        arcwidth: tier.b.arcwidth
     }, {
         name: "Limp",
         flavourangle: 60,
-        distance: 450
+        innerarc: tier.a.inner,
+        outerarc: tier.a.outer,
+        arcwidth: tier.a.arcwidth
     }, {
         name: "Scrawny",
         flavourangle: 70,
-        distance: 400
+        innerarc: tier.b.inner,
+        outerarc: tier.b.outer,
+        arcwidth: tier.b.arcwidth
     }, {
         name: "Delicate",
         flavourangle: 72,
-        distance: 280
+        innerarc: tier.c.inner,
+        outerarc: tier.c.outer,
+        arcwidth: tier.c.arcwidth
     }, {
         name: "Fragile",
         flavourangle: 75,
-        distance: 450
+        innerarc: tier.a.inner,
+        outerarc: tier.a.outer,
+        arcwidth: tier.a.arcwidth
     }, {
         name: "Muted",
         flavourangle: 80,
-        distance: 400
+        innerarc: tier.b.inner,
+        outerarc: tier.b.outer,
+        arcwidth: tier.b.arcwidth
     }, {
         name: "Gentle",
         flavourangle: 85,
-        distance: 200
+        innerarc: tier.d.inner,
+        outerarc: tier.d.outer,
+        arcwidth: tier.d.arcwidth
     }, {
         name: "Thin",
         flavourangle: 95,
-        distance: 280
+        innerarc: tier.c.inner,
+        outerarc: tier.c.outer,
+        arcwidth: tier.c.arcwidth
     }, {
         name: "Faint",
         flavourangle: 98,
-        distance: 450
+        innerarc: tier.a.inner,
+        outerarc: tier.a.outer,
+        arcwidth: tier.a.arcwidth
     }, {
         name: "Slender",
         flavourangle: 106,
-        distance: 400
+        innerarc: tier.b.inner,
+        outerarc: tier.b.outer,
+        arcwidth: tier.b.arcwidth
     }, {
         name: "Sparse",
         flavourangle: 112,
-        distance: 450
+        innerarc: tier.a.inner,
+        outerarc: tier.a.outer,
+        arcwidth: tier.a.arcwidth
     }, {
         name: "Transparent",
         flavourangle: 116,
-        distance: 280
+        innerarc: tier.c.inner,
+        outerarc: tier.c.outer,
+        arcwidth: tier.c.arcwidth
     }, {
         name: "Tea-Like",
         flavourangle: 118,
-        distance: 400
+        innerarc: tier.b.inner,
+        outerarc: tier.b.outer,
+        arcwidth: tier.b.arcwidth
     }, {
         name: "Flimsy",
         flavourangle: 125,
-        distance: 450
+        innerarc: tier.a.inner,
+        outerarc: tier.a.outer,
+        arcwidth: tier.a.arcwidth
     }, {
         name: "Insipid",
         flavourangle: 130,
-        distance: 400
+        innerarc: tier.b.inner,
+        outerarc: tier.b.outer,
+        arcwidth: tier.b.arcwidth
     }, {
         name: "Soft",
         flavourangle: 133,
-        distance: 200
+        innerarc: tier.d.inner,
+        outerarc: tier.d.outer,
+        arcwidth: tier.d.arcwidth
     }, {
         name: "Watery",
         flavourangle: 135,
-        distance: 450
+        innerarc: tier.a.inner,
+        outerarc: tier.a.outer,
+        arcwidth: tier.a.arcwidth
     }, {
         name: "Underwhelming",
         flavourangle: 142,
-        distance: 400
+        innerarc: tier.b.inner,
+        outerarc: tier.b.outer,
+        arcwidth: tier.b.arcwidth
     }, {
         name: "Bland",
         flavourangle: 152,
-        distance: 400
+        innerarc: tier.b.inner,
+        outerarc: tier.b.outer,
+        arcwidth: tier.b.arcwidth
     }, {
         name: "Nutty",
         flavourangle: 157,
-        distance: 450
+        innerarc: tier.a.inner,
+        outerarc: tier.a.outer,
+        arcwidth: tier.a.arcwidth
     }, {
         name: "Vegetal",
         flavourangle: 162,
-        distance: 400
+        innerarc: tier.b.inner,
+        outerarc: tier.b.outer,
+        arcwidth: tier.b.arcwidth
     }, {
         name: "Nuanced",
         flavourangle: 165,
-        distance: 200
+        innerarc: tier.d.inner,
+        outerarc: tier.d.outer,
+        arcwidth: tier.d.arcwidth
     }, {
         name: "Sour",
         flavourangle: 172,
-        distance: 400
+        innerarc: tier.b.inner,
+        outerarc: tier.b.outer,
+        arcwidth: tier.b.arcwidth
     }, {
         name: "Buttery",
-        flavourangle: 188,
-        distance: 280
+        flavourangle: 187,
+        innerarc: tier.c.inner,
+        outerarc: tier.c.outer,
+        arcwidth: tier.c.arcwidth
     }, {
         name: "Salty",
         flavourangle: 191,
-        distance: 400
+        innerarc: tier.b.inner,
+        outerarc: tier.b.outer,
+        arcwidth: tier.b.arcwidth
     }, {
         name: "Substantial",
-        flavourangle: 195,
-        distance: 220
+        flavourangle: 198,
+        innerarc: tier.d.inner,
+        outerarc: tier.d.outer,
+        arcwidth: tier.d.arcwidth
     }, {
         name: "Quick Finish",
         flavourangle: 203,
-        distance: 400
+        innerarc: tier.b.inner,
+        outerarc: tier.b.outer,
+        arcwidth: tier.b.arcwidth
     }, {
         name: "Plump",
         flavourangle: 210,
-        distance: 280
+        innerarc: tier.c.inner,
+        outerarc: tier.c.outer,
+        arcwidth: tier.c.arcwidth
     }, {
         name: "Dull",
         flavourangle: 214,
-        distance: 400
+        innerarc: tier.b.inner,
+        outerarc: tier.b.outer,
+        arcwidth: tier.b.arcwidth
     }, {
         name: "Sticky",
         flavourangle: 222,
-        distance: 280
+        innerarc: tier.c.inner,
+        outerarc: tier.c.outer,
+        arcwidth: tier.c.arcwidth
     }, {
         name: "Beefy",
         flavourangle: 230,
-        distance: 450
+        innerarc: tier.a.inner,
+        outerarc: tier.a.outer,
+        arcwidth: tier.a.arcwidth
     }, {
         name: "Big",
         flavourangle: 242,
-        distance: 280
+        innerarc: tier.c.inner,
+        outerarc: tier.c.outer,
+        arcwidth: tier.c.arcwidth
     }, {
         name: "Bulky",
         flavourangle: 244,
-        distance: 400
+        innerarc: tier.b.inner,
+        outerarc: tier.b.outer,
+        arcwidth: tier.b.arcwidth
     }, {
         name: "Soupy",
         flavourangle: 258,
-        distance: 400
+        innerarc: tier.b.inner,
+        outerarc: tier.b.outer,
+        arcwidth: tier.b.arcwidth
     }, {
         name: "Strong",
         flavourangle: 260,
-        distance: 280
+        innerarc: tier.c.inner,
+        outerarc: tier.c.outer,
+        arcwidth: tier.c.arcwidth
     }, {
         name: "Heavy",
         flavourangle: 270,
-        distance: 200
+        innerarc: tier.d.inner,
+        outerarc: tier.d.outer,
+        arcwidth: tier.d.arcwidth
     }, {
         name: "Hefty",
         flavourangle: 280,
-        distance: 280
+        innerarc: tier.c.inner,
+        outerarc: tier.c.outer,
+        arcwidth: tier.c.arcwidth
     }, {
         name: "Harsh",
         flavourangle: 285,
-        distance: 400
+        innerarc: tier.b.inner,
+        outerarc: tier.b.outer,
+        arcwidth: tier.b.arcwidth
     }, {
         name: "Robust",
         flavourangle: 290,
-        distance: 280
+        innerarc: tier.c.inner,
+        outerarc: tier.c.outer,
+        arcwidth: tier.c.arcwidth
     }, {
         name: "Overwhelming",
         flavourangle: 300,
-        distance: 450
+        innerarc: tier.b.inner,
+        outerarc: tier.b.outer,
+        arcwidth: tier.b.arcwidth
     }, {
         name: "Severe",
         flavourangle: 310,
-        distance: 400
+        innerarc: tier.b.inner,
+        outerarc: tier.b.outer,
+        arcwidth: tier.b.arcwidth
     }, {
         name: "Thick",
         flavourangle: 312,
-        distance: 280
+        innerarc: tier.c.inner,
+        outerarc: tier.c.outer,
+        arcwidth: tier.c.arcwidth
     }, {
         name: "Intense",
         flavourangle: 320,
-        distance: 400
+        innerarc: tier.b.inner,
+        outerarc: tier.b.outer,
+        arcwidth: tier.b.arcwidth
     }, {
         name: "Luscious",
         flavourangle: 330,
-        distance: 200
+        innerarc: tier.d.inner,
+        outerarc: tier.d.outer,
+        arcwidth: tier.d.arcwidth
     }, {
         name: "Dry",
         flavourangle: 335,
-        distance: 400
+        innerarc: tier.b.inner,
+        outerarc: tier.b.outer,
+        arcwidth: tier.b.arcwidth
     }, {
         name: "Rich",
         flavourangle: 340,
-        distance: 280
+        innerarc: tier.c.inner,
+        outerarc: tier.c.outer,
+        arcwidth: tier.c.arcwidth
     }, {
         name: "Bitter",
         flavourangle: 350,
-        distance: 400
+        innerarc: tier.b.inner,
+        outerarc: tier.b.outer,
+        arcwidth: tier.b.arcwidth
     }
 
 ]
 var currentflavour
 
+var core = [
+    {
+        name: "Mouth-Filling",
+        angle: 90,
+        arcwidth: 50
+    }, {
+        name: "Fruity",
+        angle: 175,
+        arcwidth: 25
+    }, {
+        name: "Tasty",
+        angle: 230,
+        arcwidth: 24
+    }, {
+        name: "Creamy",
+        angle: 295,
+        arcwidth: 28
+    }, {
+        name: "Smooth",
+        angle: 360,
+        arcwidth: 30
+    }
+
+
+
+]
 
 window.onload = function () {
 
 
     flavours.forEach(addFlavour, this)
+    core.forEach(addCore, this)
 
-    wheelcontainer.addEventListener('pointerdown', onPointerDown)
-    //wheelcontainer.addEventListener('touchstart', (e) => handleTouch(e, onPointerDown))
-    document.addEventListener('pointerup', onPointerUp)
-    //document.addEventListener('touchend', (e) => handleTouch(e, onPointerUp))
-    //document.addEventListener('touchcancel', (e) => handleTouch(e, onPointerUp))
-    document.addEventListener('pointermove', onPointerMove)
-    //wheelcontainer.addEventListener('touchmove', (e) => handleTouch(e, onPointerMove))
+    wheelcontainer.addEventListener('mousedown', onPointerDown)
+    wheelcontainer.addEventListener('touchstart', (e) => handleTouch(e, onPointerDown))
+    document.addEventListener('mouseup', onPointerUp)
+    document.addEventListener('touchend', (e) => handleTouch(e, onPointerUp))
+    document.addEventListener('touchcancel', (e) => handleTouch(e, onPointerUp))
+    document.addEventListener('mousemove', onPointerMove)
+    wheelcontainer.addEventListener('touchmove', (e) => handleTouch(e, onPointerMove))
     wheelcontainer.addEventListener('wheel', (e) => scrollWheel(e.deltaY * SCROLL_SENSITIVITY))
     window.addEventListener("resize", resize)
     resize()
@@ -401,15 +564,17 @@ function popout(name) {
     popelement.style.transition = "transform 0.5s ease"
 
 
-    let distance = - 400 - parseInt(popelement.getAttribute("x"))
-    let transformation = "scale (2) translate (" + distance + ",0)"
+    let distance = - (800 / 2.5) - parseInt(popelement.getAttribute("x"))
+    let transformation = "scale (2.5) translate (" + distance + ",0)"
 
 
     popelement.setAttribute("transform", transformation)
+    popelement.setAttribute("text-anchor", "start")
+
 
     setTimeout(function () { popelement.style.transition = "transform 0s" }, 500)
 
-    showInfo(name)
+    showInfo(popelement)
 
 }
 
@@ -420,6 +585,7 @@ function popin(name) {
     let transformation = "scale (1)"
 
     popelement.setAttribute("transform", transformation)
+    popelement.setAttribute("text-anchor", "middle")
 
     setTimeout(function () { popelement.style.transition = "transform 0s" }, 500)
 
@@ -427,7 +593,11 @@ function popin(name) {
 
 }
 
-function showInfo(name) {
+function showInfo(element) {
+    console.log(element.getAttribute("x"))
+
+    if (element.getAttribute("x") < -261) {
+
     if (wheelangle >= 337.5 || wheelangle < 22.5) {
         resultstitle = "Extract More, Use Less Coffee"
         resultsinfo = "<ul><li>Use a finer grind and/or longer brew time to extract more</li><li>Increase the Brew Ratio by fixing the water weight and using less coffee OR by fixing the dose and using more water</li></ul>"
@@ -439,13 +609,13 @@ function showInfo(name) {
         resultsinfo = "<ul><li>Decrease the Brew Ratio by fixing the water weight and using more coffee OR by fixing the dose and using less water</li></ul>"
     } else if (wheelangle >= 112.5 && wheelangle < 157.5) {
         resultstitle = "Extract Less, Use More Coffee"
-        resultsinfo = "<ul><li>Use a coarser grind and/or shorter brew time to extract more</li><li>Decrease the Brew Ratio by fixing the water weight and using more coffee OR by fixing the dose and using less water</li></ul>"
+        resultsinfo = "<ul><li>Use a coarser grind and/or shorter brew time to extract less</li><li>Decrease the Brew Ratio by fixing the water weight and using more coffee OR by fixing the dose and using less water</li></ul>"
     } else if (wheelangle >= 157.5 && wheelangle < 202.5) {
         resultstitle = "Extract Less, Use More Coffee"
-        resultsinfo = "<ul><li>Use a coarser grind and/or shorter brew time to extract more</li><li>Decrease the Brew Ratio by fixing the water weight and using more coffee OR by fixing the dose and using less water</li></ul>"
+        resultsinfo = "<ul><li>Use a coarser grind and/or shorter brew time to extract less</li><li>Decrease the Brew Ratio by fixing the water weight and using more coffee OR by fixing the dose and using less water</li></ul>"
     } else if (wheelangle >= 202.5 && wheelangle < 247.5) {
         resultstitle = "Extract Less"
-        resultsinfo = "<ul><li>Use a coarser grind and/or shorter brew time to extract more</li></ul>"
+        resultsinfo = "<ul><li>Use a coarser grind and/or shorter brew time to extract less</li></ul>"
     } else if (wheelangle >= 247.5 && wheelangle < 292.5) {
         resultstitle = "Use Less Coffee"
         resultsinfo = "<ul><li>Increase the Brew Ratio by fixing the water weight and using less coffee OR by fixing the dose and using more water</li></ul>"
@@ -454,11 +624,32 @@ function showInfo(name) {
         resultsinfo = "<ul><li>Use a finer grind and/or longer brew time to extract more</li><li>Increase the Brew Ratio by fixing the water weight and using less coffee OR by fixing the dose and using more water</li></ul>"
     }
 
+    } else {
+        resultstitle = "Green Zone"
+        if (wheelangle >= 337.5 || wheelangle < 22.5) {
+            resultsinfo = "Your brew is good, but you might find an even more balanced flavour if you use a finer grind / longer brew time and use less coffee"
+        } else if (wheelangle >= 22.5 && wheelangle < 67.5) {
+            resultsinfo = "Your brew is good, but you might find an even more balanced flavour if you use a finer grind / longer brew time"
+        } else if (wheelangle >= 67.5 && wheelangle < 112.5) {
+            resultsinfo = "Your brew is good, but you might find an even more balanced flavour if you decrease the Brew Ratio by using more coffee"
+        } else if (wheelangle >= 112.5 && wheelangle < 157.5) {
+            resultsinfo = "Your brew is good, but you might find an even more balanced flavour if you use a coarser grind / shorter brew time and use more coffee"
+        } else if (wheelangle >= 157.5 && wheelangle < 202.5) {
+            resultsinfo = "Your brew is good, but you might find an even more balanced flavour if you use a coarser grind / shorter brew time and use more coffee"
+        } else if (wheelangle >= 202.5 && wheelangle < 247.5) {
+            resultsinfo = "Your brew is good, but you might find an even more balanced flavour if you use a coarser grind / shorter brew time"
+        } else if (wheelangle >= 247.5 && wheelangle < 292.5) {
+            resultsinfo = "Your brew is good, but you might find an even more balanced flavour if you increase the Brew Ratio by using less coffee"
+        } else if (wheelangle >= 292.5 && wheelangle < 337.5) {
+            resultsinfo = "Your brew is good, but you might find an even more balanced flavour if you use a finer grind / longer brew time and use less coffee"
+        }
+    }
+
     document.getElementById("resultstitle").innerHTML = resultstitle
     document.getElementById("resultsinfo").innerHTML = resultsinfo
 
     results = document.getElementById("resultsarea")
-    results.style.visibility = "visible"
+    results.style.opacity = "1"
 
 
 
@@ -466,7 +657,7 @@ function showInfo(name) {
 
 function hideInfo() {
     results = document.getElementById("resultsarea")
-    results.style.visibility = "hidden"
+    results.style.opacity = "0"
 }
 
 
@@ -497,6 +688,27 @@ function turnWheel(a) {
 
 }
 
+function addCore(properties) {
+
+    let core = document.getElementById("core")
+
+    let label = document.createElementNS("http://www.w3.org/2000/svg", "textPath");
+    label.setAttribute("id", properties.name)
+    label.setAttributeNS("http://www.w3.org/1999/xlink", "xlink:href", "#textcircle")
+    label.setAttribute("startOffset", properties.angle / 7.20 + "%")
+    label.innerHTML = properties.name
+
+    let transformation = "rotate(" + (properties.angle) + ")"
+
+    let arc = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    let arcpath = describeArc(0, 0, -tier.e.inner, -tier.e.outer, -properties.arcwidth, properties.arcwidth);
+    arc.setAttribute("d", arcpath)
+    arc.setAttribute("fill", "#a2bcb3")
+
+    arc.setAttribute("transform", transformation)
+    wheel.insertBefore(arc, wheel.firstChild)
+    core.appendChild(label)
+}
 
 function addFlavour(properties) {
     let newflavour = document.createElementNS("http://www.w3.org/2000/svg", "g");
@@ -505,32 +717,42 @@ function addFlavour(properties) {
     let label = document.createElementNS("http://www.w3.org/2000/svg", "text");
     let transformation = "rotate(" + (180 + properties.flavourangle) + ")"
 
-    label.setAttribute("x", -properties.distance)
+    let labelplace = - (properties.innerarc + properties.outerarc) / 2;
+
+    label.setAttribute("x", labelplace)
     label.setAttribute("y", 0)
     label.setAttribute("id", properties.name + "label")
     label.setAttribute("class", "label")
-    label.setAttribute("text-anchor", "start")
+    label.setAttribute("text-anchor", "middle")
     label.setAttribute("data-angle", properties.flavourangle)
     label.setAttribute("data-name", properties.name)
-    newflavour.setAttribute("transform", transformation)
-    label.setAttribute("alignment-baseline", "center")
+    label.setAttribute("alignment-baseline", "central")
     label.innerHTML = properties.name
 
+    let arc = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    let arcpath = describeArc(0, 0, -properties.innerarc, -properties.outerarc, -properties.arcwidth, properties.arcwidth);
+    arc.setAttribute("d", arcpath)
+    arc.setAttribute("fill", "#a2bcb3")
+
+    newflavour.appendChild(arc)
     newflavour.appendChild(label)
+
+    newflavour.setAttribute("transform", transformation)
+
+
     wheel.appendChild(newflavour)
     newflavour.addEventListener('click', (e) => click(e))
 }
 
 function click(e) {
 
-    console.log(e)
 
     if (currentflavour) { popin(currentflavour) }
     let target = 180 - parseInt(e.target.getAttribute("data-angle"))
-    console.log("target = " + target)
-    console.log("wheelangle = " + wheelangle)
-    
-    turn = target-wheelangle
+
+    if (target) {
+
+    turn = target - wheelangle
     if (turn > 180) {
         turn -= 360
     } else if (turn < -180) {
@@ -539,13 +761,59 @@ function click(e) {
     turnWheel(turn)
     currentflavour = e.target.getAttribute("data-name")
     popout(currentflavour)
+}
 
 }
 
 function resize() {
 
+
     let titlearea = document.getElementById("titlearea")
     let resultsarea = document.getElementById("resultsarea")
-    let svgheight = window.innerHeight - titlearea.clientHeight - resultsarea.clientHeight
-    document.getElementById("compass").style.height = svgheight + "px"
+    document.getElementById("appcontainer").style.height = window.innerHeight + "px"
+
+    if (window.innerWidth < 650) {
+        resultsarea.style.width = "100%"
+        let svgheight = (window.innerHeight - resultsarea.clientHeight - titlearea.clientHeight)
+        document.getElementById("compass").style.height = svgheight + "px"
+        document.getElementById("titlearea").style.position = "relative"
+
+    } else {
+        //fullwidth
+        let svgheight = window.innerHeight
+        document.getElementById("titlearea").style.position = "absolute"
+        document.getElementById("compass").style.height = svgheight + "px"
+        resultsarea.style.width = "50%"
+    }
+}
+
+function describeArc(x, y, innerRadius, outerRadius, startAngle, endAngle) {
+
+    var radius = innerRadius;
+    var spread = outerRadius - innerRadius;
+    var innerStart = polarToCartesian(x, y, radius, endAngle);
+    var innerEnd = polarToCartesian(x, y, radius, startAngle);
+    var outerStart = polarToCartesian(x, y, radius + spread, endAngle);
+    var outerEnd = polarToCartesian(x, y, radius + spread, startAngle);
+
+    var largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
+
+    var d = [
+        "M", outerStart.x, outerStart.y,
+        "A", radius + spread, radius + spread, 0, largeArcFlag, 0, outerEnd.x, outerEnd.y,
+        "L", innerEnd.x, innerEnd.y,
+        "A", radius, radius, 0, largeArcFlag, 1, innerStart.x, innerStart.y,
+        "L", outerStart.x, outerStart.y, "Z"
+    ].join(" ");
+
+    return d;
+}
+
+function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
+    var angleInRadians = (angleInDegrees) * Math.PI / 180.0;
+
+    return {
+        x: centerX + (radius * Math.cos(angleInRadians)),
+        y: centerY + (radius * Math.sin(angleInRadians))
+    };
 }

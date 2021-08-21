@@ -38,39 +38,32 @@
 
     </div>
 
-    <svg id="compass" viewBox="-800 -500 700 1000" xmlns="http://www.w3.org/2000/svg">
+    <svg id="compass" viewBox="-800 -550 700 1100" xmlns="http://www.w3.org/2000/svg">
 
 
         <g id ="wheelcontainer">
         <g id="wheel">
-            <circle x="0" y="0" r="490" stroke="#000" stroke-width="1" fill="none" />
-            <circle x="0" y="0" r="60" stroke="#000" stroke-width="1" fill="none" />
-            <circle x="0" y="0" r="95" stroke="#000" stroke-width="1" fill="none" />
-            <circle x="0" y="0" r="300" stroke="#000" stroke-width="1" fill="none" />
-            <path id="textcircle" d="M-80,0A80,80 0 1 180,0A80,80 0 1 1-80,0" fill="none"></path>
-            <text dy="10" class="label" transform="rotate(-30)">
-                <textPath xlink:href="#textcircle" startoffset = "0%">
-                    Smooth
-                </textPath>
-                <textPath xlink:href="#textcircle" startoffset = "20%">
-                    Mouth-filling
-                </textPath>
-                <textPath xlink:href="#textcircle" startoffset = "50%">
-                    Fruity
-                </textPath>
-                <textPath xlink:href="#textcircle" startoffset = "65%">
-                    Tasty
-                </textPath>
-                <textPath xlink:href="#textcircle" startoffset = "80%">
-                    Creamy
-                </textPath>
+            <circle x="0" y="0" r="490" stroke="#231f20" stroke-width="1" fill="none" stroke-dasharray="10,10"/>
+            <circle x="0" y="0" r="261" stroke="#fcfcfc" stroke-width="8" fill="none" stroke-dasharray="none" />
+            <circle x="0" y="0" r="261" stroke="#231f20" stroke-width="1" fill="none" stroke-dasharray="5,10"/>
+            <circle x="0" y="0" r="72" stroke="#231f20" stroke-width="1" fill="none" stroke-dasharray="2,4" />
+            <!-- <circle x="0" y="0" r="95" stroke="#231f20" stroke-width="1" fill="none" /> -->
+
+
+
+
+
+            
+            <path id="textcircle" d="M-89,0A89,89 0 1 189,0A89,89 0 1 1-89,0A89,89 0 1 189,0A89,89 0 1 1-89,0" fill="none"></path>
+            <text id="core" dy="-2" class="label" text-anchor="middle" dominant-baseline="central">
+
             </text>
 
 
-            <text x="-550" y="0" class="category" text-anchor="start" alignment-baseline="center" transform="rotate(90)">Strong</text>
-            <text x="-550" y="0" class="category" text-anchor="start" alignment-baseline="center" transform="rotate(180)">Over Extracted</text>
-            <text x="-550" y="0" class="category" text-anchor="start" alignment-baseline="center" transform="rotate(270)">Weak</text>
-            <text x="-550" y="0" class="category" text-anchor="start" alignment-baseline="center" transform="rotate(0)">Under Extracted</text>
+            <text x="-420" y="0" class="category" text-anchor="middle" dominant-baseline="central" transform="rotate(90)">Strong</text>
+            <text x="-420" y="0" class="category" text-anchor="middle" dominant-baseline="central" transform="rotate(180)">Over Extracted</text>
+            <text x="-420" y="0" class="category" text-anchor="middle" dominant-baseline="central" transform="rotate(270)">Weak</text>
+            <text x="-420" y="0" class="category" text-anchor="middle" dominant-baseline="central" transform="rotate(0)">Under Extracted</text>
            
             <path id="categorycircle" d="M-490,0A490,490 0 1 1490,0A490,490 0 1 1-490,0" fill="none"></path>
             <text dy="-30" class="subcategory" text-anchor="middle" transform="rotate(0)">
@@ -156,8 +149,10 @@
     </svg>
 
     <div id = "resultsarea">
-        <div id = "resultstitle" class="app_title">Extract More</div>
-        <div id = "resultsinfo">Finer Grind and/or Longer Brew Time</div>
+        <div id = "resultstitle" class="app_title">Extract Less, Use More Coffee</div>
+        <div id = "resultsinfo">
+            <ul><li>Use a coarser grind and/or shorter brew time to extract more</li><li>Decrease the Brew Ratio by fixing the water weight and using more coffee OR by fixing the dose and using less water</li></ul>
+        </div>
 
     </div>
 </div>
