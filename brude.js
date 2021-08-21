@@ -13,7 +13,7 @@ var timer = null
 var moved = 0
 var compass = document.getElementById("compass")
 var pt = compass.createSVGPoint();
-var previousturn
+var previousturn = 0
 
 const tier = {
     a: {
