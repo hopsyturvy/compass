@@ -4,70 +4,163 @@
 <head>
     <title>Brewed Coffee Compass</title>
     <link rel="stylesheet" href="brude.css">
+
+    <style id="et-divi-userfonts">
+        @font-face {
+            font-family: "NoBH Bold";
+            font-display: swap;
+            src: url("https://www.baristahustle.com/wp-content/uploads/et-fonts/NoBH-Bold-1.ttf") format("truetype");
+        }
+
+        @font-face {
+            font-family: "NoBH Regular";
+            font-display: swap;
+            src: url("https://www.baristahustle.com/wp-content/uploads/et-fonts/NoBH-Regular-1.ttf") format("truetype");
+        }
+
+        @font-face {
+            font-family: "NoBH Regular";
+            font-display: swap;
+            src: url("https://www.baristahustle.com/wp-content/uploads/et-fonts/NoBH-Regular-1.ttf") format("truetype");
+        }
+
+
+    </style>
+
 </head>
 
 <body>
 
-    <svg id="compass" viewBox="-500 -500 1000 1000" xmlns="http://www.w3.org/2000/svg">
+    <div id = "appcontainer">
+    <div id = "titlearea">
+        <div class="app_title">The Brewed Coffee Compass</div>
+        <div class="app_subtitle">Find your way to a better-tasting brew</div>
 
-        <g id="background">
-            <circle cx="0" cy="0" r="490" stroke="#000" stroke-width="1" fill="none" />
-            <rect x = "-500" y= "-500" width="1000" height="1000" stroke="#000" stroke-width="1" fill="none"/>
+    </div>
+
+    <svg id="compass" viewBox="-800 -500 700 1000" xmlns="http://www.w3.org/2000/svg">
+
+
+        <g id ="wheelcontainer">
+        <g id="wheel">
+            <circle x="0" y="0" r="490" stroke="#000" stroke-width="1" fill="none" />
+            <circle x="0" y="0" r="60" stroke="#000" stroke-width="1" fill="none" />
+            <circle x="0" y="0" r="95" stroke="#000" stroke-width="1" fill="none" />
+            <circle x="0" y="0" r="300" stroke="#000" stroke-width="1" fill="none" />
+            <path id="textcircle" d="M-80,0A80,80 0 1 180,0A80,80 0 1 1-80,0" fill="none"></path>
+            <text dy="10" class="label" transform="rotate(-30)">
+                <textPath xlink:href="#textcircle" startoffset = "0%">
+                    Smooth
+                </textPath>
+                <textPath xlink:href="#textcircle" startoffset = "20%">
+                    Mouth-filling
+                </textPath>
+                <textPath xlink:href="#textcircle" startoffset = "50%">
+                    Fruity
+                </textPath>
+                <textPath xlink:href="#textcircle" startoffset = "65%">
+                    Tasty
+                </textPath>
+                <textPath xlink:href="#textcircle" startoffset = "80%">
+                    Creamy
+                </textPath>
+            </text>
+
+
+            <text x="-550" y="0" class="category" text-anchor="start" alignment-baseline="center" transform="rotate(90)">Strong</text>
+            <text x="-550" y="0" class="category" text-anchor="start" alignment-baseline="center" transform="rotate(180)">Over Extracted</text>
+            <text x="-550" y="0" class="category" text-anchor="start" alignment-baseline="center" transform="rotate(270)">Weak</text>
+            <text x="-550" y="0" class="category" text-anchor="start" alignment-baseline="center" transform="rotate(0)">Under Extracted</text>
+           
+            <path id="categorycircle" d="M-490,0A490,490 0 1 1490,0A490,490 0 1 1-490,0" fill="none"></path>
+            <text dy="-30" class="subcategory" text-anchor="middle" transform="rotate(0)">
+                <textPath xlink:href="#categorycircle" startoffset = "12.5%">
+                    Strong Under Extracted
+                </textPath>
+                <textPath xlink:href="#categorycircle" startoffset = "37.5%">
+                    Strong Over Extracted
+                </textPath>
+                <textPath xlink:href="#categorycircle" startoffset = "62.5%">
+                    Weak Over Extracted
+                </textPath>
+                <textPath xlink:href="#categorycircle" startoffset = "87.5%">
+                    Weak Under Extracted
+                </textPath>
+            </text>    
+
+
+
             <path d="
                 M -187.51, -452.70
                 A 490, 490 0 0,1 187.51, -452.70
                 L 0, 0
                 Z
-            " fill="red" fill-opacity="0.2" />
+            " fill="red" fill-opacity="0" />
             <path d="
                 M 187.51, -452.70
                 A 490, 490 0 0,1 452.70, -187.51
                 L 0, 0
                 Z
-            " fill="blue" fill-opacity="0.2"/>
+            " fill="blue" fill-opacity="0"/>
             <path d="
                 M 452.70, -187.51
                 A 490, 490 0 0,1 452.70, 187.51
                 L 0, 0
                 Z
-            " fill="red" fill-opacity="0.2"/>
+            " fill="red" fill-opacity="0"/>
             <path d="
                 M 452.70, 187.51
                 A 490, 490 0 0,1 187.51, 452.70
                 L 0, 0
                 Z
-            " fill="blue" fill-opacity="0.2"/>
+            " fill="blue" fill-opacity="0"/>
             <path d="
                 M 187.51, 452.70
                 A 490, 490 0 0,1 -187.51, 452.70
                 L 0, 0
                 Z
-            " fill="red" fill-opacity="0.2"/>
+            " fill="red" fill-opacity="0"/>
             <path d="
                 M -187.51, 452.70
                 A 490, 490 0 0,1 -452.70, 187.51
                 L 0, 0
                 Z
-            " fill="blue" fill-opacity="0.2"/>
+            " fill="blue" fill-opacity="0"/>
             <path d="
                 M -452.70, 187.51
                 A 490, 490 0 0,1 -452.70, -187.51
                 L 0, 0
                 Z
-            " fill="red" fill-opacity="0.2"/>
+            " fill="red" fill-opacity="0"/>
             <path d="
                 M -452.70, -187.51
                 A 490, 490 0 0,1 -187.51, -452.70
                 L 0, 0
                 Z
-            " fill="blue" fill-opacity="0.2"/>
+            " fill="blue" fill-opacity="0"/>
+        </g>
+
+            <g id="stationary">
+                <rect id="RHoverlay" x="0" y="-500" width="1000" height="1000" fill="transparent"></rect>
+                <text x="0" y="0" class="label" text-anchor="middle" alignment-baseline="middle">Balanced</text>
+            </g>
 
         </g>
+
+        
+        
 
 
 
 
     </svg>
+
+    <div id = "resultsarea">
+        <div id = "resultstitle" class="app_title">Extract More</div>
+        <div id = "resultsinfo">Finer Grind and/or Longer Brew Time</div>
+
+    </div>
+</div>
 
     <script src="svg-pan-zoom.min.js"></script>
     <script src="brude.js"></script>

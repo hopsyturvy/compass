@@ -6,22 +6,89 @@ body
   overflow: hidden;
 }
 
-.small
+.category
 {
-  fill: black
+  fill: black;
+  font-family: 'NoBH Bold',Helvetica,Arial,Lucida,sans-serif;
+  font-size: 38px;
+  pointer-events: none;
+  user-select: none;
 }
 
-.arrowtext
+.subcategory
 {
-  fill: red
+  fill: #00000070;
+  font-family: 'NoBH Bold',Helvetica,Arial,Lucida,sans-serif;
+  font-size: 38px;
+  pointer-events: none;
+  user-select: none;
 }
+
+#appcontainer {
+    width: 100%;
+    background-color: #f9f9f9;
+}
+
+#titlearea {
+  width: 100%;
+
+  
+}
+
+#resultsarea {
+  width: 100%;
+}
+
+.app_title
+{
+  fill: black;
+  font-family: 'Head','NoBH Bold',Helvetica,Arial,Lucida,sans-serif;
+  font-size: 32px;
+}
+
+.app_subtitle
+{
+  fill: black;
+  font-family: 'Head','NoBH Bold',Helvetica,Arial,Lucida,sans-serif;
+  font-size: 22px;
+}
+
+#resultsinfo
+{
+  fill: black;
+  font-family: 'Head','NoBH Regular',Helvetica,Arial,Lucida,sans-serif;
+  font-size: 18px;
+}
+
+#resultsinfo ul
+{
+  margin-top: 0;
+}
+
+.label
+{
+  fill: black;
+  font-family: 'NoBH Bold',Helvetica,Arial,Lucida,sans-serif;
+  font-size: 24px;
+  user-select: none;
+}
+
 
 
 #compass
 {
-  width: 600px;
+  width: 100%;
   height: 600px;
-  border: 1px black solid;
-  margin: 50px;
+  background-color: #f9f9f9;
+
 }
 
+svg
+{
+font-family: 'NoBH Bold',Helvetica,Arial,Lucida,sans-serif;
+background-color: #f9f9f9;
+}
+
+#RHoverlay
+{
+}
