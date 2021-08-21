@@ -446,7 +446,10 @@ function onPointerUp(e) {
     }
 
     if (Math.abs(diffX) > delta || Math.abs(diffY) > delta) {
+        
         snapWheel(wheelangle)
+    } else {
+        click(e)
     }
     turnangle = 0
 }
@@ -472,12 +475,9 @@ function onPointerMove(e) {
 }
 
 function handleTouch(e, singleTouchHandler) {
-    if (e.touches.length == 1) {
+    console.log (e.touches)
+    if (e.touches.length < 2) {
         singleTouchHandler(e)
-    }
-    else if (e.type == "touchmove" && e.touches.length == 2) {
-        isDragging = false
-        //handlePinch(e) - removed for now
     }
 }
 
