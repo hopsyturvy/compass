@@ -1,6 +1,6 @@
 var wheel = document.getElementById("wheel")
 var wheelcontainer = document.getElementById("wheelcontainer")
-var RHoverlay = document.getElementById("RHoverlay")
+//var RHoverlay = document.getElementById("RHoverlay")
 var wheelangle = 0
 var turnangle = 0
 var isDragging = false
