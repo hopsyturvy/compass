@@ -440,6 +440,7 @@ function onPointerDown(e) {
     alert_coords(e)
     if (cursorpt.x < 0) {direction = true} else {direction = false}
     previousturn = 0
+    turn = 0
 
 }
 
