@@ -23,139 +23,175 @@
             font-display: swap;
             src: url("https://www.baristahustle.com/wp-content/uploads/et-fonts/NoBH-Regular-1.ttf") format("truetype");
         }
-
-
     </style>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
 <body>
 
-    <div id = "appcontainer">
-    <div id = "titlearea">
-        <div class="app_title">The Brewed Coffee Compass</div>
-        <div class="app_subtitle">Find your way to a better-tasting brew</div>
+    <div id="appcontainer">
+        <div id="titlearea">
+            <div class="app_title">The Brewed Coffee Compass</div>
+            <div class="app_subtitle">Find your way to a better-tasting brew</div>
 
-    </div>
+        </div>
 
-    <svg id="compass" viewBox="-800 -550 700 1100" xmlns="http://www.w3.org/2000/svg">
-
-
-        <g id ="wheelcontainer">
-        <g id="wheel">
-            <circle x="0" y="0" r="490" stroke="#231f20" stroke-width="1" fill="none" stroke-dasharray="10,10"/>
-            <circle x="0" y="0" r="261" stroke="#fcfcfc" stroke-width="8" fill="none" stroke-dasharray="none" />
-            <circle x="0" y="0" r="261" stroke="#231f20" stroke-width="1" fill="none" stroke-dasharray="5,10"/>
-            <circle x="0" y="0" r="72" stroke="#231f20" stroke-width="1" fill="none" stroke-dasharray="2,4" />
-            <!-- <circle x="0" y="0" r="95" stroke="#231f20" stroke-width="1" fill="none" /> -->
-
-
-
-
-
-            
-            <path id="textcircle" d="M-89,0A89,89 0 1 189,0A89,89 0 1 1-89,0A89,89 0 1 189,0A89,89 0 1 1-89,0" fill="none"></path>
-            <text id="core" dy="-2" class="label" text-anchor="middle" dominant-baseline="central">
-
-            </text>
+        <svg id="compass" viewBox="-800 -550 700 1100" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="Windowgradient">
+                    <stop class="window1" offset="0%" />
+                    <stop class="window2" offset="30%" />
+                    <stop class="window3" offset="100%" />
+                </linearGradient>
+                <linearGradient id="Edgegradient">
+                    <stop class="edge1" offset="0%" />
+                    <stop class="edge2" offset="30%" />
+                    <stop class="edge3" offset="100%" />
+                </linearGradient>
+            </defs>
 
 
-            <text x="-420" y="0" class="category" text-anchor="middle" dominant-baseline="central" transform="rotate(90)">Strong</text>
-            <text x="-420" y="0" class="category" text-anchor="middle" dominant-baseline="central" transform="rotate(180)">Over Extracted</text>
-            <text x="-420" y="0" class="category" text-anchor="middle" dominant-baseline="central" transform="rotate(270)">Weak</text>
-            <text x="-420" y="0" class="category" text-anchor="middle" dominant-baseline="central" transform="rotate(0)">Under Extracted</text>
-           
-            <path id="categorycircle" d="M-490,0A490,490 0 1 1490,0A490,490 0 1 1-490,0" fill="none"></path>
-            <text dy="-30" class="subcategory" text-anchor="middle" transform="rotate(0)">
-                <textPath xlink:href="#categorycircle" startoffset = "12.5%">
-                    Strong Under Extracted
-                </textPath>
-                <textPath xlink:href="#categorycircle" startoffset = "37.5%">
-                    Strong Over Extracted
-                </textPath>
-                <textPath xlink:href="#categorycircle" startoffset = "62.5%">
-                    Weak Over Extracted
-                </textPath>
-                <textPath xlink:href="#categorycircle" startoffset = "87.5%">
-                    Weak Under Extracted
-                </textPath>
-            </text>    
+            <g id="wheelcontainer">
+                <g id="wheel">
+                    <circle x="0" y="0" r="490" stroke="#231f20" stroke-width="1" fill="none"
+                        stroke-dasharray="10,10" />
+                    <circle x="0" y="0" r="261" stroke="#fcfcfc" stroke-width="8" fill="none" stroke-dasharray="none" />
+                    <circle x="0" y="0" r="261" stroke="#231f20" stroke-width="1" fill="none" stroke-dasharray="5,10" />
+                    <circle x="0" y="0" r="72" stroke="#231f20" stroke-width="1" fill="none" stroke-dasharray="2,4" />
+                    <!-- <circle x="0" y="0" r="95" stroke="#231f20" stroke-width="1" fill="none" /> -->
 
 
 
-            <path d="
+
+
+
+                    <path id="textcircle" d="M-89,0A89,89 0 1 189,0A89,89 0 1 1-89,0A89,89 0 1 189,0A89,89 0 1 1-89,0"
+                        fill="none"></path>
+                    <text id="core" dy="-2" class="label" text-anchor="middle" dominant-baseline="central">
+
+                    </text>
+
+
+                    <text x="-420" y="0" class="category" text-anchor="middle" dominant-baseline="central"
+                        transform="rotate(90)">Strong</text>
+                    <text x="-420" y="0" class="category" text-anchor="middle" dominant-baseline="central"
+                        transform="rotate(180)">Over Extracted</text>
+                    <text x="-420" y="0" class="category" text-anchor="middle" dominant-baseline="central"
+                        transform="rotate(270)">Weak</text>
+                    <text x="-420" y="0" class="category" text-anchor="middle" dominant-baseline="central"
+                        transform="rotate(0)">Under Extracted</text>
+
+                    <path id="categorycircle" d="M-490,0A490,490 0 1 1490,0A490,490 0 1 1-490,0" fill="none"></path>
+                    <text dy="-30" class="subcategory" text-anchor="middle" transform="rotate(0)">
+                        <textPath xlink:href="#categorycircle" startoffset="12.5%">
+                            Strong Under Extracted
+                        </textPath>
+                        <textPath xlink:href="#categorycircle" startoffset="37.5%">
+                            Strong Over Extracted
+                        </textPath>
+                        <textPath xlink:href="#categorycircle" startoffset="62.5%">
+                            Weak Over Extracted
+                        </textPath>
+                        <textPath xlink:href="#categorycircle" startoffset="87.5%">
+                            Weak Under Extracted
+                        </textPath>
+                    </text>
+
+
+
+                    <path d="
                 M -187.51, -452.70
                 A 490, 490 0 0,1 187.51, -452.70
                 L 0, 0
                 Z
             " fill="red" fill-opacity="0" />
-            <path d="
+                    <path d="
                 M 187.51, -452.70
                 A 490, 490 0 0,1 452.70, -187.51
                 L 0, 0
                 Z
-            " fill="blue" fill-opacity="0"/>
-            <path d="
+            " fill="blue" fill-opacity="0" />
+                    <path d="
                 M 452.70, -187.51
                 A 490, 490 0 0,1 452.70, 187.51
                 L 0, 0
                 Z
-            " fill="red" fill-opacity="0"/>
-            <path d="
+            " fill="red" fill-opacity="0" />
+                    <path d="
                 M 452.70, 187.51
                 A 490, 490 0 0,1 187.51, 452.70
                 L 0, 0
                 Z
-            " fill="blue" fill-opacity="0"/>
-            <path d="
+            " fill="blue" fill-opacity="0" />
+                    <path d="
                 M 187.51, 452.70
                 A 490, 490 0 0,1 -187.51, 452.70
                 L 0, 0
                 Z
-            " fill="red" fill-opacity="0"/>
-            <path d="
+            " fill="red" fill-opacity="0" />
+                    <path d="
                 M -187.51, 452.70
                 A 490, 490 0 0,1 -452.70, 187.51
                 L 0, 0
                 Z
-            " fill="blue" fill-opacity="0"/>
-            <path d="
+            " fill="blue" fill-opacity="0" />
+                    <path d="
                 M -452.70, 187.51
                 A 490, 490 0 0,1 -452.70, -187.51
                 L 0, 0
                 Z
-            " fill="red" fill-opacity="0"/>
-            <path d="
+            " fill="red" fill-opacity="0" />
+                    <path d="
                 M -452.70, -187.51
                 A 490, 490 0 0,1 -187.51, -452.70
                 L 0, 0
                 Z
-            " fill="blue" fill-opacity="0"/>
-        </g>
+            " fill="blue" fill-opacity="0" />
+                </g>
 
-            <g id="stationary">
-                <rect id="RHoverlay" x="0" y="-500" width="1000" height="1000" fill="transparent"></rect>
-                <text x="0" y="0" class="label" text-anchor="middle" alignment-baseline="middle">Balanced</text>
+                <g id="stationary">
+                    <text x="0" y="0" class="label" text-anchor="middle" alignment-baseline="middle">Balanced</text>
+                        <!-- <path id="arrow" d="M-640,-20 L-620,0 L-640,20"></path> -->
+                    <g id="indicator">
+                        <path id="windowshade" d="M-550,-30 L0,-20 L 0,20 L-550,30 Z"></path>
+                        <path id="windowedge" d="M-550,-30 L0,-20 M 0,20 L-550,30 Z"></path>
+                    </g>
+                </g>
+
             </g>
 
-        </g>
-
-        
-        
 
 
 
 
-    </svg>
 
-    <div id = "resultsarea">
-        <div id = "resultstitle" class="app_title">Extract Less, Use More Coffee</div>
-        <div id = "resultsinfo">
-            <ul><li>Use a coarser grind and/or shorter brew time to extract more</li><li>Decrease the Brew Ratio by fixing the water weight and using more coffee OR by fixing the dose and using less water</li></ul>
+
+        </svg>
+
+        <div id ="instructions">
+            <div id = "instructions1" class="instructionsinfo">
+                Click and drag the wheel to rotate it until you find the flavours you taste in your coffee.
+            </div>
+            <div id ="instructions2" class="instructionsinfo">
+                    Once you've chosen a flavour, suggestions for improving your brew appear below.
+            </div>
+
         </div>
 
+        
+
+        <div id="resultsarea">
+            <div id="resultstitle" class="app_subtitle">Extract Less, Use More Coffee</div>
+            <div id="resultsinfo">
+                <ul>
+                    <li>Use a coarser grind and/or shorter brew time to extract more</li>
+                    <li>Decrease the Brew Ratio by fixing the water weight and using more coffee OR by fixing the dose
+                        and using less water</li>
+                </ul>
+            </div>
+
+        </div>
     </div>
-</div>
 
     <script src="svg-pan-zoom.min.js"></script>
     <script src="brude.js"></script>

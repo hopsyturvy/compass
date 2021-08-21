@@ -8,7 +8,7 @@ body
 
 .category
 {
-  fill: black;
+  fill: #231f20;
   font-family: 'Head Bold','NoBH Bold',Helvetica,Arial,Lucida,sans-serif;
   font-size: 38px;
   pointer-events: none;
@@ -31,7 +31,7 @@ body
 
 #titlearea {
 position: absolute;
-
+padding: 10px 10px 0;
   
 }
 
@@ -39,54 +39,141 @@ position: absolute;
   width: 50%;
   opacity: 0;
   position: absolute;
-  bottom: 20px;
+  bottom: 0;
   background-color: #d9e8e3dd;
   transition-property: opacity;
   transition-duration: 0.2s;
+  padding: 0 10px 10px;
+  box-sizing: border-box;
 
+}
+
+#instructions {
+  position: absolute;
+  width: 35%;
+  top: 25%;
+  padding: 0 10px;
+  background-color: #d9e8e3dd;
+}
+
+#instructions1 {
+  position: absolute;
+  top: 0;
+  opacity: 1;
+}
+
+#instructions2 {
+  position: absolute;
+  top: 0;
+  opacity: 0;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+opacity: 1;
+  }
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+opacity: 0;
+  }
+}
+
+.instructionsinfo {
+  
+  color: #231f20;
+  font-family: 'Head Bold','NoBH Bold',Helvetica,Arial,Lucida,sans-serif;
+  font-size: 16px;
 }
 
 .app_title
 {
-  fill: black;
+  fill: #231f20;
   font-family: 'Head','NoBH Bold',Helvetica,Arial,Lucida,sans-serif;
   font-size: 32px;
 }
 
 .app_subtitle
 {
-  fill: black;
+  fill: #231f20;
   font-family: 'Head','NoBH Bold',Helvetica,Arial,Lucida,sans-serif;
   font-size: 22px;
 }
 
 #resultsinfo
 {
-  fill: black;
+  fill: #231f20;
   font-family: 'Head','NoBH Regular',Helvetica,Arial,Lucida,sans-serif;
   font-size: 16px;
 }
 
+
 #resultsinfo ul
 {
-  margin-top: 0;
+  margin: 0;
+  list-style: none;
+  padding-inline-start: 0;
 }
 
 .label
 {
-  fill: black;
+  fill: #231f20;
   font-family: 'Head Bold','NoBH Bold',Helvetica,Arial,Lucida,sans-serif;
   font-size: 20px;
   user-select: none;
 }
 
+#arrow
+{
+  fill: none;
+  stroke: #00000070;
+  stroke-width: 7;
+  stroke-linecap: round;
+  transition: transform 0.2s ease;
+}
+
+#windowshade
+{
+  fill: url(#Windowgradient);
+  stroke: none;
+}
+
+#windowedge
+{
+  stroke: url(#Edgegradient);
+  fill: none;
+}
+
+#indicator
+{
+  visibility: hidden;
+}
+
+.window1 { stop-color: #00000000 }
+.window2 { stop-color: #00000030 }
+.window3 { stop-color: #00000000 }
+.edge1 { stop-color: #00000000 }
+.edge2 { stop-color: #00000070 }
+.edge3 { stop-color: #00000000 }
 
 
 #compass
 {
   width: 100%;
   height: 600px;
-
 
 }
 
@@ -95,6 +182,30 @@ svg
 font-family: 'NoBH Bold',Helvetica,Arial,Lucida,sans-serif;
 }
 
-#RHoverlay
+@media only screen and (max-width: 600px)
 {
+  .app_title
+{
+  font-size: 24px;
+}
+
+.app_subtitle
+{
+  fill: #231f20;
+  font-family: 'Head','NoBH Bold',Helvetica,Arial,Lucida,sans-serif;
+  font-size: 14px;
+}
+
+#resultsinfo
+{
+  fill: #231f20;
+  font-family: 'Head','NoBH Regular',Helvetica,Arial,Lucida,sans-serif;
+  font-size: 14px;
+}
+
+.instructionsinfo
+{
+  font-size: 14px;
+}
+
 }

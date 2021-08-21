@@ -10,6 +10,10 @@ var diffY = 0
 var delta = 5
 var SCROLL_SENSITIVITY = .5
 var timer = null
+var moved = 0
+var compass = document.getElementById("compass")
+var pt = compass.createSVGPoint();
+var previousturn
 
 const tier = {
     a: {
@@ -425,12 +429,17 @@ function getEventLocation(e) {
 }
 
 function onPointerDown(e) {
+
     e.preventDefault();
     isDragging = true
     dragStart.x = getEventLocation(e).x
     dragStart.y = getEventLocation(e).y
     diffX = 0
     diffY = 0
+
+    alert_coords(e)
+    if (cursorpt.x < 0) {direction = true} else {direction = false}
+    previousturn = 0
 
 }
 
@@ -452,10 +461,25 @@ function onPointerUp(e) {
         click(e)
     }
     turnangle = 0
+
+    
+    if (moved == 1) {
+        document.getElementById("instructions2").style.animation = "fade-in 1s 1 forwards";
+        document.getElementById("instructions1").style.animation = "fade-out 1s 1 forwards";
+        moved += 1
+    } else if (moved == 2) {
+        document.getElementById("instructions2").style.animation = "fade-out 1s 1 forwards";
+        setTimeout(function () {document.getElementById("instructions").style.display = "none";}, 1000)
+        moved += 1
+    }
 }
 
-function onPointerMove(e) {
 
+
+
+
+function onPointerMove(e) {
+    
     e.preventDefault();
 
     if (isDragging && getEventLocation(e)) {
@@ -463,19 +487,54 @@ function onPointerMove(e) {
         diffX += (getEventLocation(e).x - dragStart.x)
         diffY += (getEventLocation(e).y - dragStart.y)
 
+        alert_coords(e)
+        
 
-        if (e.target.id == "RHoverlay") {
-            turn = -(dragStart.y - getEventLocation(e).y)
+        if (cursorpt.x > 0) {
+            if (direction) {
+                previousturn = turn
+
+                direction = false
+
+                dragStart.y = getEventLocation(e).y
+            }
+
+            turn = previousturn - (dragStart.y - getEventLocation(e).y)
+
         } else {
-            turn = (dragStart.y - getEventLocation(e).y)
+            if (!direction) {
+                previousturn = turn
+                direction = true
+                dragStart.y = getEventLocation(e).y
+            }
+            turn = previousturn + (dragStart.y - getEventLocation(e).y)
         }
+
+
+
+        //document.getElementById("arrow").style.transform = "translate(-220px,0)"
+        
+        
+        
+        
+
 
         wheelTurn(turn)
     }
 }
 
+
+
+function alert_coords(evt) {
+    pt.x = evt.clientX;
+    pt.y = evt.clientY;
+
+    // The cursor point, translated into svg coordinates
+    cursorpt =  pt.matrixTransform(compass.getScreenCTM().inverse());
+}
+
 function handleTouch(e, singleTouchHandler) {
-    console.log (e.touches)
+    
     if (e.touches.length < 2) {
         singleTouchHandler(e)
     }
@@ -509,6 +568,10 @@ function scrollWheel(e) {
 function wheelTurn(t) {
 
     if (currentflavour) { popin(currentflavour) }
+    
+
+    document.getElementById("indicator").style.visibility = "visible"
+
     turnangle = t / Math.PI
     transformation = "rotate(" + (wheelangle + turnangle) + ")"
     if ((wheelangle + turnangle) > 360) {
@@ -518,6 +581,7 @@ function wheelTurn(t) {
     }
 
     wheel.setAttribute("transform", transformation)
+    if (moved == 0) {moved = 1}
 
 }
 
@@ -555,24 +619,29 @@ function snapWheel(angle) {
     }
 
     turnWheel(snapangle)
+    if (currentflavour) {
     setTimeout(function () { popout(currentflavour) }, 200)
+    }
 
 }
 
 function popout(name) {
+    document.getElementById("indicator").style.visibility = "hidden"
     let popelement = document.getElementById(name + "label")
     popelement.style.transition = "transform 0.5s ease"
+    let poparc = popelement.previousSibling
+    poparc.style.transition = "transform 0.5s ease"
 
-
-    let distance = - (800 / 2.5) - parseInt(popelement.getAttribute("x"))
-    let transformation = "scale (2.5) translate (" + distance + ",0)"
+    let distance = - (800 / 2) + parseInt(popelement.getAttribute("data-outer-arc"))
+    let transformation = "scale (2) translate (" + distance + ",0)"
 
 
     popelement.setAttribute("transform", transformation)
-    popelement.setAttribute("text-anchor", "start")
+    poparc.setAttribute("transform", transformation)
 
 
     setTimeout(function () { popelement.style.transition = "transform 0s" }, 500)
+    setTimeout(function () { poparc.style.transition = "transform 0s" }, 500)
 
     showInfo(popelement)
 
@@ -581,20 +650,24 @@ function popout(name) {
 function popin(name) {
     let popelement = document.getElementById(name + "label")
     popelement.style.transition = "transform 0.2s ease"
+    let poparc = popelement.previousSibling
+    poparc.style.transition = "transform 0.2s ease"
 
     let transformation = "scale (1)"
 
     popelement.setAttribute("transform", transformation)
-    popelement.setAttribute("text-anchor", "middle")
+    poparc.setAttribute("transform", transformation)
+
 
     setTimeout(function () { popelement.style.transition = "transform 0s" }, 500)
+    setTimeout(function () { poparc.style.transition = "transform 0s" }, 500)
 
     hideInfo()
 
 }
 
 function showInfo(element) {
-    console.log(element.getAttribute("x"))
+
 
     if (element.getAttribute("x") < -261) {
 
@@ -664,6 +737,7 @@ function hideInfo() {
 function turnWheel(a) {
 
     wheelangle += a
+
     transformation = "rotate(" + wheelangle + ")"
 
 
@@ -725,6 +799,7 @@ function addFlavour(properties) {
     label.setAttribute("class", "label")
     label.setAttribute("text-anchor", "middle")
     label.setAttribute("data-angle", properties.flavourangle)
+    label.setAttribute("data-outer-arc", properties.outerarc)
     label.setAttribute("data-name", properties.name)
     label.setAttribute("alignment-baseline", "central")
     label.innerHTML = properties.name
@@ -741,14 +816,26 @@ function addFlavour(properties) {
 
 
     wheel.appendChild(newflavour)
-    newflavour.addEventListener('click', (e) => click(e))
+    //newflavour.addEventListener('click', (e) => click(e))
 }
 
 function click(e) {
 
 
     if (currentflavour) { popin(currentflavour) }
+
+
+
     let target = 180 - parseInt(e.target.getAttribute("data-angle"))
+    currentflavour = e.target.getAttribute("data-name")
+
+    if (!target) {
+        if (!e.target.nextSibling.length){
+        target = 180 - parseInt(e.target.nextSibling.getAttribute("data-angle"))
+        currentflavour = e.target.nextSibling.getAttribute("data-name")
+        }
+        
+    }
 
     if (target) {
 
@@ -758,33 +845,41 @@ function click(e) {
     } else if (turn < -180) {
         turn += 360
     }
+
     turnWheel(turn)
-    currentflavour = e.target.getAttribute("data-name")
+    
     popout(currentflavour)
 }
 
 }
 
 function resize() {
-
-
+    if(currentflavour){popin(currentflavour)}
     let titlearea = document.getElementById("titlearea")
     let resultsarea = document.getElementById("resultsarea")
+
+    document.getElementById("resultstitle").innerHTML = "Extract Less, Use More Coffee"
+    document.getElementById("resultsinfo").innerHTML = "<ul><li>Use a coarser grind and/or shorter brew time to extract less</li><li>Decrease the Brew Ratio by fixing the water weight and using more coffee OR by fixing the dose and using less water</li></ul>"
+
+    resultsarea.style.height = "fit-content"
+
     document.getElementById("appcontainer").style.height = window.innerHeight + "px"
 
     if (window.innerWidth < 650) {
         resultsarea.style.width = "100%"
         let svgheight = (window.innerHeight - resultsarea.clientHeight - titlearea.clientHeight)
-        document.getElementById("compass").style.height = svgheight + "px"
+        compass.style.height = svgheight + "px"
         document.getElementById("titlearea").style.position = "relative"
 
     } else {
         //fullwidth
         let svgheight = window.innerHeight
         document.getElementById("titlearea").style.position = "absolute"
-        document.getElementById("compass").style.height = svgheight + "px"
+        compass.style.height = svgheight + "px"
         resultsarea.style.width = "50%"
     }
+
+    resultsarea.style.height = resultsarea.clientHeight + "px"
 }
 
 function describeArc(x, y, innerRadius, outerRadius, startAngle, endAngle) {
