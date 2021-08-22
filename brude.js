@@ -1,6 +1,6 @@
 var wheel = document.getElementById("wheel")
 var wheelcontainer = document.getElementById("wheelcontainer")
-//var RHoverlay = document.getElementById("RHoverlay")
+var RHoverlay = document.getElementById("RHoverlay")
 var wheelangle = 0
 var turnangle = 0
 var isDragging = false
@@ -14,6 +14,7 @@ var moved = 0
 var compass = document.getElementById("compass")
 var pt = compass.createSVGPoint();
 var previousturn = 0
+var turn = 0
 
 const tier = {
     a: {
@@ -421,6 +422,8 @@ window.onload = function () {
 
 function getEventLocation(e) {
     if (e.touches && e.touches.length == 1) {
+        pt.x = e.touches[0].clientX;
+        pt.y = e.touches[0].clientY
         return { x: e.touches[0].clientX, y: e.touches[0].clientY }
     }
     else if (e.clientX && e.clientY) {
@@ -440,7 +443,6 @@ function onPointerDown(e) {
     alert_coords(e)
     if (cursorpt.x < 0) {direction = true} else {direction = false}
     previousturn = 0
-    turn = 0
 
 }
 
@@ -490,7 +492,6 @@ function onPointerMove(e) {
 
         alert_coords(e)
         
-
         if (cursorpt.x > 0) {
             if (direction) {
                 previousturn = turn
@@ -527,8 +528,9 @@ function onPointerMove(e) {
 
 
 function alert_coords(evt) {
-    pt.x = evt.clientX;
-    pt.y = evt.clientY;
+    
+
+    getEventLocation(evt)
 
     // The cursor point, translated into svg coordinates
     cursorpt =  pt.matrixTransform(compass.getScreenCTM().inverse());
@@ -649,6 +651,7 @@ function popout(name) {
 }
 
 function popin(name) {
+    document.getElementById("indicator").style.visibility = "hidden"
     let popelement = document.getElementById(name + "label")
     popelement.style.transition = "transform 0.2s ease"
     let poparc = popelement.previousSibling
