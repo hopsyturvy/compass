@@ -164,7 +164,7 @@ body
 #windowedge
 {
   stroke: #494f4d80;
-  stroke-width: 1;
+  stroke-width: 2;
   stroke-dasharray: 10,10;
   fill: none;
 }
