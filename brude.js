@@ -504,9 +504,16 @@ window.onload = function () {
     wheelcontainer.addEventListener('touchmove', (e) => handleTouch(e, onPointerMove))
     wheelcontainer.addEventListener('wheel', (e) => scrollWheel(e.deltaY * SCROLL_SENSITIVITY))
     window.addEventListener("resize", resize)
+
+    searchiconwrapper.addEventListener('touchstart', (e) => handleTouch(e, showsearch))
     searchiconwrapper.addEventListener("click", showsearch)
+
     searchform.addEventListener("submit", search)
+
+    searchbox.addEventListener('touchstart', (e) => handleTouch(e, hidesearch))
     searchbox.addEventListener("click", hidesearch)
+    
+    document.getElementById("instructions").addEventListener('touchstart', (e) => handleTouch(e, instructions))
     document.getElementById("instructions").addEventListener("click", instructions)
 
     document.getElementById("searchquery").addEventListener("keydown", (evt) => escape(evt))
