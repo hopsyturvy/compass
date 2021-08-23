@@ -512,7 +512,7 @@ window.onload = function () {
 
     searchbox.addEventListener('touchstart', (e) => handleTouch(e, hidesearch))
     searchbox.addEventListener("click", hidesearch)
-    
+
     document.getElementById("instructions").addEventListener('touchstart', (e) => handleTouch(e, instructions))
     document.getElementById("instructions").addEventListener("click", instructions)
 
@@ -522,14 +522,31 @@ window.onload = function () {
     window.addEventListener('native.hidekeyboard', keyboardHideHandler);
 
 
+    //check if visited already and kill instructions if so
+
+    let cookiestr = "visited=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    console.log(decodedCookie)
+    let ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(cookiestr) == 0) {
+            moved = 4
+            instructions()
+        }
+    }
+
 
     resize()
 }
 
-function keyboardShowHandler(e){
+function keyboardShowHandler(e) {
     window.removeEventListener("resize", resize)
 }
-function keyboardHideHandler(e){
+function keyboardHideHandler(e) {
     window.addEventListener("resize", resize)
 }
 
@@ -552,7 +569,7 @@ function instructions() {
     if (moved == 1) {
         document.getElementById("instructions2").style.animation = "fade-in 1s 1 forwards";
         document.getElementById("instructions1").style.animation = "fade-out 1s 1 forwards";
-    
+
     } else if (moved == 2) {
         document.getElementById("instructions3").style.animation = "fade-in 1s 1 forwards";
         document.getElementById("instructions2").style.animation = "fade-out 1s 1 forwards";
@@ -560,7 +577,13 @@ function instructions() {
     } else if (moved == 3) {
         document.getElementById("instructions").style.animation = "fade-out 1s 1 forwards";
         setTimeout(function () { document.getElementById("instructions").style.display = "none"; }, 1000)
+    } else if (moved == 4) {
+        document.getElementById("instructions").style.display = "none"
     }
+
+    console.log('cookie')
+    document.cookie = "visited=yes; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/"
+    console.log(document.cookie)
 }
 
 function showsearch() {
@@ -582,7 +605,6 @@ function search() {
 
     if (alternateflavours[searchquery]) {
         searchquery = alternateflavours[searchquery].nearest.toLowerCase()
-        console.log(searchquery)
         document.getElementById("originalquery").innerHTML = "You searched for \'" + originalquery + "\'. The closest flavour is:"
     }
 
