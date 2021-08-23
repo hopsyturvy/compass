@@ -584,7 +584,7 @@ function instructions() {
     console.log('cookie')
 
     let date = new Date();
-    date.setTime(date.getTime() + (90 * 24 * 60 * 60 * 1000));
+    date.setTime(date.getTime() + (60 * 1000)); //currently 1 min: add 90 * 24 * 60 *  to make 90 days
     console.log(date)
 
     document.cookie = "visited=yes; expires=" + date + "; path=/"
