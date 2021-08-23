@@ -866,6 +866,8 @@ function resize() {
 
     if (window.innerWidth < 850 || window.innerHeight < 600) {
         //small screen 
+        console.log("smol")
+        compass.setAttribute("viewBox", "-800 -400 700 800")
         let svgheight = (window.innerHeight) // - resultsarea.clientHeight - titlearea.clientHeight)
         compass.style.height = svgheight + "px"
       
@@ -877,6 +879,7 @@ function resize() {
 
     } else {
         //fullwidth
+        compass.setAttribute("viewBox", "-800 -550 700 1100")
         let svgheight = window.innerHeight
         compass.style.height = svgheight + "px"
         

@@ -5,6 +5,7 @@ body
   padding: 0px;
   overflow: hidden;
   box-sizing: border-box;
+  background-color: #e7f2ee;
 }
 
 .category
@@ -258,7 +259,7 @@ svg
   #resultsarea
   {
     width: 100%;
-    padding: 0 10px 20px 10px;
+    padding: 0 10px 10px 10px;
   }
 
   #results_title
@@ -287,6 +288,7 @@ svg
     left: 10px;
     font-size: 24px;
   }
+
 
 }
 
