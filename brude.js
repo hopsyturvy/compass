@@ -518,8 +518,21 @@ window.onload = function () {
 
     document.getElementById("searchquery").addEventListener("keydown", (evt) => escape(evt))
 
+    window.addEventListener('native.showkeyboard', keyboardShowHandler);
+    window.addEventListener('native.hidekeyboard', keyboardHideHandler);
+
+
+
     resize()
 }
+
+function keyboardShowHandler(e){
+    window.removeEventListener("resize", resize)
+}
+function keyboardHideHandler(e){
+    window.addEventListener("resize", resize)
+}
+
 
 function escape(evt) {
     evt = evt || window.event;
