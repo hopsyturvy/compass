@@ -526,7 +526,6 @@ window.onload = function () {
 
     let cookiestr = "visited=";
     let decodedCookie = decodeURIComponent(document.cookie);
-    console.log(decodedCookie)
     let ca = decodedCookie.split(';');
     for (let i = 0; i < ca.length; i++) {
         let c = ca[i];
@@ -582,7 +581,12 @@ function instructions() {
     }
 
     console.log('cookie')
-    document.cookie = "visited=yes; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/"
+
+    let date = new Date();
+    date.setTime(date.getTime() + (90 * 24 * 60 * 60 * 1000));
+    console.log(date)
+
+    document.cookie = "visited=yes; expires=" + date + "; path=/"
     console.log(document.cookie)
 }
 
