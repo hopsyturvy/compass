@@ -534,6 +534,7 @@ window.onload = function () {
         }
         if (c.indexOf(cookiestr) == 0) {
             moved = 4
+            console.log('trig')
             instructions()
         }
     }
@@ -576,7 +577,7 @@ function instructions() {
     } else if (moved == 3) {
         document.getElementById("instructions").style.animation = "fade-out 1s 1 forwards";
         setTimeout(function () { document.getElementById("instructions").style.display = "none"; }, 1000)
-    } else if (moved == 4) {
+    } else if (moved > 3) {
         document.getElementById("instructions").style.display = "none"
     }
 
