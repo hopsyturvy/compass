@@ -1038,24 +1038,24 @@ function resize() {
 
     resultsarea.style.height = "fit-content"
 
-    document.getElementById("appcontainer").style.height = window.innerHeight + "px"
+    document.getElementById("appcontainer").style.height = document.documentElement.clientHeight + "px"
 
-    if (window.innerWidth < 850 || window.innerHeight < 600) {
+    if (document.documentElement.clientWidth < 850 || document.documentElement.clientHeight < 600) {
         //small screen 
         compass.setAttribute("viewBox", "-800 -400 700 800")
-        let svgheight = (window.innerHeight) // - resultsarea.clientHeight - titlearea.clientHeight)
+        let svgheight = (document.documentElement.clientHeight) // - resultsarea.clientHeight - titlearea.clientHeight)
         compass.style.height = svgheight + "px"
 
 
-        //} else if (window.innerWidth < 600 && window.innerWidth / window.innerHeight > 5/3) {
+        //} else if (document.documentElement.clientWidth < 600 && document.documentElement.clientWidth / document.documentElement.clientHeight > 5/3) {
         //    //small landscape screen
-        //    let svgheight = (window.innerHeight - resultsarea.clientHeight - titlearea.clientHeight)
+        //    let svgheight = (document.documentElement.clientHeight - resultsarea.clientHeight - titlearea.clientHeight)
         //    compass.style.height = svgheight + "px"
 
     } else {
         //fullwidth
         compass.setAttribute("viewBox", "-800 -550 700 1100")
-        let svgheight = window.innerHeight
+        let svgheight = document.documentElement.clientHeight
         compass.style.height = svgheight + "px"
 
 

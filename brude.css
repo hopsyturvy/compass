@@ -6,6 +6,7 @@ body
   overflow: hidden;
   box-sizing: border-box;
   background-color: #e7f2ee;
+  
 }
 
 .category
@@ -87,6 +88,10 @@ body
   position: absolute;
   top: 0;
   opacity: 0;
+}
+
+#instructions3 {
+  position: relative; /*set largest instructions set as relative */
 }
 
 @keyframes fade-in {
@@ -310,6 +315,7 @@ svg
   border-color: #494f4d;
   padding: 0;
   flex: 1;
+  width: 100%;
   color: #494f4d;
     font-family: 'Head','NoBH Bold',Helvetica,Arial,Lucida,sans-serif;
     font-size: 32px;
@@ -345,7 +351,7 @@ svg
 
   }
 
-  .app_subtitle .results_title
+  .app_subtitle, .results_title
   {
     font-size: 14px;
   }
@@ -353,6 +359,10 @@ svg
   #resultsinfo
   {
     font-size: 14px;
+  }
+
+  #searchquery {
+    font-size: 22px;
   }
 
 
@@ -374,14 +384,11 @@ svg
     font-size: 18px;
   }
 
-  #arrow
+  #arrow,
+  #compassicon,
+  #searchicon
   {
-    width: 22px
-  }
-
-  #compassicon
-  {
-    width: 20px
+    width: 18px
   }
 
 
@@ -393,7 +400,12 @@ svg
   #popout-container
   {
     left: 10px;
-    font-size: 24px;
+    font-size: 22px;
+  }
+
+  #searchiconwrapper {
+    padding: 0 10px;
+    font-size: 12px;
   }
 
 
