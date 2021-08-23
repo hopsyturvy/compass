@@ -1029,9 +1029,12 @@ function click(e) {
 }
 
 function resize() {
-    if (currentflavour) { popin(currentflavour) }
+
     let titlearea = document.getElementById("titlearea")
     let resultsarea = document.getElementById("resultsarea")
+
+    let OGtitle = document.getElementById("resultstitle").innerHTML
+    let OGcontent = document.getElementById("resultsinfo").innerHTML
 
     document.getElementById("resultstitle").innerHTML = "Extract Less, Use More Coffee"
     document.getElementById("resultsinfo").innerHTML = "<ul><li>Use a coarser grind and/or shorter brew time to extract less</li><li>Decrease the Brew Ratio by fixing the water weight and using more coffee OR by fixing the dose and using less water</li></ul>"
@@ -1064,6 +1067,9 @@ function resize() {
 
 
     resultsarea.style.height = resultsarea.clientHeight + "px"
+
+    document.getElementById("resultstitle").innerHTML = OGtitle
+    document.getElementById("resultsinfo").innerHTML = OGcontent
 }
 
 function describeArc(x, y, innerRadius, outerRadius, startAngle, endAngle, corners) {
