@@ -11,11 +11,13 @@ var diffY = 0
 var delta = 5
 var SCROLL_SENSITIVITY = .5
 var timer = null
-var moved = 0
 var compass = document.getElementById("compass")
 var pt = compass.createSVGPoint();
 var previousturn = 0
 var turn = 0
+var moved = 0
+var searchform = document.getElementById("searchform")
+var searchiconwrapper = document.getElementById("searchiconwrapper")
 
 const tier = {
     a: {
@@ -45,326 +47,383 @@ const tier = {
     }
 }
 
-var flavours = [
-    {
+
+
+
+
+var flavours = {
+    Sweet: {
         name: "Sweet",
         flavourangle: 0,
         innerarc: tier.c.inner,
         outerarc: tier.c.outer,
         arcwidth: tier.c.arcwidth
-    }, {
+    },
+    Powdery: {
         name: "Powdery",
         flavourangle: 10,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
-    }, {
+    },
+    Pleasing: {
         name: "Pleasing",
         flavourangle: 20,
         innerarc: tier.d.inner,
         outerarc: tier.d.outer,
         arcwidth: tier.d.arcwidth
-    }, {
+    },
+    Empty: {
         name: "Empty",
         flavourangle: 25,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
-    }, {
+    },
+    Dusty: {
         name: "Dusty",
         flavourangle: 35,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
-    }, {
+    },
+    Aromatic: {
         name: "Aromatic",
         flavourangle: 40,
         innerarc: tier.c.inner,
         outerarc: tier.c.outer,
         arcwidth: tier.c.arcwidth
-    }, {
+    },
+    Astringent: {
         name: "Astringent",
         flavourangle: 45,
         innerarc: tier.a.inner,
         outerarc: tier.a.outer,
         arcwidth: tier.a.arcwidth
-    }, {
+    },
+    Dilute: {
         name: "Dilute",
         flavourangle: 55,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
-    }, {
+    },
+    Limp: {
         name: "Limp",
         flavourangle: 60,
         innerarc: tier.a.inner,
         outerarc: tier.a.outer,
         arcwidth: tier.a.arcwidth
-    }, {
+    },
+    Scrawny: {
         name: "Scrawny",
         flavourangle: 70,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
-    }, {
+    },
+    Delicate: {
         name: "Delicate",
         flavourangle: 72,
         innerarc: tier.c.inner,
         outerarc: tier.c.outer,
         arcwidth: tier.c.arcwidth
-    }, {
+    },
+    Fragile: {
         name: "Fragile",
         flavourangle: 75,
         innerarc: tier.a.inner,
         outerarc: tier.a.outer,
         arcwidth: tier.a.arcwidth
-    }, {
+    },
+    Muted: {
         name: "Muted",
         flavourangle: 80,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
-    }, {
+    },
+    Gentle: {
         name: "Gentle",
         flavourangle: 85,
         innerarc: tier.d.inner,
         outerarc: tier.d.outer,
         arcwidth: tier.d.arcwidth
-    }, {
+    },
+    Thin: {
         name: "Thin",
         flavourangle: 95,
         innerarc: tier.c.inner,
         outerarc: tier.c.outer,
         arcwidth: tier.c.arcwidth
-    }, {
+    },
+    Faint: {
         name: "Faint",
         flavourangle: 98,
         innerarc: tier.a.inner,
         outerarc: tier.a.outer,
         arcwidth: tier.a.arcwidth
-    }, {
+    },
+    Slender: {
         name: "Slender",
         flavourangle: 106,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
-    }, {
+    },
+    Sparse: {
         name: "Sparse",
         flavourangle: 112,
         innerarc: tier.a.inner,
         outerarc: tier.a.outer,
         arcwidth: tier.a.arcwidth
-    }, {
+    },
+    Transparent: {
         name: "Transparent",
         flavourangle: 116,
         innerarc: tier.c.inner,
         outerarc: tier.c.outer,
         arcwidth: tier.c.arcwidth
-    }, {
+    },
+    Tealike: {
         name: "Tea-Like",
         flavourangle: 118,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
-    }, {
+    },
+    Flimsy: {
         name: "Flimsy",
         flavourangle: 125,
         innerarc: tier.a.inner,
         outerarc: tier.a.outer,
         arcwidth: tier.a.arcwidth
-    }, {
+    },
+    Insipid: {
         name: "Insipid",
         flavourangle: 130,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
-    }, {
+    },
+    Soft: {
         name: "Soft",
         flavourangle: 133,
         innerarc: tier.d.inner,
         outerarc: tier.d.outer,
         arcwidth: tier.d.arcwidth
-    }, {
+    },
+    Watery: {
         name: "Watery",
         flavourangle: 135,
         innerarc: tier.a.inner,
         outerarc: tier.a.outer,
         arcwidth: tier.a.arcwidth
-    }, {
+    },
+    Underwhelming: {
         name: "Underwhelming",
         flavourangle: 142,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
-    }, {
+    },
+    Bland: {
         name: "Bland",
         flavourangle: 152,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
-    }, {
+    },
+    Nutty: {
         name: "Nutty",
         flavourangle: 157,
         innerarc: tier.a.inner,
         outerarc: tier.a.outer,
         arcwidth: tier.a.arcwidth
-    }, {
+    },
+    Vegetal: {
         name: "Vegetal",
         flavourangle: 162,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
-    }, {
+    },
+    Nuanced: {
         name: "Nuanced",
         flavourangle: 165,
         innerarc: tier.d.inner,
         outerarc: tier.d.outer,
         arcwidth: tier.d.arcwidth
-    }, {
+    },
+    Sour: {
         name: "Sour",
         flavourangle: 172,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
-    }, {
+    },
+    Buttery: {
         name: "Buttery",
         flavourangle: 187,
         innerarc: tier.c.inner,
         outerarc: tier.c.outer,
         arcwidth: tier.c.arcwidth
-    }, {
+    },
+    Salty: {
         name: "Salty",
         flavourangle: 191,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
-    }, {
+    },
+    Substantial: {
         name: "Substantial",
         flavourangle: 198,
         innerarc: tier.d.inner,
         outerarc: tier.d.outer,
         arcwidth: tier.d.arcwidth
-    }, {
+    },
+    Quickfinish: {
         name: "Quick Finish",
         flavourangle: 203,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
-    }, {
+    },
+    Plump: {
         name: "Plump",
         flavourangle: 210,
         innerarc: tier.c.inner,
         outerarc: tier.c.outer,
         arcwidth: tier.c.arcwidth
-    }, {
+    },
+    Dull: {
         name: "Dull",
         flavourangle: 214,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
-    }, {
+    },
+    Sticky: {
         name: "Sticky",
         flavourangle: 222,
         innerarc: tier.c.inner,
         outerarc: tier.c.outer,
         arcwidth: tier.c.arcwidth
-    }, {
+    },
+    Beefy: {
         name: "Beefy",
         flavourangle: 230,
         innerarc: tier.a.inner,
         outerarc: tier.a.outer,
         arcwidth: tier.a.arcwidth
-    }, {
+    },
+    Big: {
         name: "Big",
         flavourangle: 242,
         innerarc: tier.c.inner,
         outerarc: tier.c.outer,
         arcwidth: tier.c.arcwidth
-    }, {
+    },
+    Bulky: {
         name: "Bulky",
         flavourangle: 244,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
-    }, {
+    },
+    Soupy: {
         name: "Soupy",
         flavourangle: 258,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
-    }, {
+    },
+    Strong: {
         name: "Strong",
         flavourangle: 260,
         innerarc: tier.c.inner,
         outerarc: tier.c.outer,
         arcwidth: tier.c.arcwidth
-    }, {
+    },
+    Heavy: {
         name: "Heavy",
         flavourangle: 270,
         innerarc: tier.d.inner,
         outerarc: tier.d.outer,
         arcwidth: tier.d.arcwidth
-    }, {
+    },
+    Hefty: {
         name: "Hefty",
         flavourangle: 280,
         innerarc: tier.c.inner,
         outerarc: tier.c.outer,
         arcwidth: tier.c.arcwidth
-    }, {
+    },
+    Harsh: {
         name: "Harsh",
         flavourangle: 285,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
-    }, {
+    },
+    Robust: {
         name: "Robust",
         flavourangle: 290,
         innerarc: tier.c.inner,
         outerarc: tier.c.outer,
         arcwidth: tier.c.arcwidth
-    }, {
+    },
+    Overwhelming: {
         name: "Overwhelming",
         flavourangle: 300,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
-    }, {
+    },
+    Severe: {
         name: "Severe",
         flavourangle: 310,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
-    }, {
+    },
+    Thick: {
         name: "Thick",
         flavourangle: 312,
         innerarc: tier.c.inner,
         outerarc: tier.c.outer,
         arcwidth: tier.c.arcwidth
-    }, {
+    },
+    Intense: {
         name: "Intense",
         flavourangle: 320,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
-    }, {
+    },
+    Luscious: {
         name: "Luscious",
         flavourangle: 330,
         innerarc: tier.d.inner,
         outerarc: tier.d.outer,
         arcwidth: tier.d.arcwidth
-    }, {
+    },
+    Dry: {
         name: "Dry",
         flavourangle: 335,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
-    }, {
+    },
+    Rich: {
         name: "Rich",
         flavourangle: 340,
         innerarc: tier.c.inner,
         outerarc: tier.c.outer,
         arcwidth: tier.c.arcwidth
-    }, {
+    },
+    Bitter: {
         name: "Bitter",
         flavourangle: 350,
         innerarc: tier.b.inner,
@@ -372,7 +431,30 @@ var flavours = [
         arcwidth: tier.b.arcwidth
     }
 
-]
+}
+
+
+//use lower case
+var alternateflavours = {
+    soury: {
+        name: "soury",
+        nearest: "sour"
+    },
+    brothy: {
+        name: "brothy",
+        nearest: "beefy"
+    },
+    green: {
+        name: "green",
+        nearest: "vegetal"
+    },
+    tea: {
+        name: "tea",
+        nearest: "tea-like"
+    }
+
+}
+
 var currentflavour
 
 var core = [
@@ -404,8 +486,13 @@ var core = [
 
 window.onload = function () {
 
+    for (var name in flavours) {
+        addFlavour(flavours[name])
 
-    flavours.forEach(addFlavour, this)
+    }
+
+
+
     core.forEach(addCore, this)
 
     wheelcontainer.addEventListener('mousedown', onPointerDown)
@@ -417,9 +504,99 @@ window.onload = function () {
     wheelcontainer.addEventListener('touchmove', (e) => handleTouch(e, onPointerMove))
     wheelcontainer.addEventListener('wheel', (e) => scrollWheel(e.deltaY * SCROLL_SENSITIVITY))
     window.addEventListener("resize", resize)
+    searchiconwrapper.addEventListener("click", showsearch)
+    searchform.addEventListener("submit", search)
+    searchbox.addEventListener("click", hidesearch)
+    document.getElementById("instructions").addEventListener("click", instructions)
+
+    document.getElementById("searchquery").addEventListener("keydown", (evt) => escape(evt))
+
     resize()
 }
 
+function escape(evt) {
+    evt = evt || window.event;
+    var isEscape = false;
+    if ("key" in evt) {
+        isEscape = (evt.key === "Escape" || evt.key === "Esc");
+    } else {
+        isEscape = (evt.keyCode === 27);
+    }
+    if (isEscape) {
+        hidesearch();
+    }
+}
+
+function instructions() {
+    moved += 1
+    if (moved == 1) {
+        document.getElementById("instructions2").style.animation = "fade-in 1s 1 forwards";
+        document.getElementById("instructions1").style.animation = "fade-out 1s 1 forwards";
+    
+    } else if (moved == 2) {
+        document.getElementById("instructions3").style.animation = "fade-in 1s 1 forwards";
+        document.getElementById("instructions2").style.animation = "fade-out 1s 1 forwards";
+
+    } else if (moved == 3) {
+        document.getElementById("instructions").style.animation = "fade-out 1s 1 forwards";
+        setTimeout(function () { document.getElementById("instructions").style.display = "none"; }, 1000)
+    }
+}
+
+function showsearch() {
+    searchbox.style = "visibility: visible"
+    document.getElementById("searchquery").focus();
+}
+
+function hidesearch() {
+    searchbox.style = "visibility: hidden"
+    document.getElementById("error").innerHTML = ""
+}
+
+function search() {
+    if (currentflavour) { popin(currentflavour) }
+
+    var originalquery = document.getElementById("searchquery").value
+    var searchquery = document.getElementById("searchquery").value.toLowerCase()
+    document.getElementById("searchquery").value = ""
+
+    if (alternateflavours[searchquery]) {
+        searchquery = alternateflavours[searchquery].nearest.toLowerCase()
+        console.log(searchquery)
+        document.getElementById("originalquery").innerHTML = "You searched for \'" + originalquery + "\'. The closest flavour is:"
+    }
+
+    for (var i in flavours) {
+
+        if (searchquery == flavours[i].name.toLowerCase()) {
+
+            target = 180 - parseInt(flavours[i].flavourangle)
+
+            turn = target - wheelangle
+            if (turn > 180) {
+                turn -= 360
+            } else if (turn < -180) {
+                turn += 360
+            }
+
+            currentflavour = flavours[i].name
+
+            turnWheel(turn)
+
+            popout(currentflavour)
+
+            hidesearch()
+            return;
+        } else {
+            document.getElementById("error").innerHTML = originalquery + " not found. Please try a different search term"
+        }
+    }
+
+
+
+    //    snapWheel(angle)
+
+}
 
 function getEventLocation(e) {
     if (e.touches && e.touches.length == 1) {
@@ -469,15 +646,7 @@ function onPointerUp(e) {
     turnangle = 0
 
 
-    if (moved == 1) {
-        document.getElementById("instructions2").style.animation = "fade-in 1s 1 forwards";
-        document.getElementById("instructions1").style.animation = "fade-out 1s 1 forwards";
-        moved += 1
-    } else if (moved == 2) {
-        document.getElementById("instructions2").style.animation = "fade-out 1s 1 forwards";
-        setTimeout(function () { document.getElementById("instructions").style.display = "none"; }, 1000)
-        moved += 1
-    }
+
 }
 
 
@@ -588,7 +757,6 @@ function wheelTurn(t) {
 
     wheel.setAttribute("transform", transformation)
     compassicon.setAttribute("transform", transformation)
-    if (moved == 0) { moved = 1 }
 
 }
 
@@ -605,8 +773,7 @@ function snapWheel(angle) {
 
     let snapangle = 0
 
-    for (let i = 0; i < flavours.length; i++) {
-
+    for (var i in flavours) {
 
         min = Math.min(min, Math.abs(setpoint - flavours[i].flavourangle), Math.abs(setpoint - flavours[i].flavourangle - 360))
 
@@ -635,7 +802,7 @@ function snapWheel(angle) {
 function popout(name) {
     document.getElementById("indicator").style.visibility = "hidden"
     document.getElementById("popout-container").style.display = "block"
-    
+
     let popelement = document.getElementById(name + "label")
     let poparc = popelement.previousSibling
     poparc.style.stroke = "#494f4d"
@@ -649,13 +816,13 @@ function popout(name) {
 function popin(name) {
     document.getElementById("indicator").style.visibility = "hidden"
     document.getElementById("popout-container").style.display = "none"
-    
+
     let popelement = document.getElementById(name + "label")
     let poparc = popelement.previousSibling
     poparc.style.stroke = "transparent"
 
-    document.getElementById("popout").innerHTML = name
-    
+    document.getElementById("popout").innerHTML = ""
+    document.getElementById("originalquery").innerHTML = ""
     hideInfo()
 
 }
@@ -783,6 +950,8 @@ function addCore(properties) {
 }
 
 function addFlavour(properties) {
+
+
     let newflavour = document.createElementNS("http://www.w3.org/2000/svg", "g");
     newflavour.setAttribute("id", properties.name)
 
@@ -866,11 +1035,10 @@ function resize() {
 
     if (window.innerWidth < 850 || window.innerHeight < 600) {
         //small screen 
-        console.log("smol")
         compass.setAttribute("viewBox", "-800 -400 700 800")
         let svgheight = (window.innerHeight) // - resultsarea.clientHeight - titlearea.clientHeight)
         compass.style.height = svgheight + "px"
-      
+
 
         //} else if (window.innerWidth < 600 && window.innerWidth / window.innerHeight > 5/3) {
         //    //small landscape screen
@@ -882,7 +1050,7 @@ function resize() {
         compass.setAttribute("viewBox", "-800 -550 700 1100")
         let svgheight = window.innerHeight
         compass.style.height = svgheight + "px"
-        
+
 
     }
 
@@ -902,16 +1070,16 @@ function describeArc(x, y, innerRadius, outerRadius, startAngle, endAngle, corne
 
     var largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
 
-//    (0, 0, -tier.e.inner, -tier.e.outer, -properties.arcwidth, properties.arcwidth);
+    //    (0, 0, -tier.e.inner, -tier.e.outer, -properties.arcwidth, properties.arcwidth);
 
     if (corners) {
-var d = [
-        "M", outerStart.x+2, outerStart.y,
-        "a2,2 1 0 0 -2,2A", radius + spread, radius + spread, 0, largeArcFlag, 0, outerEnd.x, outerEnd.y-2,
-        "a2,2 1 0 0 2,2L", innerEnd.x-2, innerEnd.y,
-        "a2,2 1 0 0 2,-2A", radius, radius, 0, largeArcFlag, 1, innerStart.x, innerStart.y+2,
-        "a2,2 1 0 0 -2,-2L", outerStart.x+2, outerStart.y, "Z"
-    ].join(" ");
+        var d = [
+            "M", outerStart.x + 2, outerStart.y,
+            "a2,2 1 0 0 -2,2A", radius + spread, radius + spread, 0, largeArcFlag, 0, outerEnd.x, outerEnd.y - 2,
+            "a2,2 1 0 0 2,2L", innerEnd.x - 2, innerEnd.y,
+            "a2,2 1 0 0 2,-2A", radius, radius, 0, largeArcFlag, 1, innerStart.x, innerStart.y + 2,
+            "a2,2 1 0 0 -2,-2L", outerStart.x + 2, outerStart.y, "Z"
+        ].join(" ");
     } else {
         var d = [
             "M", outerStart.x, outerStart.y,
@@ -921,7 +1089,7 @@ var d = [
             "L", outerStart.x, outerStart.y, "Z"
         ].join(" ");
     }
-    
+
 
     return d;
 }
@@ -936,10 +1104,10 @@ function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
 }
 
 function colourPicker(angle, distance) {
-    
+
     let hue, saturation, lightness;
-    
-    
+
+
     if (distance > 252) {
 
         // outer ring
@@ -1003,6 +1171,6 @@ function colourPicker(angle, distance) {
     }
 
     return "hsl(" + hue + "," + saturation + "%," + lightness + "%)"
-    
+
 
 }

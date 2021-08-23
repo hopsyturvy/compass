@@ -55,18 +55,18 @@
             <div class="app_subtitle">Find your way to a better-tasting filter brew</div>
 
         </div>
-<div id="compasswrapper" style="position: relative">
-        <svg id="compass" viewBox="-800 -550 700 1100" xmlns="http://www.w3.org/2000/svg">
-            <defs>
+        <div id="compasswrapper" style="position: relative">
+            <svg id="compass" viewBox="-800 -550 700 1100" xmlns="http://www.w3.org/2000/svg">
+                <defs>
 
-            </defs>
+                </defs>
 
 
-            <g id="wheelcontainer">
-                <g id="wheel">
-                    <circle x="0" y="0" r="550" stroke="none" fill="transparent"/>
+                <g id="wheelcontainer">
+                    <g id="wheel">
+                        <circle cx="0" cy="0" r="550" stroke="none" fill="transparent" />
 
-                    <!--<circle x="0" y="0" r="261" stroke="#fcfcfc" stroke-width="8" fill="none" stroke-dasharray="none" />
+                        <!--<circle x="0" y="0" r="261" stroke="#fcfcfc" stroke-width="8" fill="none" stroke-dasharray="none" />
                     <circle x="0" y="0" r="261" stroke="#231f20" stroke-width="1" fill="none" stroke-dasharray="5,10" />
                     <circle x="0" y="0" r="72" stroke="#231f20" stroke-width="1" fill="none" stroke-dasharray="2,4" />
                     <circle x="0" y="0" r="95" stroke="#231f20" stroke-width="1" fill="none" /> -->
@@ -76,14 +76,15 @@
 
 
 
-                    <path id="textcircle" d="M-89,0A89,89 0 1 189,0A89,89 0 1 1-89,0A89,89 0 1 189,0A89,89 0 1 1-89,0"
-                        fill="none"></path>
-                    <text id="core" dy="-2" class="label" text-anchor="middle" dominant-baseline="central">
+                        <path id="textcircle"
+                            d="M-89,0A89,89 0 1 189,0A89,89 0 1 1-89,0A89,89 0 1 189,0A89,89 0 1 1-89,0" fill="none">
+                        </path>
+                        <text id="core" dy="-2" class="label" text-anchor="middle" dominant-baseline="central">
 
-                    </text>
+                        </text>
 
 
-                    <!-- <text x="-420" y="0" class="category" text-anchor="middle" dominant-baseline="central"
+                        <!-- <text x="-420" y="0" class="category" text-anchor="middle" dominant-baseline="central"
                         transform="rotate(90)">Strong</text>
                     <text x="-420" y="0" class="category" text-anchor="middle" dominant-baseline="central"
                         transform="rotate(180)">Over Extracted</text>
@@ -92,86 +93,84 @@
                     <text x="-420" y="0" class="category" text-anchor="middle" dominant-baseline="central"
                         transform="rotate(0)">Under Extracted</text> -->
 
-                    <path id="categorycircle" d="M-490,0A490,490 0 1 1490,0A490,490 0 1 1-490,0A490,490 0 1 1490,0A490,490 0 1 1-490,0" fill="none"></path>
-                    <text dy="-30" class="subcategory" text-anchor="middle" transform="rotate(0)">
-                        <textPath xlink:href="#categorycircle" startoffset="12.5%">
-                            Strong
-                        </textPath>
-                        <textPath xlink:href="#categorycircle" startoffset="25%">
-                            Over Extracted
-                        </textPath>
-                        <textPath xlink:href="#categorycircle" startoffset="37.5%">
-                            Weak
-                        </textPath>
-                        <textPath xlink:href="#categorycircle" startoffset="50%">
-                            Under Extracted
-                        </textPath>
-                        <textPath xlink:href="#categorycircle" startoffset="18.75%">
-                            ——
-                        </textPath>
-                        <textPath xlink:href="#categorycircle" startoffset="31.25%">
-                            ——
-                        </textPath>
-                        <textPath xlink:href="#categorycircle" startoffset="43.75%">
-                            ——
-                        </textPath>
-                        <textPath xlink:href="#categorycircle" startoffset="56.25%">
-                            ——
-                        </textPath>
-                    </text>
+                        <path id="categorycircle"
+                            d="M-490,0A490,490 0 1 1490,0A490,490 0 1 1-490,0A490,490 0 1 1490,0A490,490 0 1 1-490,0"
+                            fill="none"></path>
+                        <text dy="-30" class="subcategory" text-anchor="middle" transform="rotate(0)">
+                            <textPath xlink:href="#categorycircle" startoffset="12.5%">
+                                Strong
+                            </textPath>
+                            <textPath xlink:href="#categorycircle" startoffset="25%">
+                                Over Extracted
+                            </textPath>
+                            <textPath xlink:href="#categorycircle" startoffset="37.5%">
+                                Weak
+                            </textPath>
+                            <textPath xlink:href="#categorycircle" startoffset="50%">
+                                Under Extracted
+                            </textPath>
+                            <textPath xlink:href="#categorycircle" startoffset="18.75%">
+                                ——
+                            </textPath>
+                            <textPath xlink:href="#categorycircle" startoffset="31.25%">
+                                ——
+                            </textPath>
+                            <textPath xlink:href="#categorycircle" startoffset="43.75%">
+                                ——
+                            </textPath>
+                            <textPath xlink:href="#categorycircle" startoffset="56.25%">
+                                ——
+                            </textPath>
+                        </text>
 
-                </g>
-
-                <g id="stationary">
-                    <text x="0" y="0" class="label" text-anchor="middle" alignment-baseline="middle">Balanced</text>
-
-                    <g id="indicator">
-                        <path id="windowedge" d="M-490,0 L-95,0"></path>
                     </g>
+
+                    <g id="stationary">
+                        <text x="0" y="0" class="label" text-anchor="middle" alignment-baseline="middle">Balanced</text>
+
+                        <g id="indicator">
+                            <path id="windowedge" d="M-490,0 L-95,0"></path>
+                        </g>
+                    </g>
+
                 </g>
 
-            </g>
 
 
 
 
 
 
-
-        </svg>
-
-        <div id="popout-container">
-            <svg id="compassicon" viewBox="-50 -50 100 100" xmlns="http://www.w3.org/2000/svg">
-                <circle x="0" y="0" r="40" fill = "none" />
-                <path d="M0,-28L10,0L 0,28L-10,0Z" stroke-width = "2"></path>
-                <circle x="0" y="0" r="2" stroke = "none" fill = "#e7f2ee" />
-            </svg> <span id="popout"></span>
-        </div>
-
-    </div>
-
-        <div id="instructions">
-            <div id="instructions1" class="instructionsinfo">
-                <div class="app_subtitle">How to Start</div>
-                Click and drag the wheel to rotate it until you find the flavours you taste in your coffee.
-            </div>
-            <div id="instructions2" class="instructionsinfo">
-                Once you've chosen a flavour, suggestions for improving your brew appear below.
-            </div>
-
-        </div>
-
-
-
-        <div id="resultsarea">
-            <div class="results_title">
-            <svg id="arrow" viewBox="-50 -50 100 120" xmlns="http://www.w3.org/2000/svg">
-                <circle x="0" y="0" r="40" />
-                <path d="M-6,-17 L 11,0 L -6,17"></path>
             </svg>
 
-            <span id="resultstitle">
-                Extract Less, Use More Coffee</span>
+            <div id="popout-container">
+                <svg id="compassicon" viewBox="-50 -50 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="0" cy="0" r="40" fill="none" />
+                    <path d="M0,-28L10,0L 0,28L-10,0Z" stroke-width="2"></path>
+                    <circle cx="0" cy="0" r="2" stroke="none" fill="#e7f2ee" />
+                </svg> <span id="popout"></span>
+            </div>
+
+        </div>
+
+        <div id="searchiconwrapper">
+            <svg id="searchicon" viewBox="-50 -50 100 120" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="0" cy="-10" r="30" />
+                <path d="M0,20L0,60"></path>
+            </svg>
+            <span id="originalquery"></span>
+        </div>
+
+        <div id="resultsarea">
+
+            <div class="results_title">
+                <svg id="arrow" viewBox="-50 -50 100 120" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="0" cy="0" r="40" />
+                    <path d="M-6,-17 L 11,0 L -6,17"></path>
+                </svg>
+
+                <span id="resultstitle">
+                    Extract Less, Use More Coffee</span>
             </div>
             <div id="resultsinfo">
                 <ul>
@@ -182,6 +181,53 @@
             </div>
 
         </div>
+
+        <div id="instructions">
+            <div id="instructionscontainer">
+            <div id="instructions1" class="instructionsinfo">
+                <div class="instructions_title">How to Start</div>
+                <ul>
+                    <li>Brew a coffee and taste it. Make a note of any negative flavours you find.</li>
+                    <li>Click and drag the compass wheel to rotate it until you find the flavours you taste in your coffee.</li>
+            </ul>
+                
+            </div>
+            <div id="instructions2" class="instructionsinfo">
+                <div class="instructions_title">How to Start</div>
+                <ul>
+                    <li>Once you've chosen a flavour, suggestions for improving your brew appear below.</li>
+                <li>Following these suggestions will help you get to the centre of the compass.</li>
+            </ul>
+            </div>
+            <div id="instructions3" class="instructionsinfo">
+                <div class="instructions_title">Search</div>
+                <ul>
+                    <li>If you can't find your flavour on the wheel, try clicking the search button
+                <svg id="minisearchicon" viewBox="-50 -50 100 120" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="0" cy="-10" r="30" />
+                    <path d="M0,20L0,60"></path>
+                </svg>
+                to find it. There are a lot more flavours than fit on the wheel!</li>
+                <li>The wheel will show you the flavour most similar to the one you search for.</li>
+                <li>If you can't find the flavour you're looking for, let us know in the comments below and we can add it to the app.</li>
+                </ul>
+            </div>
+
+        </div>
+        </div>
+
+        <div id="searchbox">
+            <form id="searchform" onsubmit="return false" onclick="event.stopPropagation()">
+                <input type="text" id="searchquery" autocomplete="off">
+                <button type="submit" id="searchinput">></button>
+                <div id="error">
+                
+                </div>
+            </form>
+            
+        </div>
+
+        
     </div>
 
     <script src="svg-pan-zoom.min.js"></script>
