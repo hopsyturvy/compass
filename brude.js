@@ -1,4 +1,5 @@
 var wheel = document.getElementById("wheel")
+var compassicon = document.getElementById("compassicon")
 var wheelcontainer = document.getElementById("wheelcontainer")
 var RHoverlay = document.getElementById("RHoverlay")
 var wheelangle = 0
@@ -427,6 +428,8 @@ function getEventLocation(e) {
         return { x: e.touches[0].clientX, y: e.touches[0].clientY }
     }
     else if (e.clientX && e.clientY) {
+        pt.x = e.clientX;
+        pt.y = e.clientY
         return { x: e.clientX, y: e.clientY }
     }
 }
@@ -441,7 +444,7 @@ function onPointerDown(e) {
     diffY = 0
 
     alert_coords(e)
-    if (cursorpt.x < 0) {direction = true} else {direction = false}
+    if (cursorpt.x < 0) { direction = true } else { direction = false }
     previousturn = 0
 
 }
@@ -458,21 +461,21 @@ function onPointerUp(e) {
     }
 
     if (Math.abs(diffX) > delta || Math.abs(diffY) > delta) {
-        
+
         snapWheel(wheelangle)
     } else {
         click(e)
     }
     turnangle = 0
 
-    
+
     if (moved == 1) {
         document.getElementById("instructions2").style.animation = "fade-in 1s 1 forwards";
         document.getElementById("instructions1").style.animation = "fade-out 1s 1 forwards";
         moved += 1
     } else if (moved == 2) {
         document.getElementById("instructions2").style.animation = "fade-out 1s 1 forwards";
-        setTimeout(function () {document.getElementById("instructions").style.display = "none";}, 1000)
+        setTimeout(function () { document.getElementById("instructions").style.display = "none"; }, 1000)
         moved += 1
     }
 }
@@ -482,7 +485,7 @@ function onPointerUp(e) {
 
 
 function onPointerMove(e) {
-    
+
     e.preventDefault();
 
     if (isDragging && getEventLocation(e)) {
@@ -491,7 +494,7 @@ function onPointerMove(e) {
         diffY += (getEventLocation(e).y - dragStart.y)
 
         alert_coords(e)
-        
+
         if (cursorpt.x > 0) {
             if (direction) {
                 previousturn = turn
@@ -515,10 +518,10 @@ function onPointerMove(e) {
 
 
         //document.getElementById("arrow").style.transform = "translate(-220px,0)"
-        
-        
-        
-        
+
+
+
+
 
 
         wheelTurn(turn)
@@ -528,16 +531,16 @@ function onPointerMove(e) {
 
 
 function alert_coords(evt) {
-    
+
 
     getEventLocation(evt)
 
     // The cursor point, translated into svg coordinates
-    cursorpt =  pt.matrixTransform(compass.getScreenCTM().inverse());
+    cursorpt = pt.matrixTransform(compass.getScreenCTM().inverse());
 }
 
 function handleTouch(e, singleTouchHandler) {
-    
+
     if (e.touches.length < 2) {
         singleTouchHandler(e)
     }
@@ -571,7 +574,7 @@ function scrollWheel(e) {
 function wheelTurn(t) {
 
     if (currentflavour) { popin(currentflavour) }
-    
+
 
     document.getElementById("indicator").style.visibility = "visible"
 
@@ -584,7 +587,8 @@ function wheelTurn(t) {
     }
 
     wheel.setAttribute("transform", transformation)
-    if (moved == 0) {moved = 1}
+    compassicon.setAttribute("transform", transformation)
+    if (moved == 0) { moved = 1 }
 
 }
 
@@ -623,28 +627,20 @@ function snapWheel(angle) {
 
     turnWheel(snapangle)
     if (currentflavour) {
-    setTimeout(function () { popout(currentflavour) }, 200)
+        setTimeout(function () { popout(currentflavour) }, 200)
     }
 
 }
 
 function popout(name) {
     document.getElementById("indicator").style.visibility = "hidden"
+    document.getElementById("popout-container").style.display = "block"
+    
     let popelement = document.getElementById(name + "label")
-    popelement.style.transition = "transform 0.5s ease"
     let poparc = popelement.previousSibling
-    poparc.style.transition = "transform 0.5s ease"
+    poparc.style.stroke = "#494f4d"
 
-    let distance = - (800 / 2) + parseInt(popelement.getAttribute("data-outer-arc"))
-    let transformation = "scale (2) translate (" + distance + ",0)"
-
-
-    popelement.setAttribute("transform", transformation)
-    poparc.setAttribute("transform", transformation)
-
-
-    setTimeout(function () { popelement.style.transition = "transform 0s" }, 500)
-    setTimeout(function () { poparc.style.transition = "transform 0s" }, 500)
+    document.getElementById("popout").innerHTML = name
 
     showInfo(popelement)
 
@@ -652,20 +648,14 @@ function popout(name) {
 
 function popin(name) {
     document.getElementById("indicator").style.visibility = "hidden"
+    document.getElementById("popout-container").style.display = "none"
+    
     let popelement = document.getElementById(name + "label")
-    popelement.style.transition = "transform 0.2s ease"
     let poparc = popelement.previousSibling
-    poparc.style.transition = "transform 0.2s ease"
+    poparc.style.stroke = "transparent"
 
-    let transformation = "scale (1)"
-
-    popelement.setAttribute("transform", transformation)
-    poparc.setAttribute("transform", transformation)
-
-
-    setTimeout(function () { popelement.style.transition = "transform 0s" }, 500)
-    setTimeout(function () { poparc.style.transition = "transform 0s" }, 500)
-
+    document.getElementById("popout").innerHTML = name
+    
     hideInfo()
 
 }
@@ -675,50 +665,50 @@ function showInfo(element) {
 
     if (element.getAttribute("x") < -261) {
 
-    if (wheelangle >= 337.5 || wheelangle < 22.5) {
-        resultstitle = "Extract More, Use Less Coffee"
-        resultsinfo = "<ul><li>Use a finer grind and/or longer brew time to extract more</li><li>Increase the Brew Ratio by fixing the water weight and using less coffee OR by fixing the dose and using more water</li></ul>"
-    } else if (wheelangle >= 22.5 && wheelangle < 67.5) {
-        resultstitle = "Extract More"
-        resultsinfo = "<ul><li>Use a finer grind and/or longer brew time to extract more</li></ul>"
-    } else if (wheelangle >= 67.5 && wheelangle < 112.5) {
-        resultstitle = "Use More Coffee"
-        resultsinfo = "<ul><li>Decrease the Brew Ratio by fixing the water weight and using more coffee OR by fixing the dose and using less water</li></ul>"
-    } else if (wheelangle >= 112.5 && wheelangle < 157.5) {
-        resultstitle = "Extract Less, Use More Coffee"
-        resultsinfo = "<ul><li>Use a coarser grind and/or shorter brew time to extract less</li><li>Decrease the Brew Ratio by fixing the water weight and using more coffee OR by fixing the dose and using less water</li></ul>"
-    } else if (wheelangle >= 157.5 && wheelangle < 202.5) {
-        resultstitle = "Extract Less, Use More Coffee"
-        resultsinfo = "<ul><li>Use a coarser grind and/or shorter brew time to extract less</li><li>Decrease the Brew Ratio by fixing the water weight and using more coffee OR by fixing the dose and using less water</li></ul>"
-    } else if (wheelangle >= 202.5 && wheelangle < 247.5) {
-        resultstitle = "Extract Less"
-        resultsinfo = "<ul><li>Use a coarser grind and/or shorter brew time to extract less</li></ul>"
-    } else if (wheelangle >= 247.5 && wheelangle < 292.5) {
-        resultstitle = "Use Less Coffee"
-        resultsinfo = "<ul><li>Increase the Brew Ratio by fixing the water weight and using less coffee OR by fixing the dose and using more water</li></ul>"
-    } else if (wheelangle >= 292.5 && wheelangle < 337.5) {
-        resultstitle = "Extract More, Use Less Coffee"
-        resultsinfo = "<ul><li>Use a finer grind and/or longer brew time to extract more</li><li>Increase the Brew Ratio by fixing the water weight and using less coffee OR by fixing the dose and using more water</li></ul>"
-    }
+        if (wheelangle >= 337.5 || wheelangle < 22.5) {
+            resultstitle = "Extract More, Use Less Coffee"
+            resultsinfo = "<ul><li>Use a finer grind and/or longer brew time to extract more</li><li>Increase the Brew Ratio by fixing the water weight and using less coffee OR by fixing the dose and using more water</li></ul>"
+        } else if (wheelangle >= 22.5 && wheelangle < 67.5) {
+            resultstitle = "Extract More"
+            resultsinfo = "<ul><li>Use a finer grind and/or longer brew time to extract more</li></ul>"
+        } else if (wheelangle >= 67.5 && wheelangle < 112.5) {
+            resultstitle = "Use More Coffee"
+            resultsinfo = "<ul><li>Decrease the Brew Ratio by fixing the water weight and using more coffee OR by fixing the dose and using less water</li></ul>"
+        } else if (wheelangle >= 112.5 && wheelangle < 157.5) {
+            resultstitle = "Extract Less, Use More Coffee"
+            resultsinfo = "<ul><li>Use a coarser grind and/or shorter brew time to extract less</li><li>Decrease the Brew Ratio by fixing the water weight and using more coffee OR by fixing the dose and using less water</li></ul>"
+        } else if (wheelangle >= 157.5 && wheelangle < 202.5) {
+            resultstitle = "Extract Less, Use More Coffee"
+            resultsinfo = "<ul><li>Use a coarser grind and/or shorter brew time to extract less</li><li>Decrease the Brew Ratio by fixing the water weight and using more coffee OR by fixing the dose and using less water</li></ul>"
+        } else if (wheelangle >= 202.5 && wheelangle < 247.5) {
+            resultstitle = "Extract Less"
+            resultsinfo = "<ul><li>Use a coarser grind and/or shorter brew time to extract less</li></ul>"
+        } else if (wheelangle >= 247.5 && wheelangle < 292.5) {
+            resultstitle = "Use Less Coffee"
+            resultsinfo = "<ul><li>Increase the Brew Ratio by fixing the water weight and using less coffee OR by fixing the dose and using more water</li></ul>"
+        } else if (wheelangle >= 292.5 && wheelangle < 337.5) {
+            resultstitle = "Extract More, Use Less Coffee"
+            resultsinfo = "<ul><li>Use a finer grind and/or longer brew time to extract more</li><li>Increase the Brew Ratio by fixing the water weight and using less coffee OR by fixing the dose and using more water</li></ul>"
+        }
 
     } else {
         resultstitle = "Green Zone"
         if (wheelangle >= 337.5 || wheelangle < 22.5) {
-            resultsinfo = "Your brew is good, but you might find an even more balanced flavour if you use a finer grind / longer brew time and use less coffee"
+            resultsinfo = "<ul><li>Your brew is good, but you might find an even more balanced flavour if you use a finer grind / longer brew time and use less coffee</li></ul>"
         } else if (wheelangle >= 22.5 && wheelangle < 67.5) {
-            resultsinfo = "Your brew is good, but you might find an even more balanced flavour if you use a finer grind / longer brew time"
+            resultsinfo = "<ul><li>Your brew is good, but you might find an even more balanced flavour if you use a finer grind / longer brew time</li></ul>"
         } else if (wheelangle >= 67.5 && wheelangle < 112.5) {
-            resultsinfo = "Your brew is good, but you might find an even more balanced flavour if you decrease the Brew Ratio by using more coffee"
+            resultsinfo = "<ul><li>Your brew is good, but you might find an even more balanced flavour if you decrease the Brew Ratio by using more coffee</li></ul>"
         } else if (wheelangle >= 112.5 && wheelangle < 157.5) {
-            resultsinfo = "Your brew is good, but you might find an even more balanced flavour if you use a coarser grind / shorter brew time and use more coffee"
+            resultsinfo = "<ul><li>Your brew is good, but you might find an even more balanced flavour if you use a coarser grind / shorter brew time and use more coffee</li></ul>"
         } else if (wheelangle >= 157.5 && wheelangle < 202.5) {
-            resultsinfo = "Your brew is good, but you might find an even more balanced flavour if you use a coarser grind / shorter brew time and use more coffee"
+            resultsinfo = "<ul><li>Your brew is good, but you might find an even more balanced flavour if you use a coarser grind / shorter brew time and use more coffee</li></ul>"
         } else if (wheelangle >= 202.5 && wheelangle < 247.5) {
-            resultsinfo = "Your brew is good, but you might find an even more balanced flavour if you use a coarser grind / shorter brew time"
+            resultsinfo = "<ul><li>Your brew is good, but you might find an even more balanced flavour if you use a coarser grind / shorter brew time</li></ul>"
         } else if (wheelangle >= 247.5 && wheelangle < 292.5) {
-            resultsinfo = "Your brew is good, but you might find an even more balanced flavour if you increase the Brew Ratio by using less coffee"
+            resultsinfo = "<ul><li>Your brew is good, but you might find an even more balanced flavour if you increase the Brew Ratio by using less coffee</li></ul>"
         } else if (wheelangle >= 292.5 && wheelangle < 337.5) {
-            resultsinfo = "Your brew is good, but you might find an even more balanced flavour if you use a finer grind / longer brew time and use less coffee"
+            resultsinfo = "<ul><li>Your brew is good, but you might find an even more balanced flavour if you use a finer grind / longer brew time and use less coffee</li></ul>"
         }
     }
 
@@ -745,10 +735,12 @@ function turnWheel(a) {
     transformation = "rotate(" + wheelangle + ")"
 
 
-    document.getElementById("wheel").style.transition = "transform 0.5s ease"
+    wheel.style.transition = "transform 0.5s ease"
+
 
 
     wheel.setAttribute("transform", transformation)
+    compassicon.setAttribute("transform", transformation)
 
     if (wheelangle > 360) {
         wheelangle -= 360
@@ -757,10 +749,12 @@ function turnWheel(a) {
     }
 
     setTimeout(function () {
-        document.getElementById("wheel").style.transition = "transform 0s"
+        wheel.style.transition = "transform 0s"
+
         //instantly resets rotation if over 360
         transformation = "rotate(" + wheelangle + ")"
         wheel.setAttribute("transform", transformation)
+        compassicon.setAttribute("transform", transformation)
 
     }, 600)
 
@@ -779,9 +773,9 @@ function addCore(properties) {
     let transformation = "rotate(" + (properties.angle) + ")"
 
     let arc = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    let arcpath = describeArc(0, 0, -tier.e.inner, -tier.e.outer, -properties.arcwidth, properties.arcwidth);
+    let arcpath = describeArc(0, 0, -tier.e.inner, -tier.e.outer, -properties.arcwidth, properties.arcwidth, false);
     arc.setAttribute("d", arcpath)
-    arc.setAttribute("fill", "#a2bcb3")
+    arc.setAttribute("fill", "hsl(158,13%,63%)")
 
     arc.setAttribute("transform", transformation)
     wheel.insertBefore(arc, wheel.firstChild)
@@ -798,7 +792,7 @@ function addFlavour(properties) {
     let labelplace = - (properties.innerarc + properties.outerarc) / 2;
 
     label.setAttribute("x", labelplace)
-    label.setAttribute("y", 0)
+    label.setAttribute("y", -1)
     label.setAttribute("id", properties.name + "label")
     label.setAttribute("class", "label")
     label.setAttribute("text-anchor", "middle")
@@ -809,9 +803,10 @@ function addFlavour(properties) {
     label.innerHTML = properties.name
 
     let arc = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    let arcpath = describeArc(0, 0, -properties.innerarc, -properties.outerarc, -properties.arcwidth, properties.arcwidth);
+    let arcpath = describeArc(0, 0, -properties.innerarc, -properties.outerarc, -properties.arcwidth, properties.arcwidth, true);
     arc.setAttribute("d", arcpath)
-    arc.setAttribute("fill", "#a2bcb3")
+    arc.setAttribute("class", "arc")
+    arc.setAttribute("fill", colourPicker(properties.flavourangle, properties.outerarc))
 
     newflavour.appendChild(arc)
     newflavour.appendChild(label)
@@ -834,31 +829,31 @@ function click(e) {
     currentflavour = e.target.getAttribute("data-name")
 
     if (!target) {
-        if (!e.target.nextSibling.length){
-        target = 180 - parseInt(e.target.nextSibling.getAttribute("data-angle"))
-        currentflavour = e.target.nextSibling.getAttribute("data-name")
+        if (!e.target.nextSibling.length) {
+            target = 180 - parseInt(e.target.nextSibling.getAttribute("data-angle"))
+            currentflavour = e.target.nextSibling.getAttribute("data-name")
         }
-        
+
     }
 
     if (target) {
 
-    turn = target - wheelangle
-    if (turn > 180) {
-        turn -= 360
-    } else if (turn < -180) {
-        turn += 360
-    }
+        turn = target - wheelangle
+        if (turn > 180) {
+            turn -= 360
+        } else if (turn < -180) {
+            turn += 360
+        }
 
-    turnWheel(turn)
-    
-    popout(currentflavour)
-}
+        turnWheel(turn)
+
+        popout(currentflavour)
+    }
 
 }
 
 function resize() {
-    if(currentflavour){popin(currentflavour)}
+    if (currentflavour) { popin(currentflavour) }
     let titlearea = document.getElementById("titlearea")
     let resultsarea = document.getElementById("resultsarea")
 
@@ -869,24 +864,31 @@ function resize() {
 
     document.getElementById("appcontainer").style.height = window.innerHeight + "px"
 
-    if (window.innerWidth < 650) {
-        resultsarea.style.width = "100%"
-        let svgheight = (window.innerHeight - resultsarea.clientHeight - titlearea.clientHeight)
+    if (window.innerWidth < 850 || window.innerHeight < 600) {
+        //small screen 
+        let svgheight = (window.innerHeight) // - resultsarea.clientHeight - titlearea.clientHeight)
         compass.style.height = svgheight + "px"
-        document.getElementById("titlearea").style.position = "relative"
+      
+
+        //} else if (window.innerWidth < 600 && window.innerWidth / window.innerHeight > 5/3) {
+        //    //small landscape screen
+        //    let svgheight = (window.innerHeight - resultsarea.clientHeight - titlearea.clientHeight)
+        //    compass.style.height = svgheight + "px"
 
     } else {
         //fullwidth
         let svgheight = window.innerHeight
-        document.getElementById("titlearea").style.position = "absolute"
         compass.style.height = svgheight + "px"
-        resultsarea.style.width = "50%"
+        
+
     }
+
+
 
     resultsarea.style.height = resultsarea.clientHeight + "px"
 }
 
-function describeArc(x, y, innerRadius, outerRadius, startAngle, endAngle) {
+function describeArc(x, y, innerRadius, outerRadius, startAngle, endAngle, corners) {
 
     var radius = innerRadius;
     var spread = outerRadius - innerRadius;
@@ -897,13 +899,26 @@ function describeArc(x, y, innerRadius, outerRadius, startAngle, endAngle) {
 
     var largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
 
-    var d = [
-        "M", outerStart.x, outerStart.y,
-        "A", radius + spread, radius + spread, 0, largeArcFlag, 0, outerEnd.x, outerEnd.y,
-        "L", innerEnd.x, innerEnd.y,
-        "A", radius, radius, 0, largeArcFlag, 1, innerStart.x, innerStart.y,
-        "L", outerStart.x, outerStart.y, "Z"
+//    (0, 0, -tier.e.inner, -tier.e.outer, -properties.arcwidth, properties.arcwidth);
+
+    if (corners) {
+var d = [
+        "M", outerStart.x+2, outerStart.y,
+        "a2,2 1 0 0 -2,2A", radius + spread, radius + spread, 0, largeArcFlag, 0, outerEnd.x, outerEnd.y-2,
+        "a2,2 1 0 0 2,2L", innerEnd.x-2, innerEnd.y,
+        "a2,2 1 0 0 2,-2A", radius, radius, 0, largeArcFlag, 1, innerStart.x, innerStart.y+2,
+        "a2,2 1 0 0 -2,-2L", outerStart.x+2, outerStart.y, "Z"
     ].join(" ");
+    } else {
+        var d = [
+            "M", outerStart.x, outerStart.y,
+            "A", radius + spread, radius + spread, 0, largeArcFlag, 0, outerEnd.x, outerEnd.y,
+            "L", innerEnd.x, innerEnd.y,
+            "A", radius, radius, 0, largeArcFlag, 1, innerStart.x, innerStart.y,
+            "L", outerStart.x, outerStart.y, "Z"
+        ].join(" ");
+    }
+    
 
     return d;
 }
@@ -915,4 +930,76 @@ function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
         x: centerX + (radius * Math.cos(angleInRadians)),
         y: centerY + (radius * Math.sin(angleInRadians))
     };
+}
+
+function colourPicker(angle, distance) {
+    
+    let hue, saturation, lightness;
+    
+    
+    if (distance > 252) {
+
+        // outer ring
+
+        //hue
+        hue = 340
+        if (angle < 180) {
+            hue -= (90 - Math.abs(90 - angle)) / (90 / 30) // last number is max distance from default hue
+
+        } else {
+            hue += (90 - Math.abs(270 - angle)) / (90 / 8) // last number is max distance from default hue
+        }
+
+        //saturation
+        saturation = 41
+        if (angle < 135) {
+            //distance from -45, min saturation (11) at 135
+            saturation -= (angle + 45) / (180 / 30) // last number is max distance from default
+        } else {
+            //distance from 315, min saturation at 135
+            saturation -= Math.abs(315 - angle) / (180 / 30)
+        }
+
+        //lightness
+        lightness = 58
+        if (angle < 135) {
+            //distance from -45, min saturation (11) at 135
+            lightness += (angle + 45) / (180 / 25) // last number is max distance from default
+        } else {
+            //distance from 315, min saturation at 135
+            lightness += Math.abs(315 - angle) / (180 / 25)
+        }
+
+
+    } else {
+
+        // inner ring
+
+        hue = 158
+        saturation = 10
+        // 10-17
+        if (angle < 135) {
+            //distance from -45, min at 135
+            saturation += (angle + 45) / (180 / 7) // last number is max distance from default
+        } else {
+            //distance from 315, min 135
+            saturation += Math.abs(315 - angle) / (180 / 7)
+        }
+        lightness = 58
+        //58 - 69
+        if (angle < 135) {
+            //distance from -45, min at 135
+            lightness += (angle + 45) / (180 / 11) // last number is max distance from default
+        } else {
+            //distance from 315, min at 135
+            lightness += Math.abs(315 - angle) / (180 / 11)
+        }
+
+
+
+    }
+
+    return "hsl(" + hue + "," + saturation + "%," + lightness + "%)"
+    
+
 }

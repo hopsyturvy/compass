@@ -19,9 +19,29 @@
         }
 
         @font-face {
-            font-family: "NoBH Regular";
-            font-display: swap;
-            src: url("https://www.baristahustle.com/wp-content/uploads/et-fonts/NoBH-Regular-1.ttf") format("truetype");
+            font-family: 'Head';
+            src: url('https://www.baristahustle.com/webfont/Head-Bold.eot');
+            /* IE9 Compat Modes */
+            src: url('https://www.baristahustle.com/webfont/Head-Bold.woff2') format('woff2'),
+                /* Super Modern Browsers */
+                url('https://www.baristahustle.com/webfont/Head-Bold.woff') format('woff'),
+                /* Pretty Modern Browsers */
+                url('https://www.baristahustle.com/webfont/Head-Bold.ttf') format('truetype');
+            /* Safari, Android, iOS */
+            font-weight: normal;
+        }
+
+        @font-face {
+            font-family: 'Head-Bold';
+            src: url('https://www.baristahustle.com/webfont/Head-Bold.eot');
+            /* IE9 Compat Modes */
+            src: url('https://www.baristahustle.com/webfont/Head-Bold.woff2') format('woff2'),
+                /* Super Modern Browsers */
+                url('https://www.baristahustle.com/webfont/Head-Bold.woff') format('woff'),
+                /* Pretty Modern Browsers */
+                url('https://www.baristahustle.com/webfont/Head-Bold.ttf') format('truetype');
+            /* Safari, Android, iOS */
+            font-weight: bold;
         }
     </style>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,34 +51,25 @@
 
     <div id="appcontainer">
         <div id="titlearea">
-            <div class="app_title">The Brewed Coffee Compass</div>
-            <div class="app_subtitle">Find your way to a better-tasting brew</div>
+            <div class="app_title">The Coffee Compass</div>
+            <div class="app_subtitle">Find your way to a better-tasting filter brew</div>
 
         </div>
-
+<div id="compasswrapper" style="position: relative">
         <svg id="compass" viewBox="-800 -550 700 1100" xmlns="http://www.w3.org/2000/svg">
             <defs>
-                <linearGradient id="Windowgradient">
-                    <stop class="window1" offset="0%" />
-                    <stop class="window2" offset="30%" />
-                    <stop class="window3" offset="100%" />
-                </linearGradient>
-                <linearGradient id="Edgegradient">
-                    <stop class="edge1" offset="0%" />
-                    <stop class="edge2" offset="30%" />
-                    <stop class="edge3" offset="100%" />
-                </linearGradient>
+
             </defs>
 
 
             <g id="wheelcontainer">
                 <g id="wheel">
-                    <circle x="0" y="0" r="490" stroke="#231f20" stroke-width="1" fill="none"
-                        stroke-dasharray="10,10" />
-                    <circle x="0" y="0" r="261" stroke="#fcfcfc" stroke-width="8" fill="none" stroke-dasharray="none" />
+                    <circle x="0" y="0" r="550" stroke="none" fill="transparent"/>
+
+                    <!--<circle x="0" y="0" r="261" stroke="#fcfcfc" stroke-width="8" fill="none" stroke-dasharray="none" />
                     <circle x="0" y="0" r="261" stroke="#231f20" stroke-width="1" fill="none" stroke-dasharray="5,10" />
                     <circle x="0" y="0" r="72" stroke="#231f20" stroke-width="1" fill="none" stroke-dasharray="2,4" />
-                    <!-- <circle x="0" y="0" r="95" stroke="#231f20" stroke-width="1" fill="none" /> -->
+                    <circle x="0" y="0" r="95" stroke="#231f20" stroke-width="1" fill="none" /> -->
 
 
 
@@ -72,89 +83,50 @@
                     </text>
 
 
-                    <text x="-420" y="0" class="category" text-anchor="middle" dominant-baseline="central"
+                    <!-- <text x="-420" y="0" class="category" text-anchor="middle" dominant-baseline="central"
                         transform="rotate(90)">Strong</text>
                     <text x="-420" y="0" class="category" text-anchor="middle" dominant-baseline="central"
                         transform="rotate(180)">Over Extracted</text>
                     <text x="-420" y="0" class="category" text-anchor="middle" dominant-baseline="central"
                         transform="rotate(270)">Weak</text>
                     <text x="-420" y="0" class="category" text-anchor="middle" dominant-baseline="central"
-                        transform="rotate(0)">Under Extracted</text>
+                        transform="rotate(0)">Under Extracted</text> -->
 
-                    <path id="categorycircle" d="M-490,0A490,490 0 1 1490,0A490,490 0 1 1-490,0" fill="none"></path>
+                    <path id="categorycircle" d="M-490,0A490,490 0 1 1490,0A490,490 0 1 1-490,0A490,490 0 1 1490,0A490,490 0 1 1-490,0" fill="none"></path>
                     <text dy="-30" class="subcategory" text-anchor="middle" transform="rotate(0)">
                         <textPath xlink:href="#categorycircle" startoffset="12.5%">
-                            Strong Under Extracted
+                            Strong
+                        </textPath>
+                        <textPath xlink:href="#categorycircle" startoffset="25%">
+                            Over Extracted
                         </textPath>
                         <textPath xlink:href="#categorycircle" startoffset="37.5%">
-                            Strong Over Extracted
+                            Weak
                         </textPath>
-                        <textPath xlink:href="#categorycircle" startoffset="62.5%">
-                            Weak Over Extracted
+                        <textPath xlink:href="#categorycircle" startoffset="50%">
+                            Under Extracted
                         </textPath>
-                        <textPath xlink:href="#categorycircle" startoffset="87.5%">
-                            Weak Under Extracted
+                        <textPath xlink:href="#categorycircle" startoffset="18.75%">
+                            ——
+                        </textPath>
+                        <textPath xlink:href="#categorycircle" startoffset="31.25%">
+                            ——
+                        </textPath>
+                        <textPath xlink:href="#categorycircle" startoffset="43.75%">
+                            ——
+                        </textPath>
+                        <textPath xlink:href="#categorycircle" startoffset="56.25%">
+                            ——
                         </textPath>
                     </text>
 
-
-
-                    <path d="
-                M -187.51, -452.70
-                A 490, 490 0 0,1 187.51, -452.70
-                L 0, 0
-                Z
-            " fill="red" fill-opacity="0" />
-                    <path d="
-                M 187.51, -452.70
-                A 490, 490 0 0,1 452.70, -187.51
-                L 0, 0
-                Z
-            " fill="blue" fill-opacity="0" />
-                    <path d="
-                M 452.70, -187.51
-                A 490, 490 0 0,1 452.70, 187.51
-                L 0, 0
-                Z
-            " fill="red" fill-opacity="0" />
-                    <path d="
-                M 452.70, 187.51
-                A 490, 490 0 0,1 187.51, 452.70
-                L 0, 0
-                Z
-            " fill="blue" fill-opacity="0" />
-                    <path d="
-                M 187.51, 452.70
-                A 490, 490 0 0,1 -187.51, 452.70
-                L 0, 0
-                Z
-            " fill="red" fill-opacity="0" />
-                    <path d="
-                M -187.51, 452.70
-                A 490, 490 0 0,1 -452.70, 187.51
-                L 0, 0
-                Z
-            " fill="blue" fill-opacity="0" />
-                    <path d="
-                M -452.70, 187.51
-                A 490, 490 0 0,1 -452.70, -187.51
-                L 0, 0
-                Z
-            " fill="red" fill-opacity="0" />
-                    <path d="
-                M -452.70, -187.51
-                A 490, 490 0 0,1 -187.51, -452.70
-                L 0, 0
-                Z
-            " fill="blue" fill-opacity="0" />
                 </g>
 
                 <g id="stationary">
                     <text x="0" y="0" class="label" text-anchor="middle" alignment-baseline="middle">Balanced</text>
-                        <!-- <path id="arrow" d="M-640,-20 L-620,0 L-640,20"></path> -->
+
                     <g id="indicator">
-                        <path id="windowshade" d="M-550,-30 L0,-20 L 0,20 L-550,30 Z"></path>
-                        <path id="windowedge" d="M-550,-30 L0,-20 M 0,20 L-550,30 Z"></path>
+                        <path id="windowedge" d="M-490,0 L-95,0"></path>
                     </g>
                 </g>
 
@@ -168,20 +140,39 @@
 
         </svg>
 
-        <div id ="instructions">
-            <div id = "instructions1" class="instructionsinfo">
+        <div id="popout-container">
+            <svg id="compassicon" viewBox="-50 -50 100 100" xmlns="http://www.w3.org/2000/svg">
+                <circle x="0" y="0" r="40" fill = "none" />
+                <path d="M0,-28L10,0L 0,28L-10,0Z" stroke-width = "2"></path>
+                <circle x="0" y="0" r="2" stroke = "none" fill = "#e7f2ee" />
+            </svg> <span id="popout"></span>
+        </div>
+
+    </div>
+
+        <div id="instructions">
+            <div id="instructions1" class="instructionsinfo">
+                <div class="app_subtitle">How to Start</div>
                 Click and drag the wheel to rotate it until you find the flavours you taste in your coffee.
             </div>
-            <div id ="instructions2" class="instructionsinfo">
-                    Once you've chosen a flavour, suggestions for improving your brew appear below.
+            <div id="instructions2" class="instructionsinfo">
+                Once you've chosen a flavour, suggestions for improving your brew appear below.
             </div>
 
         </div>
 
-        
+
 
         <div id="resultsarea">
-            <div id="resultstitle" class="app_subtitle">Extract Less, Use More Coffee</div>
+            <div class="results_title">
+            <svg id="arrow" viewBox="-50 -50 100 120" xmlns="http://www.w3.org/2000/svg">
+                <circle x="0" y="0" r="40" />
+                <path d="M-6,-17 L 11,0 L -6,17"></path>
+            </svg>
+
+            <span id="resultstitle">
+                Extract Less, Use More Coffee</span>
+            </div>
             <div id="resultsinfo">
                 <ul>
                     <li>Use a coarser grind and/or shorter brew time to extract more</li>
