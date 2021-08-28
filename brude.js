@@ -495,7 +495,7 @@ window.onload = function () {
 
 
     core.forEach(addCore, this)
-    addTicks()
+    setTimeout(function () {addTicks()},200)
 
     wheelcontainer.addEventListener('mousedown', onPointerDown)
     wheelcontainer.addEventListener('touchstart', (e) => handleTouch(e, onPointerDown))
