@@ -512,8 +512,8 @@ window.onload = function () {
 
     searchform.addEventListener("submit", search)
 
-    searchbox.addEventListener('touchstart', (e) => handleTouch(e, hidesearch))
-    searchbox.addEventListener("click", hidesearch)
+    //searchbox.addEventListener('touchstart', (e) => handleTouch(e, hidesearch))
+    //searchbox.addEventListener("click", hidesearch)
 
     //document.getElementById("instructions").addEventListener('touchstart', (e) => handleTouch(e, instructions))
     //document.getElementById("instructions").addEventListener("click", instructions)
@@ -581,12 +581,14 @@ function addTicks() {
 
 function checkoverlap(el) {
     
-    elrect = el.getBoundingClientRect()
+    elrect = el.getBBox()
+    console.log(elrect)
 
     subcats = document.getElementsByClassName("subcattext")
 
     for (i=0; i < subcats.length; i++) {
-        subcat = subcats[i].getBoundingClientRect()
+        subcat = subcats[i].getBBox()
+        console.log(subcat)
         if (((elrect.x > subcat.x && elrect.x < subcat.x + subcat.width) || (elrect.x + elrect.width > subcat.x && elrect.x + elrect.width < subcat.x + subcat.width)) && ((elrect.y > subcat.y && elrect.y < subcat.y + subcat.height) || (elrect.y + elrect.height > subcat.y && elrect.y + elrect.height < subcat.y + subcat.height)))
         
         {
@@ -615,6 +617,7 @@ function escape(evt) {
         isEscape = (evt.keyCode === 27);
     }
     if (isEscape) {
+        console.log('esc')
         hidesearch();
     }
 }
@@ -918,7 +921,7 @@ function snapWheel(angle) {
 
     turnWheel(snapangle)
     if (currentflavour) {
-        setTimeout(function () { popout(currentflavour) }, 200)
+        popout(currentflavour)
     }
 
 }
@@ -926,6 +929,7 @@ function snapWheel(angle) {
 function popout(name) {
     document.getElementById("bang").style.display = "none"
     document.getElementById("arrow").style.display = "inline"
+    console.log('pop')
     hidesearch()
 
     document.getElementById("indicator").style.visibility = "hidden"
