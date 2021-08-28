@@ -1,5 +1,6 @@
 var wheel = document.getElementById("wheel")
 var compassicon = document.getElementById("compassicon")
+var compassrotator = document.getElementById("compassrotator")
 var wheelcontainer = document.getElementById("wheelcontainer")
 var RHoverlay = document.getElementById("RHoverlay")
 var wheelangle = 0
@@ -21,28 +22,28 @@ var searchiconwrapper = document.getElementById("searchiconwrapper")
 
 const tier = {
     a: {
-        outer: 477.36,
-        inner: 371.52,
+        outer: 497.36,
+        inner: 381.52,
         arcwidth: 2
     },
     b: {
-        outer: 422.39,
-        inner: 271.13,
+        outer: 442.39,
+        inner: 281.13,
         arcwidth: 2.5
     },
     c: {
-        outer: 251.85,
+        outer: 261.85,
         inner: 144.90,
         arcwidth: 4
     },
     d: {
-        outer: 214.11,
+        outer: 224.11,
         inner: 113.36,
         arcwidth: 5
     },
     e: {
         outer: 103.8,
-        inner: 77.91,
+        inner: 75.91,
         arcwidth: 45
     }
 }
@@ -438,19 +439,19 @@ var flavours = {
 var alternateflavours = {
     soury: {
         name: "soury",
-        nearest: "sour"
+        nearest: "Sour"
     },
     brothy: {
         name: "brothy",
-        nearest: "beefy"
+        nearest: "Beefy"
     },
     green: {
         name: "green",
-        nearest: "vegetal"
+        nearest: "Vegetal"
     },
     tea: {
         name: "tea",
-        nearest: "tea-like"
+        nearest: "Tea-like"
     }
 
 }
@@ -494,6 +495,7 @@ window.onload = function () {
 
 
     core.forEach(addCore, this)
+    addTicks()
 
     wheelcontainer.addEventListener('mousedown', onPointerDown)
     wheelcontainer.addEventListener('touchstart', (e) => handleTouch(e, onPointerDown))
@@ -513,8 +515,8 @@ window.onload = function () {
     searchbox.addEventListener('touchstart', (e) => handleTouch(e, hidesearch))
     searchbox.addEventListener("click", hidesearch)
 
-    document.getElementById("instructions").addEventListener('touchstart', (e) => handleTouch(e, instructions))
-    document.getElementById("instructions").addEventListener("click", instructions)
+    //document.getElementById("instructions").addEventListener('touchstart', (e) => handleTouch(e, instructions))
+    //document.getElementById("instructions").addEventListener("click", instructions)
 
     document.getElementById("searchquery").addEventListener("keydown", (evt) => escape(evt))
 
@@ -524,23 +526,76 @@ window.onload = function () {
 
     //check if visited already and kill instructions if so
 
-    let cookiestr = "visited=";
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(';');
-    for (let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(cookiestr) == 0) {
-            moved = 4
-            console.log('trig')
-            instructions()
-        }
-    }
+    //let cookiestr = "visited=yes";
+    //let decodedCookie = decodeURIComponent(document.cookie);
+    //let ca = decodedCookie.split(';');
+    //for (let i = 0; i < ca.length; i++) {
+    //    let c = ca[i];
+    //    while (c.charAt(0) == ' ') {
+    //        c = c.substring(1);
+    //    }
+    //    if (c.indexOf(cookiestr) == 0) {
+    //        moved = 4
+    //        instructions()
+    //    }
+    //}
 
 
     resize()
+}
+
+function addTicks() {
+
+    for (a = 0; a < 360; a += 11.25) {
+        let tick = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        let tickpath = "M540,0L518,0";
+        tick.setAttribute("d", tickpath)
+        tick.setAttribute("class", "tick")
+        tick.setAttribute("transform", "rotate(" + a + ")")
+        wheel.appendChild(tick)
+
+        checkoverlap(tick)
+
+        for (e = 1; e < 5; e++) {
+
+            let minortick = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            let minortickpath = "M535,0L520,0";
+            minortick.setAttribute("d", minortickpath)
+            minortick.setAttribute("class", "minortick")
+            rotation = a + (e * 11.25 / 5)
+            minortick.setAttribute("transform", "rotate(" + rotation + ")")
+            
+            
+
+            wheel.appendChild(minortick)
+
+            checkoverlap(minortick)
+
+
+        }
+
+
+
+    }
+}
+
+function checkoverlap(el) {
+    
+    elrect = el.getBoundingClientRect()
+
+    subcats = document.getElementsByClassName("subcattext")
+
+    for (i=0; i < subcats.length; i++) {
+        subcat = subcats[i].getBoundingClientRect()
+        if (((elrect.x > subcat.x && elrect.x < subcat.x + subcat.width) || (elrect.x + elrect.width > subcat.x && elrect.x + elrect.width < subcat.x + subcat.width)) && ((elrect.y > subcat.y && elrect.y < subcat.y + subcat.height) || (elrect.y + elrect.height > subcat.y && elrect.y + elrect.height < subcat.y + subcat.height)))
+        
+        {
+            el.remove()
+        }
+        
+    }
+    
+
 }
 
 function keyboardShowHandler(e) {
@@ -564,8 +619,11 @@ function escape(evt) {
     }
 }
 
-function instructions() {
+/*function instructions() {
     moved += 1
+
+    
+
     if (moved == 1) {
         document.getElementById("instructions2").style.animation = "fade-in 1s 1 forwards";
         document.getElementById("instructions1").style.animation = "fade-out 1s 1 forwards";
@@ -581,24 +639,38 @@ function instructions() {
         document.getElementById("instructions").style.display = "none"
     }
 
-    console.log('cookie')
 
     let date = new Date();
     date.setTime(date.getTime() + (60 * 1000)); //currently 1 min: add 90 * 24 * 60 *  to make 90 days
-    console.log(date)
 
     document.cookie = "visited=yes; expires=" + date + "; path=/"
-    console.log(document.cookie)
-}
+}*/
 
 function showsearch() {
-    searchbox.style = "visibility: visible"
+    searchbox.style = "display: flex"
+    document.getElementById("resultswrapper").style = "display: none"
     document.getElementById("searchquery").focus();
+    
+
 }
 
 function hidesearch() {
-    searchbox.style = "visibility: hidden"
-    document.getElementById("error").innerHTML = ""
+    searchbox.style = "display: none"
+    document.getElementById("resultswrapper").style = "display: block"
+    document.getElementById("searchquery").value = ""
+}
+
+function hideError (evt) {
+    console.log(evt)
+    if (evt.type == "input") {
+        let oldvalue = document.getElementById("searchquery").value.slice(-1);
+        document.getElementById("searchquery").value = oldvalue
+    } else {
+        document.getElementById("searchquery").value = ""
+    }
+    document.getElementById("searchquery").removeEventListener("input", hideError)
+    document.getElementById("searchquery").removeEventListener("click", hideError)
+    document.getElementById("searchinput").disabled = false
 }
 
 function search() {
@@ -609,13 +681,14 @@ function search() {
     document.getElementById("searchquery").value = ""
 
     if (alternateflavours[searchquery]) {
-        searchquery = alternateflavours[searchquery].nearest.toLowerCase()
-        document.getElementById("originalquery").innerHTML = "You searched for \'" + originalquery + "\'. The closest flavour is:"
+        searchquery = alternateflavours[searchquery].nearest
+        document.getElementById("originalquery").innerHTML = originalquery + " > " + searchquery
+        document.getElementById("underline").style = "display: block"
     }
 
     for (var i in flavours) {
 
-        if (searchquery == flavours[i].name.toLowerCase()) {
+        if (searchquery.toLowerCase() == flavours[i].name.toLowerCase()) {
 
             target = 180 - parseInt(flavours[i].flavourangle)
 
@@ -632,10 +705,14 @@ function search() {
 
             popout(currentflavour)
 
-            hidesearch()
+            
             return;
         } else {
-            document.getElementById("error").innerHTML = originalquery + " not found. Please try a different search term"
+            document.getElementById("searchquery").value = originalquery + " not found. Please try a different search term"
+            document.getElementById("searchinput").disabled = true
+            document.getElementById("searchquery").addEventListener("input", hideError)
+            document.getElementById("searchquery").addEventListener("click", hideError)
+
         }
     }
 
@@ -803,7 +880,7 @@ function wheelTurn(t) {
     }
 
     wheel.setAttribute("transform", transformation)
-    compassicon.setAttribute("transform", transformation)
+    compassrotator.setAttribute("transform", transformation)
 
 }
 
@@ -847,6 +924,10 @@ function snapWheel(angle) {
 }
 
 function popout(name) {
+    document.getElementById("bang").style.display = "none"
+    document.getElementById("arrow").style.display = "inline"
+    hidesearch()
+
     document.getElementById("indicator").style.visibility = "hidden"
     document.getElementById("popout-container").style.display = "block"
 
@@ -863,6 +944,7 @@ function popout(name) {
 function popin(name) {
     document.getElementById("indicator").style.visibility = "hidden"
     document.getElementById("popout-container").style.display = "none"
+    document.getElementById("underline").style = "display: none"
 
     let popelement = document.getElementById(name + "label")
     let poparc = popelement.previousSibling
@@ -875,34 +957,35 @@ function popin(name) {
 }
 
 function showInfo(element) {
+    document.getElementById("arrow").style = "display: inline"
 
 
     if (element.getAttribute("x") < -261) {
 
         if (wheelangle >= 337.5 || wheelangle < 22.5) {
             resultstitle = "Extract More, Use Less Coffee"
-            resultsinfo = "<ul><li>Use a finer grind and/or longer brew time to extract more</li><li>Increase the Brew Ratio by fixing the water weight and using less coffee OR by fixing the dose and using more water</li></ul>"
+            resultsinfo = "<ul><li>Use a finer grind and/or longer brew time to extract more.</li><li>Increase the Brew Ratio by fixing the water weight and using less coffee OR by fixing the dose and using more water.</li></ul>"
         } else if (wheelangle >= 22.5 && wheelangle < 67.5) {
             resultstitle = "Extract More"
-            resultsinfo = "<ul><li>Use a finer grind and/or longer brew time to extract more</li></ul>"
+            resultsinfo = "<ul><li>Use a finer grind and/or longer brew time to extract more.</li></ul>"
         } else if (wheelangle >= 67.5 && wheelangle < 112.5) {
             resultstitle = "Use More Coffee"
-            resultsinfo = "<ul><li>Decrease the Brew Ratio by fixing the water weight and using more coffee OR by fixing the dose and using less water</li></ul>"
+            resultsinfo = "<ul><li>Decrease the Brew Ratio by fixing the water weight and using more coffee OR by fixing the dose and using less water.</li></ul>"
         } else if (wheelangle >= 112.5 && wheelangle < 157.5) {
             resultstitle = "Extract Less, Use More Coffee"
-            resultsinfo = "<ul><li>Use a coarser grind and/or shorter brew time to extract less</li><li>Decrease the Brew Ratio by fixing the water weight and using more coffee OR by fixing the dose and using less water</li></ul>"
+            resultsinfo = "<ul><li>Use a coarser grind and/or shorter brew time to extract less.</li><li>Decrease the Brew Ratio by fixing the water weight and using more coffee OR by fixing the dose and using less water.</li></ul>"
         } else if (wheelangle >= 157.5 && wheelangle < 202.5) {
             resultstitle = "Extract Less, Use More Coffee"
-            resultsinfo = "<ul><li>Use a coarser grind and/or shorter brew time to extract less</li><li>Decrease the Brew Ratio by fixing the water weight and using more coffee OR by fixing the dose and using less water</li></ul>"
+            resultsinfo = "<ul><li>Use a coarser grind and/or shorter brew time to extract less.</li><li>Decrease the Brew Ratio by fixing the water weight and using more coffee OR by fixing the dose and using less water.</li></ul>"
         } else if (wheelangle >= 202.5 && wheelangle < 247.5) {
             resultstitle = "Extract Less"
-            resultsinfo = "<ul><li>Use a coarser grind and/or shorter brew time to extract less</li></ul>"
+            resultsinfo = "<ul><li>Use a coarser grind and/or shorter brew time to extract less.</li></ul>"
         } else if (wheelangle >= 247.5 && wheelangle < 292.5) {
             resultstitle = "Use Less Coffee"
-            resultsinfo = "<ul><li>Increase the Brew Ratio by fixing the water weight and using less coffee OR by fixing the dose and using more water</li></ul>"
+            resultsinfo = "<ul><li>Increase the Brew Ratio by fixing the water weight and using less coffee OR by fixing the dose and using more water.</li></ul>"
         } else if (wheelangle >= 292.5 && wheelangle < 337.5) {
             resultstitle = "Extract More, Use Less Coffee"
-            resultsinfo = "<ul><li>Use a finer grind and/or longer brew time to extract more</li><li>Increase the Brew Ratio by fixing the water weight and using less coffee OR by fixing the dose and using more water</li></ul>"
+            resultsinfo = "<ul><li>Use a finer grind and/or longer brew time to extract more.</li><li>Increase the Brew Ratio by fixing the water weight and using less coffee OR by fixing the dose and using more water.</li></ul>"
         }
 
     } else {
@@ -937,8 +1020,10 @@ function showInfo(element) {
 }
 
 function hideInfo() {
-    results = document.getElementById("resultsarea")
-    results.style.opacity = "0"
+    document.getElementById("resultstitle").innerHTML = ""
+    document.getElementById("resultsinfo").innerHTML = ""
+    document.getElementById("arrow").style = "display: none"
+
 }
 
 
@@ -954,7 +1039,7 @@ function turnWheel(a) {
 
 
     wheel.setAttribute("transform", transformation)
-    compassicon.setAttribute("transform", transformation)
+    compassrotator.setAttribute("transform", transformation)
 
     if (wheelangle > 360) {
         wheelangle -= 360
@@ -968,7 +1053,7 @@ function turnWheel(a) {
         //instantly resets rotation if over 360
         transformation = "rotate(" + wheelangle + ")"
         wheel.setAttribute("transform", transformation)
-        compassicon.setAttribute("transform", transformation)
+        compassrotator.setAttribute("transform", transformation)
 
     }, 600)
 
@@ -1005,13 +1090,13 @@ function addFlavour(properties) {
     let label = document.createElementNS("http://www.w3.org/2000/svg", "text");
     let transformation = "rotate(" + (180 + properties.flavourangle) + ")"
 
-    let labelplace = - (properties.innerarc + properties.outerarc) / 2;
+    let labelplace = - (properties.outerarc) + 10;
 
     label.setAttribute("x", labelplace)
-    label.setAttribute("y", -1)
+    label.setAttribute("y", 0)
     label.setAttribute("id", properties.name + "label")
     label.setAttribute("class", "label")
-    label.setAttribute("text-anchor", "middle")
+    label.setAttribute("text-anchor", "left")
     label.setAttribute("data-angle", properties.flavourangle)
     label.setAttribute("data-outer-arc", properties.outerarc)
     label.setAttribute("data-name", properties.name)
@@ -1073,19 +1158,19 @@ function resize() {
     let titlearea = document.getElementById("titlearea")
     let resultsarea = document.getElementById("resultsarea")
 
-    let OGtitle = document.getElementById("resultstitle").innerHTML
-    let OGcontent = document.getElementById("resultsinfo").innerHTML
+//    let OGtitle = document.getElementById("resultstitle").innerHTML
+//    let OGcontent = document.getElementById("resultsinfo").innerHTML
 
-    document.getElementById("resultstitle").innerHTML = "Extract Less, Use More Coffee"
-    document.getElementById("resultsinfo").innerHTML = "<ul><li>Use a coarser grind and/or shorter brew time to extract less</li><li>Decrease the Brew Ratio by fixing the water weight and using more coffee OR by fixing the dose and using less water</li></ul>"
+//    document.getElementById("resultstitle").innerHTML = "Extract Less, Use More Coffee"
+//    document.getElementById("resultsinfo").innerHTML = "<ul><li>Use a coarser grind and/or shorter brew time to extract less</li><li>Decrease the Brew Ratio by fixing the water weight and using more coffee OR by fixing the dose and using less water</li></ul>"
 
-    resultsarea.style.height = "fit-content"
+//    resultsarea.style.height = "fit-content"
 
     document.getElementById("appcontainer").style.height = document.documentElement.clientHeight + "px"
 
-    if (document.documentElement.clientWidth < 850 || document.documentElement.clientHeight < 600) {
+    if (document.documentElement.clientWidth < 450 || document.documentElement.clientHeight < 450) {
         //small screen 
-        compass.setAttribute("viewBox", "-800 -400 700 800")
+        compass.setAttribute("viewBox", "-600 -550 700 800")
         let svgheight = (document.documentElement.clientHeight) // - resultsarea.clientHeight - titlearea.clientHeight)
         compass.style.height = svgheight + "px"
 
@@ -1097,7 +1182,7 @@ function resize() {
 
     } else {
         //fullwidth
-        compass.setAttribute("viewBox", "-800 -550 700 1100")
+        compass.setAttribute("viewBox", "-600 -550 700 1100")
         let svgheight = document.documentElement.clientHeight
         compass.style.height = svgheight + "px"
 
@@ -1106,10 +1191,10 @@ function resize() {
 
 
 
-    resultsarea.style.height = resultsarea.clientHeight + "px"
+//    resultsarea.style.height = resultsarea.clientHeight + "px"
 
-    document.getElementById("resultstitle").innerHTML = OGtitle
-    document.getElementById("resultsinfo").innerHTML = OGcontent
+//    document.getElementById("resultstitle").innerHTML = OGtitle
+//    document.getElementById("resultsinfo").innerHTML = OGcontent
 }
 
 function describeArc(x, y, innerRadius, outerRadius, startAngle, endAngle, corners) {
@@ -1161,7 +1246,7 @@ function colourPicker(angle, distance) {
     let hue, saturation, lightness;
 
 
-    if (distance > 252) {
+    if (distance > tier.c.outer) {
 
         // outer ring
 

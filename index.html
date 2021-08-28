@@ -56,7 +56,8 @@
 
         </div>
         <div id="compasswrapper" style="position: relative">
-            <svg id="compass" viewBox="-800 -550 700 1100" xmlns="http://www.w3.org/2000/svg">
+            <svg id="compass" viewBox="-600 -550 700 1100" preserveAspectRatio="xMidYMin meet"
+                xmlns="http://www.w3.org/2000/svg">
                 <defs>
 
                 </defs>
@@ -64,12 +65,7 @@
 
                 <g id="wheelcontainer">
                     <g id="wheel">
-                        <circle cx="0" cy="0" r="550" stroke="none" fill="transparent" />
-
-                        <!--<circle x="0" y="0" r="261" stroke="#fcfcfc" stroke-width="8" fill="none" stroke-dasharray="none" />
-                    <circle x="0" y="0" r="261" stroke="#231f20" stroke-width="1" fill="none" stroke-dasharray="5,10" />
-                    <circle x="0" y="0" r="72" stroke="#231f20" stroke-width="1" fill="none" stroke-dasharray="2,4" />
-                    <circle x="0" y="0" r="95" stroke="#231f20" stroke-width="1" fill="none" /> -->
+                        <circle cx="0" cy="0" r="550" stroke="none " fill="transparent" />
 
 
 
@@ -79,47 +75,30 @@
                         <path id="textcircle"
                             d="M-89,0A89,89 0 1 189,0A89,89 0 1 1-89,0A89,89 0 1 189,0A89,89 0 1 1-89,0" fill="none">
                         </path>
-                        <text id="core" dy="-2" class="label" text-anchor="middle" dominant-baseline="central">
+                        <text id="core" dy="0" class="label" text-anchor="middle" dominant-baseline="central">
 
                         </text>
 
-
-                        <!-- <text x="-420" y="0" class="category" text-anchor="middle" dominant-baseline="central"
-                        transform="rotate(90)">Strong</text>
-                    <text x="-420" y="0" class="category" text-anchor="middle" dominant-baseline="central"
-                        transform="rotate(180)">Over Extracted</text>
-                    <text x="-420" y="0" class="category" text-anchor="middle" dominant-baseline="central"
-                        transform="rotate(270)">Weak</text>
-                    <text x="-420" y="0" class="category" text-anchor="middle" dominant-baseline="central"
-                        transform="rotate(0)">Under Extracted</text> -->
 
                         <path id="categorycircle"
                             d="M-490,0A490,490 0 1 1490,0A490,490 0 1 1-490,0A490,490 0 1 1490,0A490,490 0 1 1-490,0"
                             fill="none"></path>
                         <text dy="-30" class="subcategory" text-anchor="middle" transform="rotate(0)">
-                            <textPath xlink:href="#categorycircle" startoffset="12.5%">
-                                Strong
+                            <textPath class="subcattext sc" xlink:href="#categorycircle" startoffset="12.5%">Strong
                             </textPath>
-                            <textPath xlink:href="#categorycircle" startoffset="25%">
-                                Over Extracted
+                            <textPath class="subcattext sc" xlink:href="#categorycircle" startoffset="25%">Over
+                                Extracted</textPath>
+                            <textPath class="subcattext sc" xlink:href="#categorycircle" startoffset="37.5%">Weak
                             </textPath>
-                            <textPath xlink:href="#categorycircle" startoffset="37.5%">
-                                Weak
+                            <textPath class="subcattext sc" xlink:href="#categorycircle" startoffset="50%">Under
+                                Extracted</textPath>
+                            <textPath class="subcattext sm" xlink:href="#categorycircle" startoffset="18.75%">OE / S
                             </textPath>
-                            <textPath xlink:href="#categorycircle" startoffset="50%">
-                                Under Extracted
+                            <textPath class="subcattext sm" xlink:href="#categorycircle" startoffset="31.25%">OE / W
                             </textPath>
-                            <textPath xlink:href="#categorycircle" startoffset="18.75%">
-                                ——
+                            <textPath class="subcattext sm" xlink:href="#categorycircle" startoffset="43.75%">UE / W
                             </textPath>
-                            <textPath xlink:href="#categorycircle" startoffset="31.25%">
-                                ——
-                            </textPath>
-                            <textPath xlink:href="#categorycircle" startoffset="43.75%">
-                                ——
-                            </textPath>
-                            <textPath xlink:href="#categorycircle" startoffset="56.25%">
-                                ——
+                            <textPath class="subcattext sm" xlink:href="#categorycircle" startoffset="56.25%">UE / S
                             </textPath>
                         </text>
 
@@ -144,45 +123,79 @@
             </svg>
 
             <div id="popout-container">
-                <svg id="compassicon" viewBox="-50 -50 100 100" xmlns="http://www.w3.org/2000/svg">
+                <svg id="compassicon" viewBox="-50 -50 100 120" xmlns="http://www.w3.org/2000/svg">
+                    <g id="compassrotator">
                     <circle cx="0" cy="0" r="40" fill="none" />
                     <path d="M0,-28L10,0L 0,28L-10,0Z" stroke-width="2"></path>
                     <circle cx="0" cy="0" r="2" stroke="none" fill="#e7f2ee" />
+                    </g>
                 </svg> <span id="popout"></span>
+                <div id="underline"></div>
+                <div id="originalquery"></div>
             </div>
 
         </div>
 
-        <div id="searchiconwrapper">
-            <svg id="searchicon" viewBox="-50 -50 100 120" xmlns="http://www.w3.org/2000/svg">
-                <circle cx="0" cy="-10" r="30" />
-                <path d="M0,20L0,60"></path>
-            </svg>
-            <span id="originalquery"></span>
-        </div>
+
 
         <div id="resultsarea">
+            <div id="resultswrapper">
 
-            <div class="results_title">
-                <svg id="arrow" viewBox="-50 -50 100 120" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="0" cy="0" r="40" />
-                    <path d="M-6,-17 L 11,0 L -6,17"></path>
-                </svg>
+                <div class="results_title">
+                    <svg id="arrow" viewBox="-50 -50 100 120" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="0" cy="0" r="40" />
+                        <path d="M-6,-17 L 11,0 L -6,17"></path>
+                    </svg>
+                    <svg id="bang" viewBox="-50 -50 100 120" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="0" cy="0" r="40" fill="#494f4d" />
+                        <path d="M0,-25 L0,5 M0,25L0,25" stroke="#e7f2ee"></path>
+                    </svg>
 
-                <span id="resultstitle">
-                    Extract Less, Use More Coffee</span>
+                    <span id="resultstitle">
+                        Rotate the Compass to Select</span>
+
+                    <div id="searchiconwrapper">
+                        <svg id="searchicon" viewBox="-50 -50 100 120" xmlns="http://www.w3.org/2000/svg">
+                            <g transform="rotate(-30)">
+
+                            <circle cx="0" cy="0" r="40" fill="#494f4d" />
+                            <circle cx="0" cy="-10" r="18" stroke="#e7f2ee" />
+                            <path d="M0,8L0,30" stroke="#e7f2ee"></path>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                <div id="resultsinfo">
+                    <ul>
+                        <li>Rotate the compass wheel to select a flavour you taste in your coffee, or click on the flavour note
+                    directly.</li><li>Use the search function to the right for flavour notes not listed in the compass.</li>
+                    </ul>
+                    
+                </div>
+
             </div>
-            <div id="resultsinfo">
-                <ul>
-                    <li>Use a coarser grind and/or shorter brew time to extract more</li>
-                    <li>Decrease the Brew Ratio by fixing the water weight and using more coffee OR by fixing the dose
-                        and using less water</li>
-                </ul>
+
+            <div id="searchbox">
+                <form id="searchform" onsubmit="return false" onclick="event.stopPropagation()">
+                    <input type="text" id="searchquery" autocomplete="off" onfocus="this.select();">
+                    <button type="submit" id="searchinput">
+                        <svg id="minisearchicon" viewBox="-50 -50 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <g transform="rotate(-30)">
+                            <circle cx="0" cy="-10" r="18" stroke="#494f4d" />
+                            <path d="M0,8L0,30" stroke="#494f4d"></path>
+                            </g>
+                        </svg>
+                    </button>
+                    
+
+                    
+                </form>
+
             </div>
 
         </div>
 
-        <div id="instructions">
+        <!--        <div id="instructions">
             <div id="instructionscontainer">
             <div id="instructions1" class="instructionsinfo">
                 <div class="instructions_title">How to Start</div>
@@ -215,19 +228,10 @@
 
         </div>
         </div>
+-->
 
-        <div id="searchbox">
-            <form id="searchform" onsubmit="return false" onclick="event.stopPropagation()">
-                <input type="text" id="searchquery" autocomplete="off">
-                <button type="submit" id="searchinput">></button>
-                <div id="error">
-                
-                </div>
-            </form>
-            
-        </div>
 
-        
+
     </div>
 
     <script src="svg-pan-zoom.min.js"></script>
