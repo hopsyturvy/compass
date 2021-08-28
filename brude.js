@@ -581,13 +581,13 @@ function addTicks() {
 
 function checkoverlap(el) {
     
-    elrect = el.getBBox()
+    elrect = el.getBoundingClientRect()
     console.log(elrect)
 
     subcats = document.getElementsByClassName("subcattext")
 
     for (i=0; i < subcats.length; i++) {
-        subcat = subcats[i].getBBox()
+        subcat = subcats[i].getBoundingClientRect()
         console.log(subcat)
         if (((elrect.x > subcat.x && elrect.x < subcat.x + subcat.width) || (elrect.x + elrect.width > subcat.x && elrect.x + elrect.width < subcat.x + subcat.width)) && ((elrect.y > subcat.y && elrect.y < subcat.y + subcat.height) || (elrect.y + elrect.height > subcat.y && elrect.y + elrect.height < subcat.y + subcat.height)))
         
