@@ -1048,13 +1048,15 @@ function turnWheel(a) {
 
     wheelangle += a
 
-    transformation = "rotate(" + wheelangle + ")"
+    transformation = "rotate(" + wheelangle + "deg)"
  
     wheel.classList.add("turning")
 
 
-    wheel.setAttribute("transform", transformation)
-    compassrotator.setAttribute("transform", transformation)
+    //wheel.setAttribute("transform", transformation)
+    //compassrotator.setAttribute("transform", transformation)
+    wheel.style.transform = transformation
+    compassrotator.style.transform = transformation
 
     if (wheelangle > 360) {
         wheelangle -= 360
@@ -1066,9 +1068,11 @@ function turnWheel(a) {
         wheel.classList.remove("turning")
 
         //instantly resets rotation if over 360
-        transformation = "rotate(" + wheelangle + ")"
-        wheel.setAttribute("transform", transformation)
-        compassrotator.setAttribute("transform", transformation)
+        transformation = "rotate(" + wheelangle + "deg)"
+        //wheel.setAttribute("transform", transformation)
+        //compassrotator.setAttribute("transform", transformation)
+        wheel.style.transform = transformation
+        compassrotator.style.transform = transformation
 
     }, 600)
 
