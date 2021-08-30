@@ -65,7 +65,9 @@ body
 #originalquery
 {
   font-size: 16px;
-  padding-top: 3px;
+  padding-top: 5px;
+  height: 16px;
+  line-height: 16px;
 }
 
 #underline
@@ -274,6 +276,8 @@ body
   color: #494f4d;
   font-family: 'NoBH Bold',Helvetica,Arial,Lucida,sans-serif;
   font-size: 14px;
+  padding: 10px;
+  margin: -10px;
 }
 
 #compassicon
@@ -470,7 +474,7 @@ svg
   #originalquery
   {
     font-size: 12px;
-    padding-top: 2px;
+    padding-top: 4px;
   }
 
   #underline
