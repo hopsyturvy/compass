@@ -653,6 +653,7 @@ function showsearch() {
     searchbox.style = "display: flex"
     document.getElementById("resultswrapper").style = "display: none"
     document.getElementById("searchquery").focus();
+    document.getElementById("searchquery").placeholder = ""
     
 
 }
@@ -662,19 +663,6 @@ function hidesearch() {
     document.getElementById("resultswrapper").style = "display: block"
     document.getElementById("searchquery").value = ""
     document.getElementById("searchquery").blur();
-}
-
-function hideError (evt) {
-    console.log(evt)
-    if (evt.type == "input") {
-        let oldvalue = document.getElementById("searchquery").value.slice(-1);
-        document.getElementById("searchquery").value = oldvalue
-    } else {
-        document.getElementById("searchquery").value = ""
-    }
-    document.getElementById("searchquery").removeEventListener("input", hideError)
-    document.getElementById("searchquery").removeEventListener("click", hideError)
-    document.getElementById("searchinput").disabled = false
 }
 
 function search() {
@@ -713,11 +701,10 @@ function search() {
             
             return;
         } else {
-            document.getElementById("searchquery").value = originalquery + " not found. Please try a different search term"
-            document.getElementById("searchinput").disabled = true
+            document.getElementById("searchquery").value = ""
+            document.getElementById("searchquery").placeholder = originalquery + " not found. Please try a different search term"
             document.getElementById("searchquery").focus();
-            document.getElementById("searchquery").addEventListener("input", hideError)
-            document.getElementById("searchquery").addEventListener("click", hideError)
+
 
         }
     }

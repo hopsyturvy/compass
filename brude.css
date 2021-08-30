@@ -208,7 +208,7 @@ body
 {
   color: #494f4d;
   font-family: 'NoBH Bold',Helvetica,Arial,Lucida,sans-serif;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 
@@ -424,7 +424,7 @@ svg
 
   #resultsinfo
   {
-    font-size: 10px;
+    font-size: 14px;
   }
 
   #searchquery {
