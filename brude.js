@@ -886,15 +886,17 @@ function wheelTurn(t) {
     document.getElementById("indicator").style.visibility = "visible"
 
     turnangle = t / Math.PI
-    transformation = "rotate(" + (wheelangle + turnangle) + ")"
+    transformation = "rotate(" + (wheelangle + turnangle) + "deg)"
     if ((wheelangle + turnangle) > 360) {
         wheelangle -= 360
     } else if ((wheelangle + turnangle) < 0) {
         wheelangle += 360
     }
 
-    wheel.setAttribute("transform", transformation)
-    compassrotator.setAttribute("transform", transformation)
+    //wheel.setAttribute("transform", transformation)
+    //compassrotator.setAttribute("transform", transformation)
+    wheel.style.transform = transformation
+    compassrotator.style.transform = transformation
 
 }
 
