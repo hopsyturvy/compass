@@ -21,6 +21,7 @@ body
   font-size: 38px;
   pointer-events: none;
   user-select: none;
+  -webkit-user-select: none;
 }
 
 .subcattext.sc
@@ -30,6 +31,7 @@ body
   font-size: 30px;
   pointer-events: none;
   user-select: none;
+  -webkit-user-select: none;
 }
 
 .subcattext.sm
@@ -39,6 +41,7 @@ body
   font-size: 20px;
   pointer-events: none;
   user-select: none;
+  -webkit-user-select: none;
 }
 
 #appcontainer {
@@ -58,7 +61,8 @@ body
 
 #originalquery
 {
-  font-size: 16px
+  font-size: 16px;
+  padding-top: 3px;
 }
 
 #underline
@@ -67,6 +71,7 @@ body
   width: 30px;
   height: 0px;
   display: none;
+  padding-top: 3px;
 }
 
 #titlearea {
@@ -81,6 +86,8 @@ body
   background-color: #e7f2eee6;
   transition-property: opacity;
   transition-duration: 0.2s;
+  -webkit-transition-property: opacity;
+  -webkit-transition-duration: 0.2s;
   padding: 30px 50px;
   box-sizing: border-box;
   box-shadow: 0 0 5px 0 #494f4d80;
@@ -218,6 +225,7 @@ body
   font-family: 'Head-Bold','Head','NoBH Bold',Helvetica,Arial,Lucida,sans-serif;
   font-size: 18px;
   user-select: none;
+  -webkit-user-select: none;
 }
 
 
@@ -277,6 +285,14 @@ body
 #compassrotator
 {
   transition: transform 0.5s ease;
+  -webkit-transition: transform 0.5s ease;
+}
+
+.turning
+{
+  transition: transform 0.5s ease;
+  -webkit-transition: transform 0.5s ease;
+
 }
 
 .tick
@@ -403,8 +419,8 @@ svg
   }
 
   #searchquery {
-    font-size: 12px;
-    padding: 6px 15px;
+    font-size: 16px;
+    padding: 4px 12px;
   }
 
   #searchform {
@@ -448,7 +464,8 @@ svg
 
   #originalquery
   {
-    font-size: 12px
+    font-size: 12px;
+    padding-top: 2px;
   }
 
   #underline
@@ -456,6 +473,7 @@ svg
     border-bottom: solid #494f4d 2px;
     width: 16px;
     height: 0px;
+    padding-top: 2px;
     display: none;
   }
 

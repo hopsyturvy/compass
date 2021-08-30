@@ -661,6 +661,7 @@ function hidesearch() {
     searchbox.style = "display: none"
     document.getElementById("resultswrapper").style = "display: block"
     document.getElementById("searchquery").value = ""
+    document.getElementById("searchquery").blur();
 }
 
 function hideError (evt) {
@@ -678,6 +679,7 @@ function hideError (evt) {
 
 function search() {
     if (currentflavour) { popin(currentflavour) }
+    document.getElementById("searchquery").blur();
 
     var originalquery = document.getElementById("searchquery").value
     var searchquery = document.getElementById("searchquery").value.toLowerCase()
@@ -713,6 +715,7 @@ function search() {
         } else {
             document.getElementById("searchquery").value = originalquery + " not found. Please try a different search term"
             document.getElementById("searchinput").disabled = true
+            document.getElementById("searchquery").focus();
             document.getElementById("searchquery").addEventListener("input", hideError)
             document.getElementById("searchquery").addEventListener("click", hideError)
 
@@ -1044,10 +1047,8 @@ function turnWheel(a) {
     wheelangle += a
 
     transformation = "rotate(" + wheelangle + ")"
-
-
-    wheel.style.transition = "transform 0.5s ease"    
-
+ 
+    wheel.classList.add("turning")
 
 
     wheel.setAttribute("transform", transformation)
@@ -1060,7 +1061,7 @@ function turnWheel(a) {
     }
 
     setTimeout(function () {
-        wheel.style.transition = "transform 0s"
+        wheel.classList.remove("turning")
 
         //instantly resets rotation if over 360
         transformation = "rotate(" + wheelangle + ")"
