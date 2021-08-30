@@ -495,7 +495,7 @@ window.onload = function () {
 
 
     core.forEach(addCore, this)
-    setTimeout(function () {addTicks()},2000)
+    addTicks()
 
     wheelcontainer.addEventListener('mousedown', onPointerDown)
     wheelcontainer.addEventListener('touchstart', (e) => handleTouch(e, onPointerDown))
@@ -739,7 +739,7 @@ function getEventLocation(e) {
 }
 
 function onPointerDown(e) {
-
+    console.log('down')
     e.preventDefault();
     isDragging = true
     dragStart.x = getEventLocation(e).x
@@ -754,6 +754,9 @@ function onPointerDown(e) {
 }
 
 function onPointerUp(e) {
+
+    if (isDragging) {
+
     e.preventDefault();
     isDragging = false
     initialPinchDistance = null
@@ -772,6 +775,7 @@ function onPointerUp(e) {
     }
     turnangle = 0
 
+    }
 
 
 }
@@ -781,6 +785,9 @@ function onPointerUp(e) {
 
 
 function onPointerMove(e) {
+
+    if (isDragging) {
+    console.log('move')
 
     e.preventDefault();
 
@@ -821,6 +828,7 @@ function onPointerMove(e) {
 
 
         wheelTurn(turn)
+    }
     }
 }
 
@@ -1038,7 +1046,7 @@ function turnWheel(a) {
     transformation = "rotate(" + wheelangle + ")"
 
 
-    wheel.style.transition = "transform 0.5s ease"
+    wheel.style.transition = "transform 0.5s ease"    
 
 
 
