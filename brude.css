@@ -22,6 +22,7 @@ body
   pointer-events: none;
   user-select: none;
   -webkit-user-select: none;
+  cursor: default;
 }
 
 .subcattext.sc
@@ -32,6 +33,7 @@ body
   pointer-events: none;
   user-select: none;
   -webkit-user-select: none;
+  cursor: default;
 }
 
 .subcattext.sm
@@ -42,6 +44,7 @@ body
   pointer-events: none;
   user-select: none;
   -webkit-user-select: none;
+  cursor: default;
 }
 
 #appcontainer {
@@ -224,8 +227,10 @@ body
   fill: #494f4d;
   font-family: 'Head-Bold','Head','NoBH Bold',Helvetica,Arial,Lucida,sans-serif;
   font-size: 18px;
+  pointer-events: none;
   user-select: none;
   -webkit-user-select: none;
+  cursor: default;
 }
 
 
