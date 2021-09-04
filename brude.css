@@ -616,7 +616,7 @@ svg
 #compass {
   height: 95vh!important;
   padding-left: 5%;
-  padding-top: 5%;
+
 }
 
 
@@ -629,7 +629,6 @@ svg
   #compass {
     height: 95vh!important;
     padding-left: 5%;
-    padding-top: 3%;
   }
 }
 
@@ -638,7 +637,6 @@ svg
   #compass {
     height: 95vh!important;
     padding-left: 5%;
-    padding-top: 5%;
   }
 }
 

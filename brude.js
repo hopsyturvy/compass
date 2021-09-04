@@ -1159,7 +1159,7 @@ function resize() {
 
     if (document.documentElement.clientWidth < 450 || document.documentElement.clientHeight < 450) {
         //small screen 
-        compass.setAttribute("viewBox", "-600 -550 700 800")
+        compass.setAttribute("viewBox", "-600 -600 700 800")
         let svgheight = (document.documentElement.clientHeight) // - resultsarea.clientHeight - titlearea.clientHeight)
         compass.style.height = svgheight + "px"
 
@@ -1171,7 +1171,7 @@ function resize() {
 
     } else {
         //fullwidth
-        compass.setAttribute("viewBox", "-600 -550 700 1100")
+        compass.setAttribute("viewBox", "-600 -600 700 1100")
         let svgheight = document.documentElement.clientHeight
         compass.style.height = svgheight + "px"
 
