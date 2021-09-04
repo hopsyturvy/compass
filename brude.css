@@ -18,7 +18,7 @@ body
 {
   fill: #494f4d;
   font-family: 'Head-Bold','Head','NoBH Bold',Helvetica,Arial,Lucida,sans-serif;
-  font-size: 38px;
+  font-size: 34px;
   pointer-events: none;
   user-select: none;
   -webkit-user-select: none;
@@ -29,7 +29,7 @@ body
 {
   fill: #494f4d;
   font-family: 'Head-Bold','Head','NoBH Bold',Helvetica,Arial,Lucida,sans-serif;
-  font-size: 30px;
+  font-size: 26px;
   pointer-events: none;
   user-select: none;
   -webkit-user-select: none;
@@ -240,6 +240,17 @@ body
   fill: #e7f2ee;
   font-family: 'Head-Bold','Head','NoBH Bold',Helvetica,Arial,Lucida,sans-serif;
   font-size: 18px;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: default;
+}
+
+.balanced
+{
+  fill: #e7f2ee;
+  font-family: 'Head-Bold','Head','NoBH Bold',Helvetica,Arial,Lucida,sans-serif;
+  font-size: 22px;
   pointer-events: none;
   user-select: none;
   -webkit-user-select: none;
@@ -599,7 +610,7 @@ svg
 }
 
 .app_title {
-  font-family: 'Head Bold';
+  font-family: 'Head-Bold';
   letter-spacing: -0.5px;
   font-size: 38px;
   /*letter-spacing: -0.06vw;
@@ -607,7 +618,7 @@ svg
 }
 
 .app_subtitle {
-  font-family: 'Head Bold';
+  font-family: 'Head-Bold';
   font-size: 17.2px; /*1.47vw;*/
 }
 

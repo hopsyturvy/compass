@@ -32,7 +32,7 @@ const tier = {
         arcwidth: 2.7
     },
     c: {
-        outer: 261.85,
+        outer: 268.85,
         inner: 144.90,
         arcwidth: 4
     },
