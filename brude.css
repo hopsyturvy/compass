@@ -563,32 +563,6 @@ svg
 
 }
 
-/*
-@media only screen and (min-aspect-ratio: 5/3) and (max-width: 850px)
-{
-  #instructions
-  {
-    top: 40%;
-  }
-
-  #resultsarea
-  {
-    width: 50%;
-  }
-
-  #titlearea
-  {
-    position: absolute;
-  }
-
-  #compass
-  {
-    padding-left: 10%;
-  
-  }
-
-
-}
 
 
 /* Desktop */
@@ -601,7 +575,7 @@ svg
 }
 
 /* Tablet/Mobile */
-@media all and (max-width: 980px) {
+@media all and (max-width: 980px) and (min-width: 450px) {
   #compass {
     height: 95vh!important;
     padding-left: 5%;
