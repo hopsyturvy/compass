@@ -24,12 +24,12 @@ const tier = {
     a: {
         outer: 497.36,
         inner: 381.52,
-        arcwidth: 2
+        arcwidth: 2.2
     },
     b: {
         outer: 442.39,
         inner: 281.13,
-        arcwidth: 2.5
+        arcwidth: 2.7
     },
     c: {
         outer: 261.85,
@@ -102,23 +102,23 @@ var flavours = {
         outerarc: tier.a.outer,
         arcwidth: tier.a.arcwidth
     },
-    Dilute: {
-        name: "Dilute",
-        flavourangle: 55,
+    Scrawny: {
+        name: "Scrawny",
+        flavourangle: 61,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
     },
     Limp: {
         name: "Limp",
-        flavourangle: 60,
+        flavourangle: 67,
         innerarc: tier.a.inner,
         outerarc: tier.a.outer,
         arcwidth: tier.a.arcwidth
     },
-    Scrawny: {
-        name: "Scrawny",
-        flavourangle: 70,
+    Dilute: {
+        name: "Dilute",
+        flavourangle: 74,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
@@ -132,14 +132,14 @@ var flavours = {
     },
     Fragile: {
         name: "Fragile",
-        flavourangle: 75,
+        flavourangle: 82,
         innerarc: tier.a.inner,
         outerarc: tier.a.outer,
         arcwidth: tier.a.arcwidth
     },
     Muted: {
         name: "Muted",
-        flavourangle: 80,
+        flavourangle: 88,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
@@ -153,7 +153,7 @@ var flavours = {
     },
     Thin: {
         name: "Thin",
-        flavourangle: 95,
+        flavourangle: 96,
         innerarc: tier.c.inner,
         outerarc: tier.c.outer,
         arcwidth: tier.c.arcwidth
@@ -202,7 +202,7 @@ var flavours = {
     },
     Insipid: {
         name: "Insipid",
-        flavourangle: 130,
+        flavourangle: 131,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
@@ -216,21 +216,21 @@ var flavours = {
     },
     Watery: {
         name: "Watery",
-        flavourangle: 135,
+        flavourangle: 137,
         innerarc: tier.a.inner,
         outerarc: tier.a.outer,
         arcwidth: tier.a.arcwidth
     },
     Underwhelming: {
         name: "Underwhelming",
-        flavourangle: 142,
+        flavourangle: 144,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
     },
     Bland: {
         name: "Bland",
-        flavourangle: 152,
+        flavourangle: 151,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
@@ -244,7 +244,7 @@ var flavours = {
     },
     Vegetal: {
         name: "Vegetal",
-        flavourangle: 162,
+        flavourangle: 163,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
@@ -312,8 +312,8 @@ var flavours = {
         outerarc: tier.c.outer,
         arcwidth: tier.c.arcwidth
     },
-    Beefy: {
-        name: "Beefy",
+    Savoury: {
+        name: "Savoury",
         flavourangle: 230,
         innerarc: tier.a.inner,
         outerarc: tier.a.outer,
@@ -335,14 +335,14 @@ var flavours = {
     },
     Soupy: {
         name: "Soupy",
-        flavourangle: 258,
+        flavourangle: 260,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
     },
     Strong: {
         name: "Strong",
-        flavourangle: 260,
+        flavourangle: 258,
         innerarc: tier.c.inner,
         outerarc: tier.c.outer,
         arcwidth: tier.c.arcwidth
@@ -356,28 +356,28 @@ var flavours = {
     },
     Hefty: {
         name: "Hefty",
-        flavourangle: 280,
+        flavourangle: 281,
         innerarc: tier.c.inner,
         outerarc: tier.c.outer,
         arcwidth: tier.c.arcwidth
     },
     Harsh: {
         name: "Harsh",
-        flavourangle: 285,
+        flavourangle: 279,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
     },
     Robust: {
         name: "Robust",
-        flavourangle: 290,
-        innerarc: tier.c.inner,
-        outerarc: tier.c.outer,
-        arcwidth: tier.c.arcwidth
+        flavourangle: 292,
+        innerarc: tier.d.inner,
+        outerarc: tier.d.outer,
+        arcwidth: tier.d.arcwidth
     },
     Overwhelming: {
         name: "Overwhelming",
-        flavourangle: 300,
+        flavourangle: 295,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
@@ -398,7 +398,7 @@ var flavours = {
     },
     Intense: {
         name: "Intense",
-        flavourangle: 320,
+        flavourangle: 322,
         innerarc: tier.b.inner,
         outerarc: tier.b.outer,
         arcwidth: tier.b.arcwidth
@@ -437,22 +437,7 @@ var flavours = {
 
 //use lower case
 var alternateflavours = {
-    soury: {
-        name: "soury",
-        nearest: "Sour"
-    },
-    brothy: {
-        name: "brothy",
-        nearest: "Beefy"
-    },
-    green: {
-        name: "green",
-        nearest: "Vegetal"
-    },
-    tea: {
-        name: "tea",
-        nearest: "Tea-like"
-    }
+soury: { name: 'soury', nearest: 'Sour'},brothy: { name: 'brothy', nearest: 'Savoury'},green: { name: 'green', nearest: 'Vegetal'},tea: { name: 'tea', nearest: 'Tea-like'},tart: { name: 'tart', nearest: 'Sour'},burned: { name: 'burned', nearest: 'Bitter'},veggie: { name: 'veggie', nearest: 'Vegetal'},ashy: { name: 'ashy', nearest: 'Bitter'},popcorn: { name: 'popcorn', nearest: 'Nutty'},flat: { name: 'flat', nearest: 'Insipid'},beefy: { name: 'beefy', nearest: 'Savoury'},savory: { name: 'savory', nearest: 'Savoury'},medicinal: { name: 'medicinal', nearest: 'Bitter'},peanut: { name: 'peanut', nearest: 'Nutty'},raw: { name: 'raw', nearest: 'Vegetal'},burnt: { name: 'burnt', nearest: 'Bitter'},acidic: { name: 'acidic', nearest: 'Sour'},dishwater: { name: 'dishwater', nearest: 'Watery'},chalky: { name: 'chalky', nearest: 'Powdery'},chalk: { name: 'chalk', nearest: 'Powdery'},papery: { name: 'papery', nearest: 'Dusty'},paper: { name: 'paper', nearest: 'Dusty'},oily: { name: 'oily', nearest: 'Bulky'},cloying: { name: 'cloying', nearest: 'Bulky'},lemon: { name: 'lemon', nearest: 'Sour'},lemony: { name: 'lemony', nearest: 'Sour'},drying: { name: 'drying', nearest: 'Dry'},sandy: { name: 'sandy', nearest: 'Powdery'},boring: { name: 'boring', nearest: 'Dull'},lifeless: { name: 'lifeless', nearest: 'Empty'},grass: { name: 'grass', nearest: 'Vegetal'},grassy: { name: 'grassy', nearest: 'Vegetal'},hay: { name: 'hay', nearest: 'Vegetal'},straw: { name: 'straw', nearest: 'Vegetal'},dirty: { name: 'dirty', nearest: 'Dusty'},earthy: { name: 'earthy', nearest: 'Dusty'},dirt: { name: 'dirt', nearest: 'Dusty'},earth: { name: 'earth', nearest: 'Dusty'},lemons: { name: 'lemons', nearest: 'Sour'},weak: { name: 'weak', nearest: 'Faint'},pungent: { name: 'pungent', nearest: 'Harsh'},bold: { name: 'bold', nearest: 'Robust'},roasty: { name: 'roasty', nearest: 'Bitter'},roasted: { name: 'roasted', nearest: 'Bitter'},carbony: { name: 'carbony', nearest: 'Bitter'},charred: { name: 'charred', nearest: 'Bitter'},pea: { name: 'pea', nearest: 'Vegetal'},peas: { name: 'peas', nearest: 'Vegetal'},cucmber: { name: 'cucmber', nearest: 'Vegetal'},tomato: { name: 'tomato', nearest: 'Soupy'},smoke: { name: 'smoke', nearest: 'Bitter'},smoky: { name: 'smoky', nearest: 'Bitter'},tar: { name: 'tar', nearest: 'Bitter'},tarry: { name: 'tarry', nearest: 'Bitter'},spicy: { name: 'spicy', nearest: 'Intense'},spice: { name: 'spice', nearest: 'Intense'},sharp: { name: 'sharp', nearest: 'Sour'},subtle: { name: 'subtle', nearest: 'Nuanced'},peasy: { name: 'peasy', nearest: 'Vegetal'},beany: { name: 'beany', nearest: 'Vegetal'},beans: { name: 'beans', nearest: 'Vegetal'},bean: { name: 'bean', nearest: 'Vegetal'},
 
 }
 
@@ -548,7 +533,7 @@ function addTicks() {
 
     for (a = 0; a < 360; a += 11.25) {
         let tick = document.createElementNS("http://www.w3.org/2000/svg", "path");
-        let tickpath = "M540,0L518,0";
+        let tickpath = "M538,0L517,0";
         tick.setAttribute("d", tickpath)
         tick.setAttribute("class", "tick")
         tick.setAttribute("transform", "rotate(" + a + ")")
@@ -564,8 +549,8 @@ function addTicks() {
             minortick.setAttribute("class", "minortick")
             rotation = a + (e * 11.25 / 5)
             minortick.setAttribute("transform", "rotate(" + rotation + ")")
-            
-            
+
+
 
             wheel.appendChild(minortick)
 
@@ -580,23 +565,21 @@ function addTicks() {
 }
 
 function checkoverlap(el) {
-    
+
     elrect = el.getBoundingClientRect()
     console.log(elrect)
 
     subcats = document.getElementsByClassName("subcattext")
 
-    for (i=0; i < subcats.length; i++) {
+    for (i = 0; i < subcats.length; i++) {
         subcat = subcats[i].getBoundingClientRect()
         console.log(subcat)
-        if (((elrect.x > subcat.x && elrect.x < subcat.x + subcat.width) || (elrect.x + elrect.width > subcat.x && elrect.x + elrect.width < subcat.x + subcat.width)) && ((elrect.y > subcat.y && elrect.y < subcat.y + subcat.height) || (elrect.y + elrect.height > subcat.y && elrect.y + elrect.height < subcat.y + subcat.height)))
-        
-        {
+        if (((elrect.x > subcat.x && elrect.x < subcat.x + subcat.width) || (elrect.x + elrect.width > subcat.x && elrect.x + elrect.width < subcat.x + subcat.width)) && ((elrect.y > subcat.y && elrect.y < subcat.y + subcat.height) || (elrect.y + elrect.height > subcat.y && elrect.y + elrect.height < subcat.y + subcat.height))) {
             el.remove()
         }
-        
+
     }
-    
+
 
 }
 
@@ -654,7 +637,7 @@ function showsearch() {
     document.getElementById("resultswrapper").style = "display: none"
     document.getElementById("searchquery").focus();
     document.getElementById("searchquery").placeholder = ""
-    
+
 
 }
 
@@ -698,7 +681,7 @@ function search() {
 
             popout(currentflavour)
 
-            
+
             return;
         } else {
             document.getElementById("searchquery").value = ""
@@ -747,23 +730,23 @@ function onPointerUp(e) {
 
     if (isDragging) {
 
-    e.preventDefault();
-    isDragging = false
-    initialPinchDistance = null
-    wheelangle += turnangle
-    if (wheelangle > 360) {
-        wheelangle -= 360
-    } else if (wheelangle < 0) {
-        wheelangle += 360
-    }
+        e.preventDefault();
+        isDragging = false
+        initialPinchDistance = null
+        wheelangle += turnangle
+        if (wheelangle > 360) {
+            wheelangle -= 360
+        } else if (wheelangle < 0) {
+            wheelangle += 360
+        }
 
-    if (Math.abs(diffX) > delta || Math.abs(diffY) > delta) {
+        if (Math.abs(diffX) > delta || Math.abs(diffY) > delta) {
 
-        snapWheel(wheelangle)
-    } else {
-        click(e)
-    }
-    turnangle = 0
+            snapWheel(wheelangle)
+        } else {
+            click(e)
+        }
+        turnangle = 0
 
     }
 
@@ -777,48 +760,48 @@ function onPointerUp(e) {
 function onPointerMove(e) {
 
     if (isDragging) {
-    console.log('move')
+        console.log('move')
 
-    e.preventDefault();
+        e.preventDefault();
 
-    if (isDragging && getEventLocation(e)) {
+        if (isDragging && getEventLocation(e)) {
 
-        diffX += (getEventLocation(e).x - dragStart.x)
-        diffY += (getEventLocation(e).y - dragStart.y)
+            diffX += (getEventLocation(e).x - dragStart.x)
+            diffY += (getEventLocation(e).y - dragStart.y)
 
-        alert_coords(e)
+            alert_coords(e)
 
-        if (cursorpt.x > 0) {
-            if (direction) {
-                previousturn = turn
+            if (cursorpt.x > 0) {
+                if (direction) {
+                    previousturn = turn
 
-                direction = false
+                    direction = false
 
-                dragStart.y = getEventLocation(e).y
+                    dragStart.y = getEventLocation(e).y
+                }
+
+                turn = previousturn - (dragStart.y - getEventLocation(e).y)
+
+            } else {
+                if (!direction) {
+                    previousturn = turn
+                    direction = true
+                    dragStart.y = getEventLocation(e).y
+                }
+                turn = previousturn + (dragStart.y - getEventLocation(e).y)
             }
 
-            turn = previousturn - (dragStart.y - getEventLocation(e).y)
 
-        } else {
-            if (!direction) {
-                previousturn = turn
-                direction = true
-                dragStart.y = getEventLocation(e).y
-            }
-            turn = previousturn + (dragStart.y - getEventLocation(e).y)
+
+            //document.getElementById("arrow").style.transform = "translate(-220px,0)"
+
+
+
+
+
+
+            wheelTurn(turn)
         }
-
-
-
-        //document.getElementById("arrow").style.transform = "translate(-220px,0)"
-
-
-
-
-
-
-        wheelTurn(turn)
-    }
     }
 }
 
@@ -1036,7 +1019,7 @@ function turnWheel(a) {
     wheelangle += a
 
     transformation = "rotate(" + wheelangle + "deg)"
- 
+
     wheel.classList.add("turning")
 
 
@@ -1083,7 +1066,7 @@ function addCore(properties) {
     arc.setAttribute("fill", "hsl(158,13%,63%)")
 
     arc.setAttribute("transform", transformation)
-    wheel.insertBefore(arc, wheel.firstChild)
+    //wheel.insertBefore(arc, wheel.firstChild)
     core.appendChild(label)
 }
 
@@ -1164,13 +1147,13 @@ function resize() {
     let titlearea = document.getElementById("titlearea")
     let resultsarea = document.getElementById("resultsarea")
 
-//    let OGtitle = document.getElementById("resultstitle").innerHTML
-//    let OGcontent = document.getElementById("resultsinfo").innerHTML
+    //    let OGtitle = document.getElementById("resultstitle").innerHTML
+    //    let OGcontent = document.getElementById("resultsinfo").innerHTML
 
-//    document.getElementById("resultstitle").innerHTML = "Extract Less, Use More Coffee"
-//    document.getElementById("resultsinfo").innerHTML = "<ul><li>Use a coarser grind and/or shorter brew time to extract less</li><li>Decrease the Brew Ratio by fixing the water weight and using more coffee OR by fixing the dose and using less water</li></ul>"
+    //    document.getElementById("resultstitle").innerHTML = "Extract Less, Use More Coffee"
+    //    document.getElementById("resultsinfo").innerHTML = "<ul><li>Use a coarser grind and/or shorter brew time to extract less</li><li>Decrease the Brew Ratio by fixing the water weight and using more coffee OR by fixing the dose and using less water</li></ul>"
 
-//    resultsarea.style.height = "fit-content"
+    //    resultsarea.style.height = "fit-content"
 
     document.getElementById("appcontainer").style.height = document.documentElement.clientHeight + "px"
 
@@ -1197,10 +1180,10 @@ function resize() {
 
 
 
-//    resultsarea.style.height = resultsarea.clientHeight + "px"
+    //    resultsarea.style.height = resultsarea.clientHeight + "px"
 
-//    document.getElementById("resultstitle").innerHTML = OGtitle
-//    document.getElementById("resultsinfo").innerHTML = OGcontent
+    //    document.getElementById("resultstitle").innerHTML = OGtitle
+    //    document.getElementById("resultsinfo").innerHTML = OGcontent
 }
 
 function describeArc(x, y, innerRadius, outerRadius, startAngle, endAngle, corners) {

@@ -235,6 +235,17 @@ body
   cursor: default;
 }
 
+.labelcore
+{
+  fill: #e7f2ee;
+  font-family: 'Head-Bold','Head','NoBH Bold',Helvetica,Arial,Lucida,sans-serif;
+  font-size: 18px;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: default;
+}
+
 
 
 #windowedge
@@ -502,6 +513,42 @@ svg
     width: 20px;
   }
 
+  .app_title {
+    letter-spacing: -0.06vw;
+    font-size: 7.3vw;
+}
+
+.app_subtitle {
+    font-size: 3.32vw;
+}
+
+#arrow, #compassicon, #searchicon, #bang {
+    width: 18px;
+}
+
+#underline {
+    width: 18px;
+}
+
+#originalquery {
+    font-size: 14px;
+    letter-spacing: -0.5px;
+}
+
+.results_title {
+    font-size: 18px;
+    letter-spacing: -0.5px;
+}
+
+#searchform {
+    height: 30px;
+}
+
+#minisearchicon {
+    stroke-width: 12;
+    margin-top: -1px;
+}
+
 
 }
 
@@ -530,5 +577,75 @@ svg
   }
 
 
+}
+
+
+/* Desktop */
+@media all and (min-width: 981px) {
+  #compass {
+    height: 95vh!important;
+    padding-left: 5%;
+    padding-top: 3%;
+  }
+}
+
+/* Tablet/Mobile */
+@media all and (max-width: 980px) {
+  #compass {
+    height: 95vh!important;
+    padding-left: 5%;
+    padding-top: 5%;
+  }
+}
+
+.app_title {
+  font-family: 'Head Bold';
+  letter-spacing: -0.5px;
+  font-size: 38px;
+  /*letter-spacing: -0.06vw;
+  font-size: 3.3vw;*/
+}
+
+.app_subtitle {
+  font-family: 'Head Bold';
+  font-size: 17.2px; /*1.47vw;*/
+}
+
+#resultsinfo {
+  line-height: 1.2em;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+#compassicon {
+  stroke-width: 14px;
+  width: 24px;
+}
+
+#popout-container {
+  font-size: 25px;
+}
+
+#searchform {
+  width: 100%;
+  border-radius: 8px;
+  height: 34px;
+  border-color: #494f4d87;
+}
+
+#minisearchicon {
+  width: 25px;
+  margin-top: -3px;
+}
+
+#searchquery {
+  font-size: 14px;
+  padding: 8px 16px;
+}
+
+#underline {
+  border-bottom: solid #494f4d 3px;
+  width: 23px;
+  padding-top: 1px;
 }
 
