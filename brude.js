@@ -19,6 +19,7 @@ var turn = 0
 var moved = 0
 var searchform = document.getElementById("searchform")
 var searchiconwrapper = document.getElementById("searchiconwrapper")
+var perfect = document.getElementById("perfect")
 
 const tier = {
     a: {
@@ -529,6 +530,8 @@ window.onload = function () {
     resize()
 }
 
+
+
 function addTicks() {
 
     for (a = 0; a < 360; a += 11.25) {
@@ -567,13 +570,11 @@ function addTicks() {
 function checkoverlap(el) {
 
     elrect = el.getBoundingClientRect()
-    console.log(elrect)
 
     subcats = document.getElementsByClassName("subcattext")
 
     for (i = 0; i < subcats.length; i++) {
         subcat = subcats[i].getBoundingClientRect()
-        console.log(subcat)
         if (((elrect.x > subcat.x && elrect.x < subcat.x + subcat.width) || (elrect.x + elrect.width > subcat.x && elrect.x + elrect.width < subcat.x + subcat.width)) && ((elrect.y > subcat.y && elrect.y < subcat.y + subcat.height) || (elrect.y + elrect.height > subcat.y && elrect.y + elrect.height < subcat.y + subcat.height))) {
             el.remove()
         }
@@ -600,7 +601,6 @@ function escape(evt) {
         isEscape = (evt.keyCode === 27);
     }
     if (isEscape) {
-        console.log('esc')
         hidesearch();
     }
 }
@@ -712,7 +712,6 @@ function getEventLocation(e) {
 }
 
 function onPointerDown(e) {
-    console.log('down')
     e.preventDefault();
     isDragging = true
     dragStart.x = getEventLocation(e).x
@@ -760,7 +759,6 @@ function onPointerUp(e) {
 function onPointerMove(e) {
 
     if (isDragging) {
-        console.log('move')
 
         e.preventDefault();
 
@@ -910,9 +908,11 @@ function snapWheel(angle) {
 }
 
 function popout(name) {
+
+    perfect.style.stroke = "transparent"
+
     document.getElementById("bang").style.display = "none"
     document.getElementById("arrow").style.display = "inline"
-    console.log('pop')
     hidesearch()
 
     document.getElementById("indicator").style.visibility = "hidden"
@@ -933,9 +933,16 @@ function popin(name) {
     document.getElementById("popout-container").style.display = "none"
     document.getElementById("underline").style = "display: none"
 
+    if (name != 'perfect') {
+
+    
+
     let popelement = document.getElementById(name + "label")
     let poparc = popelement.previousSibling
     poparc.style.stroke = "transparent"
+    }
+
+    perfect.style.stroke = "transparent"
 
     document.getElementById("popout").innerHTML = ""
     document.getElementById("originalquery").innerHTML = ""
@@ -978,21 +985,21 @@ function showInfo(element) {
     } else {
         resultstitle = "Green Zone"
         if (wheelangle >= 337.5 || wheelangle < 22.5) {
-            resultsinfo = "<ul><li>Your brew is good, but you might find an even more balanced flavour if you use a finer grind / longer brew time and use less coffee</li></ul>"
+            resultsinfo = "<ul><li>Your brew is good, but you might find an even more balanced flavour if you use a finer grind / longer brew time and use less coffee.</li></ul>"
         } else if (wheelangle >= 22.5 && wheelangle < 67.5) {
-            resultsinfo = "<ul><li>Your brew is good, but you might find an even more balanced flavour if you use a finer grind / longer brew time</li></ul>"
+            resultsinfo = "<ul><li>Your brew is good, but you might find an even more balanced flavour if you use a finer grind / longer brew time.</li></ul>"
         } else if (wheelangle >= 67.5 && wheelangle < 112.5) {
-            resultsinfo = "<ul><li>Your brew is good, but you might find an even more balanced flavour if you decrease the Brew Ratio by using more coffee</li></ul>"
+            resultsinfo = "<ul><li>Your brew is good, but you might find an even more balanced flavour if you decrease the Brew Ratio by using more coffee.</li></ul>"
         } else if (wheelangle >= 112.5 && wheelangle < 157.5) {
-            resultsinfo = "<ul><li>Your brew is good, but you might find an even more balanced flavour if you use a coarser grind / shorter brew time and use more coffee</li></ul>"
+            resultsinfo = "<ul><li>Your brew is good, but you might find an even more balanced flavour if you use a coarser grind / shorter brew time and use more coffee.</li></ul>"
         } else if (wheelangle >= 157.5 && wheelangle < 202.5) {
-            resultsinfo = "<ul><li>Your brew is good, but you might find an even more balanced flavour if you use a coarser grind / shorter brew time and use more coffee</li></ul>"
+            resultsinfo = "<ul><li>Your brew is good, but you might find an even more balanced flavour if you use a coarser grind / shorter brew time and use more coffee.</li></ul>"
         } else if (wheelangle >= 202.5 && wheelangle < 247.5) {
-            resultsinfo = "<ul><li>Your brew is good, but you might find an even more balanced flavour if you use a coarser grind / shorter brew time</li></ul>"
+            resultsinfo = "<ul><li>Your brew is good, but you might find an even more balanced flavour if you use a coarser grind / shorter brew time.</li></ul>"
         } else if (wheelangle >= 247.5 && wheelangle < 292.5) {
-            resultsinfo = "<ul><li>Your brew is good, but you might find an even more balanced flavour if you increase the Brew Ratio by using less coffee</li></ul>"
+            resultsinfo = "<ul><li>Your brew is good, but you might find an even more balanced flavour if you increase the Brew Ratio by using less coffee.</li></ul>"
         } else if (wheelangle >= 292.5 && wheelangle < 337.5) {
-            resultsinfo = "<ul><li>Your brew is good, but you might find an even more balanced flavour if you use a finer grind / longer brew time and use less coffee</li></ul>"
+            resultsinfo = "<ul><li>Your brew is good, but you might find an even more balanced flavour if you use a finer grind / longer brew time and use less coffee.</li></ul>"
         }
     }
 
@@ -1111,7 +1118,21 @@ function addFlavour(properties) {
 function click(e) {
 
 
+
     if (currentflavour) { popin(currentflavour) }
+
+    if (e.target.getAttribute("id")=="perfect") {
+
+            document.getElementById("resultstitle").innerHTML = "Green Zone"
+            document.getElementById("resultsinfo").innerHTML = "A good brew is balanced, creamy, fruity, mouth-filling and tasty. Good job!"
+            perfect.style.stroke = "#494f4d";
+            currentflavour = "perfect";
+            console.log(currentflavour)
+        
+            results = document.getElementById("resultsarea")
+            results.style.opacity = "1"
+        
+    } else {
 
 
 
@@ -1139,6 +1160,7 @@ function click(e) {
 
         popout(currentflavour)
     }
+}
 
 }
 
