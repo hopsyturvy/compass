@@ -490,7 +490,7 @@ window.onload = function () {
     document.addEventListener('touchcancel', (e) => handleTouch(e, onPointerUp))
     document.addEventListener('mousemove', onPointerMove)
     wheelcontainer.addEventListener('touchmove', (e) => handleTouch(e, onPointerMove))
-    wheelcontainer.addEventListener('wheel', (e) => scrollWheel(e.deltaY * SCROLL_SENSITIVITY))
+    wheelcontainer.addEventListener('wheel', (event) => scrollWheel(event))
     window.addEventListener("resize", resize)
 
     searchiconwrapper.addEventListener('touchstart', (e) => handleTouch(e, showsearch))
@@ -821,9 +821,12 @@ function handleTouch(e, singleTouchHandler) {
     }
 }
 
-function scrollWheel(e) {
+function scrollWheel(event) {
+    event.preventDefault();
+    let e = event.deltaY * SCROLL_SENSITIVITY
     if (!isDragging) {
         if (e) {
+            
 
             wheelTurn(e)
             wheelangle += e
@@ -1169,11 +1172,15 @@ function resize() {
     let titlearea = document.getElementById("titlearea")
     let resultsarea = document.getElementById("resultsarea")
 
-    //    let OGtitle = document.getElementById("resultstitle").innerHTML
-    //    let OGcontent = document.getElementById("resultsinfo").innerHTML
+    let OGtitle = document.getElementById("resultstitle").innerHTML
+    let OGcontent = document.getElementById("resultsinfo").innerHTML
 
-    //    document.getElementById("resultstitle").innerHTML = "Extract Less, Use More Coffee"
-    //    document.getElementById("resultsinfo").innerHTML = "<ul><li>Use a coarser grind and/or shorter brew time to extract less</li><li>Decrease the Brew Ratio by fixing the water weight and using more coffee OR by fixing the dose and using less water</li></ul>"
+    document.getElementById("resultstitle").innerHTML = "Extract Less, Use More Coffee"
+    document.getElementById("resultsinfo").innerHTML = "<ul><li>Use a coarser grind and/or shorter brew time to extract less</li><li>Decrease the Brew Ratio by fixing the water weight and using more coffee OR by fixing the dose and using less water</li></ul>"
+
+    let resultsheight = resultsarea.clientHeight
+    let centreheight = document.documentElement.clientHeight - resultsheight
+
 
     //    resultsarea.style.height = "fit-content"
 
@@ -1204,8 +1211,8 @@ function resize() {
 
     //    resultsarea.style.height = resultsarea.clientHeight + "px"
 
-    //    document.getElementById("resultstitle").innerHTML = OGtitle
-    //    document.getElementById("resultsinfo").innerHTML = OGcontent
+    document.getElementById("resultstitle").innerHTML = OGtitle
+    document.getElementById("resultsinfo").innerHTML = OGcontent
 }
 
 function describeArc(x, y, innerRadius, outerRadius, startAngle, endAngle, corners) {
